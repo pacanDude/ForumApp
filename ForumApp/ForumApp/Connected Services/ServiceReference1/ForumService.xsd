@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ForumService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ForumService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="OneUserX">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="about" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="age" type="xs:int" />
+      <xs:element minOccurs="0" name="foto" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="rating" type="xs:int" />
+      <xs:element minOccurs="0" name="ratingAnswers" type="xs:int" />
+      <xs:element minOccurs="0" name="ratingQwery" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OneUserX" nillable="true" type="tns:OneUserX" />
+  <xs:complexType name="ArrayOfQweryX">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QweryX" nillable="true" type="tns:QweryX" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQweryX" nillable="true" type="tns:ArrayOfQweryX" />
+  <xs:complexType name="QweryX">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="category" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="header" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="rating" type="xs:int" />
+      <xs:element minOccurs="0" name="text" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QweryX" nillable="true" type="tns:QweryX" />
+  <xs:complexType name="AllMessageAndQwery">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="answers" nillable="true" type="tns:ArrayOfAnsverX" />
+      <xs:element minOccurs="0" name="qwery" nillable="true" type="tns:QweryX" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AllMessageAndQwery" nillable="true" type="tns:AllMessageAndQwery" />
+  <xs:complexType name="ArrayOfAnsverX">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AnsverX" nillable="true" type="tns:AnsverX" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAnsverX" nillable="true" type="tns:ArrayOfAnsverX" />
+  <xs:complexType name="AnsverX">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="QweryId" type="xs:int" />
+      <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="rating" type="xs:int" />
+      <xs:element minOccurs="0" name="text" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AnsverX" nillable="true" type="tns:AnsverX" />
+</xs:schema>

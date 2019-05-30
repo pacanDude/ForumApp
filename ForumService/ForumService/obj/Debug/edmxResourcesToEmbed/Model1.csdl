@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ForumModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="GetAllUsers_Result">
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetCategoryList_Result">
+    <Property Name="category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetUserPassword_Result">
+    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Ansver">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QweryId" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="rating" Type="Int32" Nullable="false" />
+    <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Qwery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="header" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="rating" Type="Int32" Nullable="false" />
+    <Property Name="category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="OneUser">
+    <Key>
+      <PropertyRef Name="name" />
+      <PropertyRef Name="password" />
+      <PropertyRef Name="rating" />
+      <PropertyRef Name="ratingAnswers" />
+      <PropertyRef Name="ratingQwery" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="age" Type="Int32" />
+    <Property Name="rating" Type="Int32" Nullable="false" />
+    <Property Name="ratingAnswers" Type="Int32" Nullable="false" />
+    <Property Name="ratingQwery" Type="Int32" Nullable="false" />
+    <Property Name="about" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="ForumEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Ansver" EntityType="Self.Ansver" />
+    <EntitySet Name="Qwery" EntityType="Self.Qwery" />
+    <EntitySet Name="OneUser" EntityType="Self.OneUser" />
+    <FunctionImport Name="GetAllUsers" IsComposable="true" ReturnType="Collection(ForumModel.GetAllUsers_Result)" />
+    <FunctionImport Name="GetCategoryList" IsComposable="true" ReturnType="Collection(ForumModel.GetCategoryList_Result)" />
+    <FunctionImport Name="GetUserPassword" IsComposable="true" ReturnType="Collection(ForumModel.GetUserPassword_Result)">
+      <Parameter Name="name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="RegisterUser">
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="foto" Mode="In" Type="Binary" />
+      <Parameter Name="age" Mode="In" Type="Int32" />
+      <Parameter Name="rating" Mode="In" Type="Int32" />
+      <Parameter Name="ratingAnswers" Mode="In" Type="Int32" />
+      <Parameter Name="ratingQwery" Mode="In" Type="Int32" />
+      <Parameter Name="about" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

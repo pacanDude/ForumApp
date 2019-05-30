@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ForumModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ansver">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QweryId" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="text" Type="nvarchar(max)" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="rating" Type="int" Nullable="false" />
+          <Property Name="code" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Forum.dbo.OneUser" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="OneUser">
+          <Key>
+            <PropertyRef Name="name" />
+            <PropertyRef Name="password" />
+            <PropertyRef Name="rating" />
+            <PropertyRef Name="ratingAnswers" />
+            <PropertyRef Name="ratingQwery" />
+          </Key>
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="foto" Type="varbinary(max)" />
+          <Property Name="age" Type="int" />
+          <Property Name="rating" Type="int" Nullable="false" />
+          <Property Name="ratingAnswers" Type="int" Nullable="false" />
+          <Property Name="ratingQwery" Type="int" Nullable="false" />
+          <Property Name="about" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Qwery">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="header" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="text" Type="nvarchar(max)" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="rating" Type="int" Nullable="false" />
+          <Property Name="category" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="code" Type="nvarchar(max)" />
+        </EntityType>
+        <Function Name="GetAllUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetCategoryList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="category" Type="nvarchar(max)" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetUserPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nvarchar(max)" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="RegisterUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="varchar(max)" Mode="In" />
+          <Parameter Name="password" Type="varchar(max)" Mode="In" />
+          <Parameter Name="foto" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="age" Type="int" Mode="In" />
+          <Parameter Name="rating" Type="int" Mode="In" />
+          <Parameter Name="ratingAnswers" Type="int" Mode="In" />
+          <Parameter Name="ratingQwery" Type="int" Mode="In" />
+          <Parameter Name="about" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="Хранилище ForumModelContainer">
+          <EntitySet Name="Ansver" EntityType="Self.Ansver" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Qwery" EntityType="Self.Qwery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OneUser" EntityType="Self.OneUser" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [OneUser].[name] AS [name], 
+    [OneUser].[password] AS [password], 
+    [OneUser].[foto] AS [foto], 
+    [OneUser].[age] AS [age], 
+    [OneUser].[rating] AS [rating], 
+    [OneUser].[ratingAnswers] AS [ratingAnswers], 
+    [OneUser].[ratingQwery] AS [ratingQwery], 
+    [OneUser].[about] AS [about]
+    FROM [dbo].[OneUser] AS [OneUser]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ForumModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="GetAllUsers_Result">
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetCategoryList_Result">
+          <Property Name="category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetUserPassword_Result">
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Ansver">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QweryId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="rating" Type="Int32" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Qwery">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="header" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="rating" Type="Int32" Nullable="false" />
+          <Property Name="category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OneUser">
+          <Key>
+            <PropertyRef Name="name" />
+            <PropertyRef Name="password" />
+            <PropertyRef Name="rating" />
+            <PropertyRef Name="ratingAnswers" />
+            <PropertyRef Name="ratingQwery" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="age" Type="Int32" />
+          <Property Name="rating" Type="Int32" Nullable="false" />
+          <Property Name="ratingAnswers" Type="Int32" Nullable="false" />
+          <Property Name="ratingQwery" Type="Int32" Nullable="false" />
+          <Property Name="about" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="ForumEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ansver" EntityType="Self.Ansver" />
+          <EntitySet Name="Qwery" EntityType="Self.Qwery" />
+          <EntitySet Name="OneUser" EntityType="Self.OneUser" />
+          <FunctionImport Name="GetAllUsers" IsComposable="true" ReturnType="Collection(ForumModel.GetAllUsers_Result)" />
+          <FunctionImport Name="GetCategoryList" IsComposable="true" ReturnType="Collection(ForumModel.GetCategoryList_Result)" />
+          <FunctionImport Name="GetUserPassword" IsComposable="true" ReturnType="Collection(ForumModel.GetUserPassword_Result)">
+            <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RegisterUser">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="foto" Mode="In" Type="Binary" />
+            <Parameter Name="age" Mode="In" Type="Int32" />
+            <Parameter Name="rating" Mode="In" Type="Int32" />
+            <Parameter Name="ratingAnswers" Mode="In" Type="Int32" />
+            <Parameter Name="ratingQwery" Mode="In" Type="Int32" />
+            <Parameter Name="about" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ForumModelContainer" CdmEntityContainer="ForumEntities">
+          <EntitySetMapping Name="Ansver">
+            <EntityTypeMapping TypeName="ForumModel.Ansver">
+              <MappingFragment StoreEntitySet="Ansver">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="QweryId" ColumnName="QweryId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Qwery">
+            <EntityTypeMapping TypeName="ForumModel.Qwery">
+              <MappingFragment StoreEntitySet="Qwery">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="header" ColumnName="header" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OneUser">
+            <EntityTypeMapping TypeName="ForumModel.OneUser">
+              <MappingFragment StoreEntitySet="OneUser">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="ratingAnswers" ColumnName="ratingAnswers" />
+                <ScalarProperty Name="ratingQwery" ColumnName="ratingQwery" />
+                <ScalarProperty Name="about" ColumnName="about" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionName="Хранилище ForumModel.GetAllUsers" FunctionImportName="GetAllUsers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForumModel.GetAllUsers_Result">
+                <ScalarProperty Name="name" ColumnName="name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="Хранилище ForumModel.GetCategoryList" FunctionImportName="GetCategoryList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForumModel.GetCategoryList_Result">
+                <ScalarProperty Name="category" ColumnName="category" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="Хранилище ForumModel.GetUserPassword" FunctionImportName="GetUserPassword">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForumModel.GetUserPassword_Result">
+                <ScalarProperty Name="password" ColumnName="password" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RegisterUser" FunctionName="Хранилище ForumModel.RegisterUser" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

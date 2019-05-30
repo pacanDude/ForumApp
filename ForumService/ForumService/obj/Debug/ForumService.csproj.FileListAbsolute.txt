@@ -1,0 +1,28 @@
+C:\1programirovanie\Network programming\ForumService\ForumService\bin\Debug\ForumService.dll.config
+C:\1programirovanie\Network programming\ForumService\ForumService\bin\Debug\ForumService.dll
+C:\1programirovanie\Network programming\ForumService\ForumService\bin\Debug\ForumService.pdb
+C:\1programirovanie\Network programming\ForumService\ForumService\obj\Debug\ForumService.csprojAssemblyReference.cache
+C:\1programirovanie\Network programming\ForumService\ForumService\obj\Debug\ForumService.csproj.CoreCompileInputs.cache
+C:\1programirovanie\Network programming\ForumService\ForumService\obj\Debug\ForumService.dll
+C:\1programirovanie\Network programming\ForumService\ForumService\obj\Debug\ForumService.pdb
+c:\temp\ForumService\ForumService\bin\Debug\ForumService.dll.config
+c:\temp\ForumService\ForumService\bin\Debug\ForumService.dll
+c:\temp\ForumService\ForumService\bin\Debug\ForumService.pdb
+c:\temp\ForumService\ForumService\obj\Debug\ForumService.csprojAssemblyReference.cache
+c:\temp\ForumService\ForumService\obj\Debug\ForumService.csproj.CoreCompileInputs.cache
+c:\temp\ForumService\ForumService\obj\Debug\ForumService.dll
+c:\temp\ForumService\ForumService\obj\Debug\ForumService.pdb
+C:\Users\setup\Desktop\Forum\ForumService\ForumService\bin\Debug\ForumService.dll.config
+C:\Users\setup\Desktop\Forum\ForumService\ForumService\bin\Debug\ForumService.dll
+C:\Users\setup\Desktop\Forum\ForumService\ForumService\bin\Debug\ForumService.pdb
+C:\Users\setup\Desktop\Forum\ForumService\ForumService\obj\Debug\ForumService.csprojAssemblyReference.cache
+C:\Users\setup\Desktop\Forum\ForumService\ForumService\obj\Debug\ForumService.csproj.CoreCompileInputs.cache
+C:\Users\setup\Desktop\Forum\ForumService\ForumService\obj\Debug\ForumService.dll
+C:\Users\setup\Desktop\Forum\ForumService\ForumService\obj\Debug\ForumService.pdb
+C:\Users\setup\Desktop\Forum\ForumService\ForumService\bin\Debug\EntityFramework.dll
+C:\Users\setup\Desktop\Forum\ForumService\ForumService\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\setup\Desktop\Forum\ForumService\ForumService\bin\Debug\EntityFramework.xml
+C:\Users\setup\Desktop\Forum\ForumService\ForumService\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\setup\Desktop\Forum\ForumService\ForumService\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\setup\Desktop\Forum\ForumService\ForumService\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+C:\Users\setup\Desktop\Forum\ForumService\ForumService\obj\Debug\ForumService.csproj.CopyComplete

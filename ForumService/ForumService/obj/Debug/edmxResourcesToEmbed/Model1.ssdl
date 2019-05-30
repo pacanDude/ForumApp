@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище ForumModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Ansver">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QweryId" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="text" Type="nvarchar(max)" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="rating" Type="int" Nullable="false" />
+    <Property Name="code" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Forum.dbo.OneUser" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="OneUser">
+    <Key>
+      <PropertyRef Name="name" />
+      <PropertyRef Name="password" />
+      <PropertyRef Name="rating" />
+      <PropertyRef Name="ratingAnswers" />
+      <PropertyRef Name="ratingQwery" />
+    </Key>
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="foto" Type="varbinary(max)" />
+    <Property Name="age" Type="int" />
+    <Property Name="rating" Type="int" Nullable="false" />
+    <Property Name="ratingAnswers" Type="int" Nullable="false" />
+    <Property Name="ratingQwery" Type="int" Nullable="false" />
+    <Property Name="about" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Qwery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="header" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="text" Type="nvarchar(max)" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="rating" Type="int" Nullable="false" />
+    <Property Name="category" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="code" Type="nvarchar(max)" />
+  </EntityType>
+  <Function Name="GetAllUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="GetCategoryList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="category" Type="nvarchar(max)" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="GetUserPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="name" Type="nvarchar(max)" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="RegisterUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="name" Type="varchar(max)" Mode="In" />
+    <Parameter Name="password" Type="varchar(max)" Mode="In" />
+    <Parameter Name="foto" Type="varbinary(max)" Mode="In" />
+    <Parameter Name="age" Type="int" Mode="In" />
+    <Parameter Name="rating" Type="int" Mode="In" />
+    <Parameter Name="ratingAnswers" Type="int" Mode="In" />
+    <Parameter Name="ratingQwery" Type="int" Mode="In" />
+    <Parameter Name="about" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <EntityContainer Name="Хранилище ForumModelContainer">
+    <EntitySet Name="Ansver" EntityType="Self.Ansver" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Qwery" EntityType="Self.Qwery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OneUser" EntityType="Self.OneUser" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [OneUser].[name] AS [name], 
+    [OneUser].[password] AS [password], 
+    [OneUser].[foto] AS [foto], 
+    [OneUser].[age] AS [age], 
+    [OneUser].[rating] AS [rating], 
+    [OneUser].[ratingAnswers] AS [ratingAnswers], 
+    [OneUser].[ratingQwery] AS [ratingQwery], 
+    [OneUser].[about] AS [about]
+    FROM [dbo].[OneUser] AS [OneUser]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

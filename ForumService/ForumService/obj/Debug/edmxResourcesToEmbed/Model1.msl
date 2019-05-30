@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ForumModelContainer" CdmEntityContainer="ForumEntities">
+    <EntitySetMapping Name="Ansver">
+      <EntityTypeMapping TypeName="ForumModel.Ansver">
+        <MappingFragment StoreEntitySet="Ansver">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="QweryId" ColumnName="QweryId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="code" ColumnName="code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Qwery">
+      <EntityTypeMapping TypeName="ForumModel.Qwery">
+        <MappingFragment StoreEntitySet="Qwery">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="header" ColumnName="header" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="code" ColumnName="code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OneUser">
+      <EntityTypeMapping TypeName="ForumModel.OneUser">
+        <MappingFragment StoreEntitySet="OneUser">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="ratingAnswers" ColumnName="ratingAnswers" />
+          <ScalarProperty Name="ratingQwery" ColumnName="ratingQwery" />
+          <ScalarProperty Name="about" ColumnName="about" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionName="Хранилище ForumModel.GetAllUsers" FunctionImportName="GetAllUsers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForumModel.GetAllUsers_Result">
+          <ScalarProperty Name="name" ColumnName="name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="Хранилище ForumModel.GetCategoryList" FunctionImportName="GetCategoryList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForumModel.GetCategoryList_Result">
+          <ScalarProperty Name="category" ColumnName="category" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="Хранилище ForumModel.GetUserPassword" FunctionImportName="GetUserPassword">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForumModel.GetUserPassword_Result">
+          <ScalarProperty Name="password" ColumnName="password" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RegisterUser" FunctionName="Хранилище ForumModel.RegisterUser" />
+  </EntityContainerMapping>
+</Mapping>

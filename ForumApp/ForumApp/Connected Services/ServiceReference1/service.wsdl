@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ForumService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IForumService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1">
+        </msb:BinaryEncoding>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256>
+                </sp:Basic256>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict>
+                </sp:Strict>
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing>
+        </wsaw:UsingAddressing>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ForumService" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IForumService_RegisterUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterUser" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_RegisterUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_LogIn_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogIn" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_LogIn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogInResponse" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_GetOneUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOneUser" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_GetOneUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOneUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_EditOneUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditOneUser" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_EditOneUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditOneUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_GetQweryList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetQweryList" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_GetQweryList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetQweryListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_GetQweryWithAnsvers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetQweryWithAnsvers" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_GetQweryWithAnsvers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetQweryWithAnsversResponse" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_SendMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessage" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_SendMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_GetCategoryList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryList" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_GetCategoryList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryListResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IForumService">
+    <wsdl:operation name="RegisterUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IForumService/RegisterUser" message="tns:IForumService_RegisterUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IForumService/RegisterUserResponse" message="tns:IForumService_RegisterUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogIn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IForumService/LogIn" message="tns:IForumService_LogIn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IForumService/LogInResponse" message="tns:IForumService_LogIn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOneUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IForumService/GetOneUser" message="tns:IForumService_GetOneUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IForumService/GetOneUserResponse" message="tns:IForumService_GetOneUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditOneUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IForumService/EditOneUser" message="tns:IForumService_EditOneUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IForumService/EditOneUserResponse" message="tns:IForumService_EditOneUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQweryList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IForumService/GetQweryList" message="tns:IForumService_GetQweryList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IForumService/GetQweryListResponse" message="tns:IForumService_GetQweryList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQweryWithAnsvers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IForumService/GetQweryWithAnsvers" message="tns:IForumService_GetQweryWithAnsvers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IForumService/GetQweryWithAnsversResponse" message="tns:IForumService_GetQweryWithAnsvers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IForumService/SendMessage" message="tns:IForumService_SendMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IForumService/SendMessageResponse" message="tns:IForumService_SendMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IForumService/GetCategoryList" message="tns:IForumService_GetCategoryList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IForumService/GetCategoryListResponse" message="tns:IForumService_GetCategoryList_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IForumService" type="tns:IForumService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IForumService_policy">
+    </wsp:PolicyReference>
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="RegisterUser">
+      <soap12:operation soapAction="http://tempuri.org/IForumService/RegisterUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogIn">
+      <soap12:operation soapAction="http://tempuri.org/IForumService/LogIn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOneUser">
+      <soap12:operation soapAction="http://tempuri.org/IForumService/GetOneUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditOneUser">
+      <soap12:operation soapAction="http://tempuri.org/IForumService/EditOneUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQweryList">
+      <soap12:operation soapAction="http://tempuri.org/IForumService/GetQweryList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQweryWithAnsvers">
+      <soap12:operation soapAction="http://tempuri.org/IForumService/GetQweryWithAnsvers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap12:operation soapAction="http://tempuri.org/IForumService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryList">
+      <soap12:operation soapAction="http://tempuri.org/IForumService/GetCategoryList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ForumService">
+    <wsdl:port name="NetTcpBinding_IForumService" binding="tns:NetTcpBinding_IForumService">
+      <soap12:address location="net.tcp://localhost:8733/Design_Time_Addresses/ForumService/ForumService/" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8733/Design_Time_Addresses/ForumService/ForumService/</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
