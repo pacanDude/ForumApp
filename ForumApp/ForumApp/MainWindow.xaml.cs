@@ -86,10 +86,23 @@ namespace ForumApp
 
         private void TextBlock_MouseDown_1(object sender, MouseButtonEventArgs e)
         {
-            TabItem tabItem = new TabItem() { Header = (string)((TextBlock)sender).Text };
+            foreach (var item in forumServiceClient.GetQweryWithAnsvers((int)((TextBlock)sender).Tag).answers)
+            {
+                TabItem tabItem = new TabItem() { Header = item.text };
+                Grid grid = new Grid();
+                ScrollViewer scrollViewer = new ScrollViewer() { CanContentScroll = true, HorizontalScrollBarVisibility = ScrollBarVisibility.Auto, VerticalScrollBarVisibility = ScrollBarVisibility.Auto };
 
-            tabItem.MouseDown += TabItem_MouseUp;
-            MainTabControl.Items.Add(tabItem);
+
+                tabItem.Content = grid;
+
+                ListView listView = new ListView() { Style = (Style)Resources["ListViewStyle"] };
+                listView.DataContext = item;
+                scrollViewer.Content = listView;
+                grid.Children.Add(scrollViewer);
+
+                tabItem.MouseDown += TabItem_MouseUp;
+                MainTabControl.Items.Add(tabItem);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

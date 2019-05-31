@@ -57,13 +57,32 @@ namespace ForumService
             return list;
         }
 
-        public AllMessageAndQwery GetQweryWithAnsvers(int QweryId)
+
+        public QweryX GetQueryById(int QueryId)
+        {
+            QweryX qwery = null;
+            foreach (var item in GetQweryList())
+            {
+                if(item.Id == QueryId)
+                {
+                    qwery = item;
+                }
+            }
+            return qwery;
+        }
+
+        public AllMessageAndQwery GetQweryWithAnsvers(int QueryId)
         {
             AllMessageAndQwery all = new AllMessageAndQwery();
-            all.qwery = new QweryX() { Id = 123, category = "category", date = DateTime.Now, header = "header заголовок название темы", name = "Имя пользователя", rating = 5, text = "весь текст вопроса" };
-            for (int i = 0; i < 10; i++)
+            foreach (var item in fef.Ansver)
             {
-                all.answers.Add(new AnsverX() { Id = 123 + i, date = DateTime.Now, name = "Имя пользователя" + i.ToString(), rating = i, text = "весь текст ответа" + i.ToString() });
+                if (item.QweryId == QueryId)
+                {
+                    all.qwery = GetQueryById(QueryId);
+                    AnsverX ansverX = new AnsverX() { Id = item.Id, QweryId = QueryId, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text };
+                    all.answers.Add(ansverX);
+                }
+
             }
 
             return all;
