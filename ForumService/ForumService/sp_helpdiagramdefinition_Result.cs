@@ -14,10 +14,12 @@ namespace ForumService
 
 using System;
     
-public partial class GetAllUsers_Result
+public partial class sp_helpdiagramdefinition_Result
 {
 
-    public string name { get; set; }
+    public Nullable<int> version { get; set; }
+
+    public byte[] definition { get; set; }
 
 }
 

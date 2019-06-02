@@ -14,10 +14,24 @@ namespace ForumService
 
 using System;
     
-public partial class GetAllUsers_Result
+public partial class GetOneUser_Result
 {
 
     public string name { get; set; }
+
+    public string password { get; set; }
+
+    public byte[] foto { get; set; }
+
+    public Nullable<int> age { get; set; }
+
+    public int rating { get; set; }
+
+    public int ratingAnswers { get; set; }
+
+    public int ratingQwery { get; set; }
+
+    public string about { get; set; }
 
 }
 

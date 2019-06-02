@@ -26,70 +26,37 @@ namespace ForumService
         ForumEntities fef = new ForumEntities();
         public bool EditOneUser(OneUserX user, string name)
         {
-            if (user.name==name)
-            {
-                users.Remove(name);
-                users.Add(name, user.password);
-                return true;
-            }
-            if (users.ContainsKey(user.name))
-            {
-                return false;
-            }
-            users.Remove(name);
-            users.Add(user.name, user.password);
+            fef.EditUser(user.name,user.password,user.foto,user.age,user.rating,user.ratingAnswers,user.ratingQwery,user.about);
+            
             return true;
         }
 
         public OneUserX GetOneUser(string name)
         {
-            return new OneUserX { about = "about", age = 25, name = "name", rating = 5, ratingAnswers = 7, ratingQwery = 9, foto = new byte[] { } };
-        }
-
-        public List<QweryX> GetQweryList()
-        {
-            List<QweryX> list = new List<QweryX>();
-
-            foreach (var item in fef.Qwery)
+            OneUserX temp = new OneUserX();
+            foreach (var item in fef.GetOneUser(name))
             {
-                list.Add(new QweryX { Id = item.Id, date = item.date, header = item.header, name = item.name, rating = item.rating, text = item.text,category= item.category,code= item.code });
+                temp = new OneUserX { name = item.name, about = item.about, foto = item.foto, age = item.age, password = item.password, rating = item.rating, ratingAnswers = item.ratingAnswers, ratingQwery = item.ratingQwery };
             }
-            return list;
+            return temp;
         }
-
-
-        public QweryX GetQueryById(int QueryId)
-        {
-            QweryX qwery = null;
-            foreach (var item in GetQweryList())
-            {
-                if(item.Id == QueryId)
-                {
-                    qwery = item;
-                }
-            }
-            return qwery;
-        }
-
+        
         public AllMessageAndQwery GetQweryWithAnsvers(int QueryId)
         {
             AllMessageAndQwery all = new AllMessageAndQwery();
-            foreach (var item in fef.Ansver)
+            foreach (var item in fef.GetQwery(QueryId))
             {
-                if (item.QweryId == QueryId)
-                {
-                    all.qwery = GetQueryById(QueryId);
-                    AnsverX ansverX = new AnsverX() { Id = item.Id, QweryId = QueryId, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text };
-                    all.answers.Add(ansverX);
-                }
-
+                all.qwery = new QweryX { Id = item.Id, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text, header = item.header,category=item.category };
+            }
+            
+            foreach (var item in fef.GetAnsversIdQwery(QueryId))
+            {
+                all.answers.Add(new AnsverX() { Id = item.Id, QweryId = QueryId, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text });
             }
 
             return all;
         }
-
-        Dictionary<string, string> users = new Dictionary<string, string>();
-
+        
         public bool LogIn(string login, string password)
         {
             foreach (var item in fef.GetUserPassword(login))
@@ -128,6 +95,49 @@ namespace ForumService
                 list.Add(item.category);
             }
             return list;
+        }
+
+        public List<QweryX> GetQweryList()
+        {
+            List<QweryX> temp = new List<QweryX>();
+            foreach (var item in fef.Qwery)
+            {
+                temp.Add(new QweryX { Id = item.Id, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text, header = item.header, category = item.category });
+            }
+            return temp;
+        }
+
+        public QweryX GetQueryById(int QueryId)
+        {
+            QweryX temp = new QweryX();
+            foreach (var item in fef.GetQwery(QueryId))
+            {
+                temp = new QweryX { Id = item.Id, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text, header = item.header, category = item.category };
+            }
+            return temp;
+        }
+
+        public List<QweryX> GetFindQweryList(string findString)
+        {
+            List<QweryX> temp = new List<QweryX>();
+            foreach (var item in fef.Qwery)
+            {
+                if (item.header.Contains(findString)||item.text.Contains(findString)||item.code.Contains(findString))
+                {
+                    temp.Add(new QweryX { Id = item.Id, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text, header = item.header, category = item.category });
+                }
+            }
+            return temp;
+        }
+
+        public List<QweryX> GetCategoryQweryList(string category)
+        {
+            List<QweryX> temp = new List<QweryX>();
+            foreach (var item in fef.GetQweryByCategory(category))
+            {
+                temp.Add(new QweryX { Id = item.Id, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text, header = item.header, category = item.category });
+            }
+            return temp;
         }
     }
 

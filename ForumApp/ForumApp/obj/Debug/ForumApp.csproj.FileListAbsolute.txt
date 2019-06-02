@@ -58,3 +58,18 @@ C:\GITHUB REP\GITHUB-REP\Forum\ForumApp\ForumApp\obj\Debug\ForumApp.csproj.Gener
 C:\GITHUB REP\GITHUB-REP\Forum\ForumApp\ForumApp\obj\Debug\ForumApp.csproj.CoreCompileInputs.cache
 C:\GITHUB REP\GITHUB-REP\Forum\ForumApp\ForumApp\obj\Debug\ForumApp.exe
 C:\GITHUB REP\GITHUB-REP\Forum\ForumApp\ForumApp\obj\Debug\ForumApp.pdb
+c:\1programirovanie\ForumApp-master\ForumApp\ForumApp\bin\Debug\ForumApp.exe.config
+c:\1programirovanie\ForumApp-master\ForumApp\ForumApp\bin\Debug\ForumApp.exe
+c:\1programirovanie\ForumApp-master\ForumApp\ForumApp\bin\Debug\ForumApp.pdb
+c:\1programirovanie\ForumApp-master\ForumApp\ForumApp\obj\Debug\ForumApp.csprojAssemblyReference.cache
+c:\1programirovanie\ForumApp-master\ForumApp\ForumApp\obj\Debug\MainWindow.g.cs
+c:\1programirovanie\ForumApp-master\ForumApp\ForumApp\obj\Debug\App.g.cs
+c:\1programirovanie\ForumApp-master\ForumApp\ForumApp\obj\Debug\ForumApp_MarkupCompile.cache
+c:\1programirovanie\ForumApp-master\ForumApp\ForumApp\obj\Debug\ForumApp_MarkupCompile.lref
+c:\1programirovanie\ForumApp-master\ForumApp\ForumApp\obj\Debug\MainWindow.baml
+c:\1programirovanie\ForumApp-master\ForumApp\ForumApp\obj\Debug\ForumApp.g.resources
+c:\1programirovanie\ForumApp-master\ForumApp\ForumApp\obj\Debug\ForumApp.Properties.Resources.resources
+c:\1programirovanie\ForumApp-master\ForumApp\ForumApp\obj\Debug\ForumApp.csproj.GenerateResource.cache
+c:\1programirovanie\ForumApp-master\ForumApp\ForumApp\obj\Debug\ForumApp.csproj.CoreCompileInputs.cache
+c:\1programirovanie\ForumApp-master\ForumApp\ForumApp\obj\Debug\ForumApp.exe
+c:\1programirovanie\ForumApp-master\ForumApp\ForumApp\obj\Debug\ForumApp.pdb

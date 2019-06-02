@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище ForumModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище ForumModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Ansver">
           <Key>
             <PropertyRef Name="Id" />
@@ -49,6 +49,17 @@
           <Property Name="category" Type="nvarchar(max)" Nullable="false" />
           <Property Name="code" Type="nvarchar(max)" />
         </EntityType>
+        <Function Name="EditUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="varchar(max)" Mode="In" />
+          <Parameter Name="password" Type="varchar(max)" Mode="In" />
+          <Parameter Name="foto" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="age" Type="int" Mode="In" />
+          <Parameter Name="rating" Type="int" Mode="In" />
+          <Parameter Name="ratingAnswers" Type="int" Mode="In" />
+          <Parameter Name="ratingQwery" Type="int" Mode="In" />
+          <Parameter Name="about" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="GetAllUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <ReturnType>
             <CollectionType>
@@ -58,11 +69,78 @@
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="GetAnsversIdQwery" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="QweryId" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Id" Type="int" Nullable="false" />
+                <Property Name="QweryId" Type="int" Nullable="false" />
+                <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="text" Type="nvarchar(max)" />
+                <Property Name="date" Type="datetime" Nullable="false" />
+                <Property Name="rating" Type="int" Nullable="false" />
+                <Property Name="code" Type="nvarchar(max)" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="GetCategoryList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <ReturnType>
             <CollectionType>
               <RowType>
                 <Property Name="category" Type="nvarchar(max)" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetOneUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nvarchar(max)" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="foto" Type="varbinary(max)" />
+                <Property Name="age" Type="int" />
+                <Property Name="rating" Type="int" Nullable="false" />
+                <Property Name="ratingAnswers" Type="int" Nullable="false" />
+                <Property Name="ratingQwery" Type="int" Nullable="false" />
+                <Property Name="about" Type="nvarchar(max)" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetQwery" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Id" Type="int" Nullable="false" />
+                <Property Name="header" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="text" Type="nvarchar(max)" />
+                <Property Name="date" Type="datetime" Nullable="false" />
+                <Property Name="rating" Type="int" Nullable="false" />
+                <Property Name="category" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="code" Type="nvarchar(max)" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetQweryByCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="category" Type="nvarchar(max)" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Id" Type="int" Nullable="false" />
+                <Property Name="header" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="text" Type="nvarchar(max)" />
+                <Property Name="date" Type="datetime" Nullable="false" />
+                <Property Name="rating" Type="int" Nullable="false" />
+                <Property Name="category" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="code" Type="nvarchar(max)" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -87,6 +165,36 @@
           <Parameter Name="ratingQwery" Type="int" Mode="In" />
           <Parameter Name="about" Type="nvarchar(max)" Mode="In" />
         </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Хранилище ForumModelContainer">
           <EntitySet Name="Ansver" EntityType="Self.Ansver" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Qwery" EntityType="Self.Qwery" Schema="dbo" store:Type="Tables" />
@@ -103,8 +211,7 @@
     FROM [dbo].[OneUser] AS [OneUser]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ForumModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -166,7 +273,7 @@
           <FunctionImport Name="GetAllUsers" IsComposable="true" ReturnType="Collection(ForumModel.GetAllUsers_Result)" />
           <FunctionImport Name="GetCategoryList" IsComposable="true" ReturnType="Collection(ForumModel.GetCategoryList_Result)" />
           <FunctionImport Name="GetUserPassword" IsComposable="true" ReturnType="Collection(ForumModel.GetUserPassword_Result)">
-            <Parameter Name="name" Mode="In" Type="String" />
+          <Parameter Name="name" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="RegisterUser">
             <Parameter Name="name" Mode="In" Type="String" />
@@ -178,7 +285,109 @@
             <Parameter Name="ratingQwery" Mode="In" Type="Int32" />
             <Parameter Name="about" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="GetAnsversIdQwery" IsComposable="true" ReturnType="Collection(ForumModel.GetAnsversIdQwery_Result)">
+          <Parameter Name="QweryId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetQwery" IsComposable="true" ReturnType="Collection(ForumModel.GetQwery_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ForumModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ForumModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="GetOneUser" IsComposable="true" ReturnType="Collection(ForumModel.GetOneUser_Result)">
+          <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="EditUser">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="foto" Mode="In" Type="Binary" />
+            <Parameter Name="age" Mode="In" Type="Int32" />
+            <Parameter Name="rating" Mode="In" Type="Int32" />
+            <Parameter Name="ratingAnswers" Mode="In" Type="Int32" />
+            <Parameter Name="ratingQwery" Mode="In" Type="Int32" />
+            <Parameter Name="about" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetQweryByCategory" IsComposable="true" ReturnType="Collection(ForumModel.GetQweryByCategory_Result)">
+            <Parameter Name="category" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="GetAnsversIdQwery_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="QweryId" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" />
+          <Property Type="String" Name="text" Nullable="true" />
+          <Property Type="DateTime" Name="date" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="rating" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetQwery_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="header" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" />
+          <Property Type="String" Name="text" Nullable="true" />
+          <Property Type="DateTime" Name="date" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="rating" Nullable="false" />
+          <Property Type="String" Name="category" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetOneUser_Result">
+          <Property Type="String" Name="name" Nullable="false" />
+          <Property Type="String" Name="password" Nullable="false" />
+          <Property Type="Binary" Name="foto" Nullable="true" />
+          <Property Type="Int32" Name="age" Nullable="true" />
+          <Property Type="Int32" Name="rating" Nullable="false" />
+          <Property Type="Int32" Name="ratingAnswers" Nullable="false" />
+          <Property Type="Int32" Name="ratingQwery" Nullable="false" />
+          <Property Type="String" Name="about" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetQweryByCategory_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="header" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" />
+          <Property Type="String" Name="text" Nullable="true" />
+          <Property Type="DateTime" Name="date" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="rating" Nullable="false" />
+          <Property Type="String" Name="category" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -248,6 +457,86 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="RegisterUser" FunctionName="Хранилище ForumModel.RegisterUser" />
+          <FunctionImportMapping FunctionImportName="GetAnsversIdQwery" FunctionName="Хранилище ForumModel.GetAnsversIdQwery">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForumModel.GetAnsversIdQwery_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="QweryId" ColumnName="QweryId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetQwery" FunctionName="Хранилище ForumModel.GetQwery">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForumModel.GetQwery_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="header" ColumnName="header" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище ForumModel.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище ForumModel.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище ForumModel.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище ForumModel.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForumModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище ForumModel.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForumModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище ForumModel.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище ForumModel.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="GetOneUser" FunctionName="Хранилище ForumModel.GetOneUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForumModel.GetOneUser_Result">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="ratingAnswers" ColumnName="ratingAnswers" />
+                <ScalarProperty Name="ratingQwery" ColumnName="ratingQwery" />
+                <ScalarProperty Name="about" ColumnName="about" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="EditUser" FunctionName="Хранилище ForumModel.EditUser" />
+          <FunctionImportMapping FunctionImportName="GetQweryByCategory" FunctionName="Хранилище ForumModel.GetQweryByCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForumModel.GetQweryByCategory_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="header" ColumnName="header" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

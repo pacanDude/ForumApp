@@ -35,6 +35,12 @@ namespace ForumService
         List<string> GetCategoryList();
         [OperationContract]
         QweryX GetQueryById(int QueryId);
+
+        [OperationContract]
+        List<QweryX> GetFindQweryList(string findString);//для заполнения первой страницы по поиску
+
+        [OperationContract]
+        List<QweryX> GetCategoryQweryList(string category);//для заполнения первой страницы по категориям
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
