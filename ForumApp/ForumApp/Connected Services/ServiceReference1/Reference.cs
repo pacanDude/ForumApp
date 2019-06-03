@@ -580,6 +580,36 @@ namespace ForumApp.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/GetCategoryList", ReplyAction="http://tempuri.org/IForumService/GetCategoryListResponse")]
         System.Threading.Tasks.Task<string[]> GetCategoryListAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/GetQueryById", ReplyAction="http://tempuri.org/IForumService/GetQueryByIdResponse")]
+        ForumApp.ServiceReference1.QweryX GetQueryById(int QueryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/GetQueryById", ReplyAction="http://tempuri.org/IForumService/GetQueryByIdResponse")]
+        System.Threading.Tasks.Task<ForumApp.ServiceReference1.QweryX> GetQueryByIdAsync(int QueryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/GetFindQweryList", ReplyAction="http://tempuri.org/IForumService/GetFindQweryListResponse")]
+        ForumApp.ServiceReference1.QweryX[] GetFindQweryList(string findString);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/GetFindQweryList", ReplyAction="http://tempuri.org/IForumService/GetFindQweryListResponse")]
+        System.Threading.Tasks.Task<ForumApp.ServiceReference1.QweryX[]> GetFindQweryListAsync(string findString);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/GetCategoryQweryList", ReplyAction="http://tempuri.org/IForumService/GetCategoryQweryListResponse")]
+        ForumApp.ServiceReference1.QweryX[] GetCategoryQweryList(string category);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/GetCategoryQweryList", ReplyAction="http://tempuri.org/IForumService/GetCategoryQweryListResponse")]
+        System.Threading.Tasks.Task<ForumApp.ServiceReference1.QweryX[]> GetCategoryQweryListAsync(string category);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/SendQwery", ReplyAction="http://tempuri.org/IForumService/SendQweryResponse")]
+        bool SendQwery(ForumApp.ServiceReference1.QweryX qwery);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/SendQwery", ReplyAction="http://tempuri.org/IForumService/SendQweryResponse")]
+        System.Threading.Tasks.Task<bool> SendQweryAsync(ForumApp.ServiceReference1.QweryX qwery);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/SendAnsver", ReplyAction="http://tempuri.org/IForumService/SendAnsverResponse")]
+        bool SendAnsver(ForumApp.ServiceReference1.AnsverX ansver);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/SendAnsver", ReplyAction="http://tempuri.org/IForumService/SendAnsverResponse")]
+        System.Threading.Tasks.Task<bool> SendAnsverAsync(ForumApp.ServiceReference1.AnsverX ansver);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -671,6 +701,46 @@ namespace ForumApp.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string[]> GetCategoryListAsync() {
             return base.Channel.GetCategoryListAsync();
+        }
+        
+        public ForumApp.ServiceReference1.QweryX GetQueryById(int QueryId) {
+            return base.Channel.GetQueryById(QueryId);
+        }
+        
+        public System.Threading.Tasks.Task<ForumApp.ServiceReference1.QweryX> GetQueryByIdAsync(int QueryId) {
+            return base.Channel.GetQueryByIdAsync(QueryId);
+        }
+        
+        public ForumApp.ServiceReference1.QweryX[] GetFindQweryList(string findString) {
+            return base.Channel.GetFindQweryList(findString);
+        }
+        
+        public System.Threading.Tasks.Task<ForumApp.ServiceReference1.QweryX[]> GetFindQweryListAsync(string findString) {
+            return base.Channel.GetFindQweryListAsync(findString);
+        }
+        
+        public ForumApp.ServiceReference1.QweryX[] GetCategoryQweryList(string category) {
+            return base.Channel.GetCategoryQweryList(category);
+        }
+        
+        public System.Threading.Tasks.Task<ForumApp.ServiceReference1.QweryX[]> GetCategoryQweryListAsync(string category) {
+            return base.Channel.GetCategoryQweryListAsync(category);
+        }
+        
+        public bool SendQwery(ForumApp.ServiceReference1.QweryX qwery) {
+            return base.Channel.SendQwery(qwery);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SendQweryAsync(ForumApp.ServiceReference1.QweryX qwery) {
+            return base.Channel.SendQweryAsync(qwery);
+        }
+        
+        public bool SendAnsver(ForumApp.ServiceReference1.AnsverX ansver) {
+            return base.Channel.SendAnsver(ansver);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SendAnsverAsync(ForumApp.ServiceReference1.AnsverX ansver) {
+            return base.Channel.SendAnsverAsync(ansver);
         }
     }
 }

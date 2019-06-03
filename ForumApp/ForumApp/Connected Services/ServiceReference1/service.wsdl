@@ -89,6 +89,36 @@
   <wsdl:message name="IForumService_GetCategoryList_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCategoryListResponse" />
   </wsdl:message>
+  <wsdl:message name="IForumService_GetQueryById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetQueryById" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_GetQueryById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetQueryByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_GetFindQweryList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFindQweryList" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_GetFindQweryList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFindQweryListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_GetCategoryQweryList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryQweryList" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_GetCategoryQweryList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryQweryListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_SendQwery_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendQwery" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_SendQwery_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendQweryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_SendAnsver_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendAnsver" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_SendAnsver_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendAnsverResponse" />
+  </wsdl:message>
   <wsdl:portType name="IForumService">
     <wsdl:operation name="RegisterUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IForumService/RegisterUser" message="tns:IForumService_RegisterUser_InputMessage" />
@@ -121,6 +151,26 @@
     <wsdl:operation name="GetCategoryList">
       <wsdl:input wsaw:Action="http://tempuri.org/IForumService/GetCategoryList" message="tns:IForumService_GetCategoryList_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IForumService/GetCategoryListResponse" message="tns:IForumService_GetCategoryList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQueryById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IForumService/GetQueryById" message="tns:IForumService_GetQueryById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IForumService/GetQueryByIdResponse" message="tns:IForumService_GetQueryById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFindQweryList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IForumService/GetFindQweryList" message="tns:IForumService_GetFindQweryList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IForumService/GetFindQweryListResponse" message="tns:IForumService_GetFindQweryList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryQweryList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IForumService/GetCategoryQweryList" message="tns:IForumService_GetCategoryQweryList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IForumService/GetCategoryQweryListResponse" message="tns:IForumService_GetCategoryQweryList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendQwery">
+      <wsdl:input wsaw:Action="http://tempuri.org/IForumService/SendQwery" message="tns:IForumService_SendQwery_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IForumService/SendQweryResponse" message="tns:IForumService_SendQwery_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendAnsver">
+      <wsdl:input wsaw:Action="http://tempuri.org/IForumService/SendAnsver" message="tns:IForumService_SendAnsver_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IForumService/SendAnsverResponse" message="tns:IForumService_SendAnsver_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IForumService" type="tns:IForumService">
@@ -192,6 +242,51 @@
     </wsdl:operation>
     <wsdl:operation name="GetCategoryList">
       <soap12:operation soapAction="http://tempuri.org/IForumService/GetCategoryList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQueryById">
+      <soap12:operation soapAction="http://tempuri.org/IForumService/GetQueryById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFindQweryList">
+      <soap12:operation soapAction="http://tempuri.org/IForumService/GetFindQweryList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryQweryList">
+      <soap12:operation soapAction="http://tempuri.org/IForumService/GetCategoryQweryList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendQwery">
+      <soap12:operation soapAction="http://tempuri.org/IForumService/SendQwery" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendAnsver">
+      <soap12:operation soapAction="http://tempuri.org/IForumService/SendAnsver" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

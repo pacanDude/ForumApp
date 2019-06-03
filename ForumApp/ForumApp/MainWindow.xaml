@@ -32,7 +32,7 @@
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <Grid ShowGridLines="True">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
@@ -130,9 +130,10 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Тест">
-                <ScrollViewer CanContentScroll="True"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                </ScrollViewer>
+            <TabItem Header="NewTabTest">
+                <Grid>
+                    
+                </Grid>
             </TabItem>
         </TabControl>
 

@@ -100,7 +100,7 @@ namespace ForumService
         public List<QweryX> GetQweryList()
         {
             List<QweryX> temp = new List<QweryX>();
-            foreach (var item in fef.GetAllQwery())
+            foreach (var item in fef.GetAllQwery().ToList())
             {
                 temp.Add(new QweryX { Id = item.Id, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text, header = item.header, category = item.category });
             }
@@ -120,7 +120,7 @@ namespace ForumService
         public List<QweryX> GetFindQweryList(string findString)
         {
             List<QweryX> temp = new List<QweryX>();
-            foreach (var item in fef.GetAllQwery())
+            foreach (var item in fef.GetAllQwery().ToList())
             {
                 if (item.header.Contains(findString)||item.text.Contains(findString)||item.code.Contains(findString))
                 {

@@ -64,5 +64,101 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="RegisterUser" FunctionName="Хранилище ForumModel.RegisterUser" />
+    <FunctionImportMapping FunctionImportName="GetAnsversIdQwery" FunctionName="Хранилище ForumModel.GetAnsversIdQwery">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForumModel.GetAnsversIdQwery_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="QweryId" ColumnName="QweryId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="code" ColumnName="code" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetQwery" FunctionName="Хранилище ForumModel.GetQwery">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForumModel.GetQwery_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="header" ColumnName="header" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="code" ColumnName="code" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище ForumModel.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище ForumModel.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище ForumModel.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище ForumModel.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForumModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище ForumModel.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForumModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище ForumModel.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище ForumModel.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="GetOneUser" FunctionName="Хранилище ForumModel.GetOneUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForumModel.GetOneUser_Result">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="ratingAnswers" ColumnName="ratingAnswers" />
+          <ScalarProperty Name="ratingQwery" ColumnName="ratingQwery" />
+          <ScalarProperty Name="about" ColumnName="about" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="EditUser" FunctionName="Хранилище ForumModel.EditUser" />
+    <FunctionImportMapping FunctionImportName="GetQweryByCategory" FunctionName="Хранилище ForumModel.GetQweryByCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForumModel.GetQweryByCategory_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="header" ColumnName="header" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="code" ColumnName="code" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AddAnsver" FunctionName="Хранилище ForumModel.AddAnsver" />
+    <FunctionImportMapping FunctionImportName="AddQwery" FunctionName="Хранилище ForumModel.AddQwery" />
+    <FunctionImportMapping FunctionImportName="GetAllQwery" FunctionName="Хранилище ForumModel.GetAllQwery">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForumModel.GetAllQwery_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="header" ColumnName="header" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="code" ColumnName="code" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

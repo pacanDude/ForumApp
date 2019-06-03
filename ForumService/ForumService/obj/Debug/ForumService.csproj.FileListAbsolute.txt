@@ -40,3 +40,16 @@ C:\GITHUB REP\GITHUB-REP\Forum\ForumService\ForumService\obj\Debug\ForumService.
 C:\GITHUB REP\GITHUB-REP\Forum\ForumService\ForumService\obj\Debug\ForumService.csproj.CopyComplete
 C:\GITHUB REP\GITHUB-REP\Forum\ForumService\ForumService\obj\Debug\ForumService.dll
 C:\GITHUB REP\GITHUB-REP\Forum\ForumService\ForumService\obj\Debug\ForumService.pdb
+C:\Users\Лео\Desktop\test\ForumApp\ForumService\ForumService\bin\Debug\ForumService.dll.config
+C:\Users\Лео\Desktop\test\ForumApp\ForumService\ForumService\bin\Debug\ForumService.dll
+C:\Users\Лео\Desktop\test\ForumApp\ForumService\ForumService\bin\Debug\ForumService.pdb
+C:\Users\Лео\Desktop\test\ForumApp\ForumService\ForumService\bin\Debug\EntityFramework.dll
+C:\Users\Лео\Desktop\test\ForumApp\ForumService\ForumService\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Лео\Desktop\test\ForumApp\ForumService\ForumService\bin\Debug\EntityFramework.xml
+C:\Users\Лео\Desktop\test\ForumApp\ForumService\ForumService\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Лео\Desktop\test\ForumApp\ForumService\ForumService\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\Лео\Desktop\test\ForumApp\ForumService\ForumService\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+C:\Users\Лео\Desktop\test\ForumApp\ForumService\ForumService\obj\Debug\ForumService.csproj.CoreCompileInputs.cache
+C:\Users\Лео\Desktop\test\ForumApp\ForumService\ForumService\obj\Debug\ForumService.csproj.CopyComplete
+C:\Users\Лео\Desktop\test\ForumApp\ForumService\ForumService\obj\Debug\ForumService.dll
+C:\Users\Лео\Desktop\test\ForumApp\ForumService\ForumService\obj\Debug\ForumService.pdb

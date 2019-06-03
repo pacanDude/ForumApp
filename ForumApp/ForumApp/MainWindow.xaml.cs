@@ -28,18 +28,33 @@ namespace ForumApp
         {
             InitializeComponent();
             
+
+            foreach (var item in forumServiceClient.GetCategoryList())
+            {
+                ListViewItem listViewItem = new ListViewItem() { Content = item };
+                listViewItem.MouseDoubleClick += ListViewItem_MouseDown;
+                listCat.Items.Add(listViewItem);
+            }
             foreach (var item in forumServiceClient.GetQweryList())
             {
                 qweries.Add(item);
             }
             this.DataContext = qweries;
-
-            foreach (var item in forumServiceClient.GetCategoryList())
-            {
-                listCat.Items.Add(item);
-            } 
         }
-        
+
+        private void ListViewItem_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ListViewItem listViewItem = (ListViewItem)sender;
+            TabItem tabItem = new TabItem() { Header = listViewItem.Content };
+            tabItem.MouseDown += TabItem_MouseUp;
+            Grid grid = new Grid();
+            ScrollViewer scrollViewer = new ScrollViewer() { CanContentScroll = true, HorizontalScrollBarVisibility = ScrollBarVisibility.Auto, VerticalScrollBarVisibility = ScrollBarVisibility.Auto, Margin = new Thickness(15, 11, 30, 10) };
+            ListBox listBox = new ListBox() { Style = (Style)Resources["listBoxStyle1"] , ItemsSource = forumServiceClient.GetCategoryQweryList((string)listViewItem.Content).ToList() };
+            scrollViewer.Content = listBox;
+            grid.Children.Add(scrollViewer);
+            tabItem.Content = grid;
+            MainTabControl.Items.Add(tabItem);
+        }
 
         private void TextBox_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -86,7 +101,8 @@ namespace ForumApp
 
         private void TextBlock_MouseDown_1(object sender, MouseButtonEventArgs e)
         {
-            foreach (var item in forumServiceClient.GetQweryWithAnsvers((int)((TextBlock)sender).Tag).answers)
+            List<AnsverX> list = forumServiceClient.GetQweryWithAnsvers((int)((TextBlock)sender).Tag).answers.ToList();
+            foreach (var item in list)
             {
                 TabItem tabItem = new TabItem() { Header = item.text };
                 Grid grid = new Grid();
@@ -96,7 +112,7 @@ namespace ForumApp
                 tabItem.Content = grid;
 
                 ListView listView = new ListView() { Style = (Style)Resources["ListViewStyle"] };
-                listView.DataContext = item;
+                //listView.ItemsSource = item;
                 scrollViewer.Content = listView;
                 grid.Children.Add(scrollViewer);
 
