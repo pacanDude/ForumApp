@@ -48,7 +48,7 @@ namespace ForumService
             {
                 all.qwery = new QweryX { Id = item.Id, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text, header = item.header,category=item.category };
             }
-            
+            all.answers = new List<AnsverX>();
             foreach (var item in fef.GetAnsversIdQwery(QueryId))
             {
                 all.answers.Add(new AnsverX() { Id = item.Id, QweryId = QueryId, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text });

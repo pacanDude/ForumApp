@@ -101,8 +101,10 @@ namespace ForumApp
 
         private void TextBlock_MouseDown_1(object sender, MouseButtonEventArgs e)
         {
-            List<AnsverX> list = forumServiceClient.GetQweryWithAnsvers((int)((TextBlock)sender).Tag).answers.ToList();
-            foreach (var item in list)
+            //List<AnsverX> list = forumServiceClient.GetQweryWithAnsvers((int)((TextBlock)sender).Tag).answers;
+            AllMessageAndQwery list = forumServiceClient.GetQweryWithAnsvers((int)((TextBlock)sender).Tag);
+            
+            foreach (var item in list.answers)
             {
                 TabItem tabItem = new TabItem() { Header = item.text };
                 Grid grid = new Grid();

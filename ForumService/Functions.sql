@@ -80,3 +80,5 @@ CREATE FUNCTION GetAllQwery ()
     RETURNS TABLE
     AS RETURN 
 	(select * from Qwery)
+
+
