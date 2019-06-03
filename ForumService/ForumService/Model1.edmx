@@ -49,6 +49,23 @@
           <Property Name="category" Type="nvarchar(max)" Nullable="false" />
           <Property Name="code" Type="nvarchar(max)" />
         </EntityType>
+        <Function Name="AddAnsver" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="QweryId" Type="int" Mode="In" />
+          <Parameter Name="name" Type="varchar(max)" Mode="In" />
+          <Parameter Name="text" Type="varchar(max)" Mode="In" />
+          <Parameter Name="date" Type="datetime" Mode="In" />
+          <Parameter Name="rating" Type="int" Mode="In" />
+          <Parameter Name="code" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="AddQwery" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="header" Type="varchar(max)" Mode="In" />
+          <Parameter Name="name" Type="varchar(max)" Mode="In" />
+          <Parameter Name="text" Type="varchar(max)" Mode="In" />
+          <Parameter Name="date" Type="datetime" Mode="In" />
+          <Parameter Name="rating" Type="int" Mode="In" />
+          <Parameter Name="category" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="code" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="EditUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="name" Type="varchar(max)" Mode="In" />
           <Parameter Name="password" Type="varchar(max)" Mode="In" />
@@ -60,6 +77,22 @@
           <Parameter Name="about" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="GetAllQwery" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Id" Type="int" Nullable="false" />
+                <Property Name="header" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="text" Type="nvarchar(max)" />
+                <Property Name="date" Type="datetime" Nullable="false" />
+                <Property Name="rating" Type="int" Nullable="false" />
+                <Property Name="category" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="code" Type="nvarchar(max)" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="GetAllUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <ReturnType>
             <CollectionType>
@@ -335,8 +368,26 @@
             <Parameter Name="about" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetQweryByCategory" IsComposable="true" ReturnType="Collection(ForumModel.GetQweryByCategory_Result)">
-            <Parameter Name="category" Mode="In" Type="String" />
+          <Parameter Name="category" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="AddAnsver">
+            <Parameter Name="QweryId" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="text" Mode="In" Type="String" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+            <Parameter Name="rating" Mode="In" Type="Int32" />
+            <Parameter Name="code" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddQwery">
+            <Parameter Name="header" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="text" Mode="In" Type="String" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+            <Parameter Name="rating" Mode="In" Type="Int32" />
+            <Parameter Name="category" Mode="In" Type="String" />
+            <Parameter Name="code" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllQwery" IsComposable="true" ReturnType="Collection(ForumModel.GetAllQwery_Result)" />
         </EntityContainer>
         <ComplexType Name="GetAnsversIdQwery_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -379,6 +430,16 @@
           <Property Type="String" Name="about" Nullable="true" />
         </ComplexType>
         <ComplexType Name="GetQweryByCategory_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="header" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" />
+          <Property Type="String" Name="text" Nullable="true" />
+          <Property Type="DateTime" Name="date" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="rating" Nullable="false" />
+          <Property Type="String" Name="category" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetAllQwery_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="header" Nullable="false" />
           <Property Type="String" Name="name" Nullable="false" />
@@ -526,6 +587,22 @@
           <FunctionImportMapping FunctionImportName="GetQweryByCategory" FunctionName="Хранилище ForumModel.GetQweryByCategory">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ForumModel.GetQweryByCategory_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="header" ColumnName="header" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AddAnsver" FunctionName="Хранилище ForumModel.AddAnsver" />
+          <FunctionImportMapping FunctionImportName="AddQwery" FunctionName="Хранилище ForumModel.AddQwery" />
+          <FunctionImportMapping FunctionImportName="GetAllQwery" FunctionName="Хранилище ForumModel.GetAllQwery">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForumModel.GetAllQwery_Result">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="header" ColumnName="header" />
                 <ScalarProperty Name="name" ColumnName="name" />

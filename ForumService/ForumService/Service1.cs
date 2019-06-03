@@ -36,7 +36,7 @@ namespace ForumService
             OneUserX temp = new OneUserX();
             foreach (var item in fef.GetOneUser(name))
             {
-                temp = new OneUserX { name = item.name, about = item.about, foto = item.foto, age = item.age, password = item.password, rating = item.rating, ratingAnswers = item.ratingAnswers, ratingQwery = item.ratingQwery };
+                temp = new OneUserX { name = item.name, about = item.about, foto = item.foto, age = (int)item.age, password = item.password, rating = item.rating, ratingAnswers = item.ratingAnswers, ratingQwery = item.ratingQwery };
             }
             return temp;
         }
@@ -100,7 +100,7 @@ namespace ForumService
         public List<QweryX> GetQweryList()
         {
             List<QweryX> temp = new List<QweryX>();
-            foreach (var item in fef.Qwery)
+            foreach (var item in fef.GetAllQwery())
             {
                 temp.Add(new QweryX { Id = item.Id, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text, header = item.header, category = item.category });
             }
@@ -120,7 +120,7 @@ namespace ForumService
         public List<QweryX> GetFindQweryList(string findString)
         {
             List<QweryX> temp = new List<QweryX>();
-            foreach (var item in fef.Qwery)
+            foreach (var item in fef.GetAllQwery())
             {
                 if (item.header.Contains(findString)||item.text.Contains(findString)||item.code.Contains(findString))
                 {
@@ -138,6 +138,18 @@ namespace ForumService
                 temp.Add(new QweryX { Id = item.Id, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text, header = item.header, category = item.category });
             }
             return temp;
+        }
+
+        public bool SendQwery(QweryX qwery)
+        {
+            fef.AddQwery(qwery.header, qwery.name, qwery.text, DateTime.Now, 0, qwery.category, qwery.code);
+            return true;
+        }
+
+        public bool SendAnsver(AnsverX ansver)
+        {
+            fef.AddAnsver(ansver.QweryId, ansver.name, ansver.text, DateTime.Now, 0, ansver.code);
+            return true;
         }
     }
 

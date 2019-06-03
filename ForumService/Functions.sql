@@ -59,3 +59,24 @@ CREATE FUNCTION GetQweryByCategory (@category nvarchar(max))
     RETURNS TABLE
     AS RETURN 
 	(select * from Qwery where category=@category)
+
+create proc AddQwery (@header varchar(max), @name varchar(max), @text varchar(max), @date datetime, @rating int,@category nvarchar(max),@code nvarchar(max))
+    as 
+	begin
+	insert into Qwery(header, name, text, date,rating,category,code)
+	values
+	(@header, @name, @text, @date,@rating,@category,@code)
+	end
+
+create proc AddAnsver (@QweryId int, @name varchar(max), @text varchar(max), @date datetime, @rating int, @code nvarchar(max))
+    as 
+	begin
+	insert into Ansver(QweryId, name, text, date,rating,code)
+	values
+	(@QweryId, @name, @text, @date,@rating,@code)
+	end
+
+CREATE FUNCTION GetAllQwery ()
+    RETURNS TABLE
+    AS RETURN 
+	(select * from Qwery)

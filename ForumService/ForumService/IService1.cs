@@ -41,6 +41,12 @@ namespace ForumService
 
         [OperationContract]
         List<QweryX> GetCategoryQweryList(string category);//для заполнения первой страницы по категориям
+
+        [OperationContract]
+        bool SendQwery(QweryX qwery);
+
+        [OperationContract]
+        bool SendAnsver(AnsverX ansver);
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
