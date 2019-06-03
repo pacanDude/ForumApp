@@ -122,7 +122,7 @@ namespace ForumService
             List<QweryX> temp = new List<QweryX>();
             foreach (var item in fef.GetAllQwery().ToList())
             {
-                if (item.header.Contains(findString)||item.text.Contains(findString)||item.code.Contains(findString))
+                if (item.header.ToUpper().Contains(findString.ToUpper())||item.text.ToUpper().Contains(findString.ToUpper()) ||item.code.ToUpper().Contains(findString.ToUpper()))
                 {
                     temp.Add(new QweryX { Id = item.Id, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text, header = item.header, category = item.category });
                 }
