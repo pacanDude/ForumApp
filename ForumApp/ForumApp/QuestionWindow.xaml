@@ -1,0 +1,78 @@
+﻿<Window x:Class="ВопросОтвет.QuestionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ВопросОтвет"
+        mc:Ignorable="d"
+        Title="QuestionWindow" Height="660" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="border" CornerRadius="10" BorderThickness="2" Background="Gainsboro" BorderBrush="Gray">
+                                <ContentPresenter x:Name="ButtonContentPresenter" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect Color="Gray" Direction="1000" ShadowDepth="5" BlurRadius="10" Opacity="0.5" />
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="RenderTransform">
+                                        <Setter.Value>
+                                            <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="RenderTransformOrigin" Value=".5,.5"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="ButtonContentPresenter" Property="RenderTransform">
+                                        <Setter.Value>
+                                            <TranslateTransform Y="1.0" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <LinearGradientBrush.RelativeTransform>
+                    <TransformGroup>
+                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                        <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                        <RotateTransform CenterY="0.5" CenterX="0.5" Angle="-135"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </LinearGradientBrush.RelativeTransform>
+                <GradientStop Color="#FF4D77D9"/>
+                <GradientStop Color="#FF71DAE0" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Label Content="Задайте Ваш вопрос" FontSize="20" FontStyle="Italic" FontWeight="Bold" HorizontalAlignment="Left" Margin="180,10,0,0" VerticalAlignment="Top"/>
+        <Button  x:Name="buttonOk" Content="Готово" HorizontalAlignment="Left" Margin="15,0,0,15" Width="85" Height="30" VerticalAlignment="Bottom" Click="ButtonOk_Click"/>
+        <Button x:Name="buttonCancel" Content="Отмена" HorizontalAlignment="Right" Margin="0,0,25,15" Width="85" Height="30" VerticalAlignment="Bottom" Click="ButtonCancel_Click"/>
+        <Label Content="Заголовок :" FontSize="14" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="15,50,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="headlineTextBox" Height="23" Margin="15,83,24.6,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Label Content="Метки (разделяйте метки запятыми) :" FontSize="14" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="15,115,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tagsTextBox" Height="23" Margin="15,148,24.6,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Label Content="Сообщение :" FontSize="14" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="15,185,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="messageTextBox" AcceptsReturn="True" Height="155" Margin="15,213,25,0" TextWrapping="Wrap" VerticalAlignment="Top" />
+        <Label Content="Для кода :" FontSize="14" FontWeight="DemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,380,0,0"/>
+        <TextBox x:Name="forCodeTextBox" AcceptsReturn="True" Height="155" Margin="15,408,25,0" TextWrapping="Wrap" VerticalAlignment="Top" />
+
+
+
+
+
+    </Grid>
+</Window>

@@ -120,11 +120,11 @@ namespace ForumService
         public List<QweryX> GetFindQweryList(string findString)
         {
             List<QweryX> temp = new List<QweryX>();
-            foreach (var item in fef.GetAllQwery().ToList())
+            foreach (var item in fef.GetAllQwery())
             {
-                if (item.header.ToUpper().Contains(findString.ToUpper())||item.text.ToUpper().Contains(findString.ToUpper()) ||item.code.ToUpper().Contains(findString.ToUpper()))
+                if (item.header.ToUpper().Contains(findString.ToUpper()) ||item.text.ToUpper().Contains(findString.ToUpper()) ||item.code.ToUpper().Contains(findString.ToUpper()))
                 {
-                    temp.Add(new QweryX { Id = item.Id, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text, header = item.header, category = item.category });
+                    temp.Add(new QweryX { Id = item.Id, name = item.name, date = item.date, rating = item.rating, header = item.header });
                 }
             }
             return temp;

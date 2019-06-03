@@ -8,8 +8,41 @@
         Title="MainWindow" Height="457.124" Width="848.681" Loaded="Window_Loaded" SizeToContent="WidthAndHeight" MinWidth="900" MinHeight="500">
 
     <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="10" BorderThickness="2" Background="Gainsboro" BorderBrush="Gray">
+                            <ContentPresenter x:Name="ButtonContentPresenter" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="Gray" Direction="1000" ShadowDepth="5" BlurRadius="10" Opacity="0.5" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="RenderTransformOrigin" Value=".5,.5"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="ButtonContentPresenter" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <TranslateTransform Y="1.0" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="ListViewStyle" TargetType="ListView">
-            <Setter Property="Margin" Value="50,200,50,50"/>
             <Setter Property="Height" Value="Auto"/>
             <Setter Property="ItemTemplate">
                 <Setter.Value>
@@ -66,7 +99,21 @@
 
         </Style>
     </Window.Resources>
-    <Grid Background="#FF1A8EB0">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="1,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <LinearGradientBrush.RelativeTransform>
+                    <TransformGroup>
+                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                        <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                        <RotateTransform CenterY="0.5" CenterX="0.5" Angle="-135"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </LinearGradientBrush.RelativeTransform>
+                <GradientStop Color="#FF4D77D9"/>
+                <GradientStop Color="#FF71DAE0" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <TabControl x:Name="MainTabControl">
             <TabControl.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -77,9 +124,17 @@
             <TabItem Header="Главная страница">
                 <Grid>
                     <Grid.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FF15ABCD" Offset="0"/>
-                            <GradientStop Color="White" Offset="0.774"/>
+                        <LinearGradientBrush EndPoint="1,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <LinearGradientBrush.RelativeTransform>
+                                <TransformGroup>
+                                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                    <RotateTransform CenterY="0.5" CenterX="0.5" Angle="-135"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </LinearGradientBrush.RelativeTransform>
+                            <GradientStop Color="#FF4D77D9"/>
+                            <GradientStop Color="#FF71DAE0" Offset="1"/>
                         </LinearGradientBrush>
                     </Grid.Background>
                     <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Height="23" KeyUp="TextBox_KeyUp" Margin="10,10,0,0" TextWrapping="Wrap" Background="#FFCAEAF1" TextInput="TextBox_TextInput" MouseDown="TextBox_MouseDown"  Text="Search" VerticalAlignment="Top" Width="527">
@@ -90,8 +145,8 @@
                             <ImageBrush ImageSource="Images/1976009.png"/>
                         </Button.Background>
                     </Button>
-                    <Button Content="Регистрация" BorderBrush="Transparent" Background="AliceBlue" Margin="618,11,0,0" HorizontalAlignment="Left" Width="117" Height="22" VerticalAlignment="Top"/>
-                    <Button Content="Войти" BorderBrush="Transparent" Background="AliceBlue" Margin="740,11,0,0" Click="Button_Click_1" HorizontalAlignment="Left" Width="116" Height="22" VerticalAlignment="Top"/>
+                    <Button x:Name="Reg" Content="Регистрация" BorderBrush="Transparent" Background="AliceBlue" Margin="615,10,0,0" HorizontalAlignment="Left" Width="117" Height="22" VerticalAlignment="Top" Click="Button_Click_2"/>
+                    <Button x:Name="Log" Content="Войти" BorderBrush="Transparent" Background="AliceBlue" Margin="756,10,0,0" Click="Button_Click_1" HorizontalAlignment="Left" Width="116" Height="22" VerticalAlignment="Top"/>
                     <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto" Margin="15,67,294,11" RenderTransformOrigin="0.5,0.5">
                         <ScrollViewer.BorderBrush>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -124,19 +179,16 @@
                             </LinearGradientBrush>
                         </ListView.BorderBrush>
                     </ListView>
-                    <Label Content="Популярные вопросы" Margin="0,38,499,0" FontFamily="Segoe UI Light" Height="26" VerticalAlignment="Top" HorizontalAlignment="Right" Width="131"/>
+                    <Label Content="Последние вопросы" Margin="0,38,499,0" FontFamily="Segoe UI Light" Height="26" VerticalAlignment="Top" HorizontalAlignment="Right" Width="131"/>
                     <Label Content="Категории" Margin="0,42,116,0" FontFamily="Segoe UI Light" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Width="63"/>
+                    <Button x:Name="Name" Visibility="Hidden" IsEnabled="False" Content="Задать вопрос" HorizontalAlignment="Left" Margin="475,44,0,0" VerticalAlignment="Top" Width="113" Click="Button_Click_3"/>
+                    <Button Visibility="Hidden" Click="Button_Click_5" x:Name="Red" Content="Редактировать" HorizontalAlignment="Left" Margin="780,37,0,0" VerticalAlignment="Top" Width="102"/>
 
 
-                </Grid>
-            </TabItem>
-            <TabItem Header="NewTabTest">
-                <Grid>
-                    
                 </Grid>
             </TabItem>
         </TabControl>
 
     </Grid>
-    
+
 </Window>
