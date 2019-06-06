@@ -82,3 +82,26 @@ CREATE FUNCTION GetAllQwery ()
 	(select * from Qwery)
 
 
+
+
+
+
+
+
+
+create proc SetQweryRating (@QweryId int, @rating int)
+    as 
+	begin
+	update Qwery set rating=@rating where Id=@QweryId
+	end
+
+create proc SetAnsverRating (@AnsverId int, @rating int)
+    as 
+	begin
+	update Ansver set rating=@rating where Id=@AnsverId
+	end
+
+CREATE FUNCTION GetAnsverById (@Id int)
+    RETURNS TABLE
+    AS RETURN 
+	(select * from Ansver where Id=@Id)

@@ -118,6 +118,153 @@ public partial class ForumEntities : DbContext
     }
 
 
+    public virtual int AddAnsver(Nullable<int> qweryId, string name, string text, Nullable<System.DateTime> date, Nullable<int> rating, string code)
+    {
+
+        var qweryIdParameter = qweryId.HasValue ?
+            new ObjectParameter("QweryId", qweryId) :
+            new ObjectParameter("QweryId", typeof(int));
+
+
+        var nameParameter = name != null ?
+            new ObjectParameter("name", name) :
+            new ObjectParameter("name", typeof(string));
+
+
+        var textParameter = text != null ?
+            new ObjectParameter("text", text) :
+            new ObjectParameter("text", typeof(string));
+
+
+        var dateParameter = date.HasValue ?
+            new ObjectParameter("date", date) :
+            new ObjectParameter("date", typeof(System.DateTime));
+
+
+        var ratingParameter = rating.HasValue ?
+            new ObjectParameter("rating", rating) :
+            new ObjectParameter("rating", typeof(int));
+
+
+        var codeParameter = code != null ?
+            new ObjectParameter("code", code) :
+            new ObjectParameter("code", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddAnsver", qweryIdParameter, nameParameter, textParameter, dateParameter, ratingParameter, codeParameter);
+    }
+
+
+    public virtual int AddQwery(string header, string name, string text, Nullable<System.DateTime> date, Nullable<int> rating, string category, string code)
+    {
+
+        var headerParameter = header != null ?
+            new ObjectParameter("header", header) :
+            new ObjectParameter("header", typeof(string));
+
+
+        var nameParameter = name != null ?
+            new ObjectParameter("name", name) :
+            new ObjectParameter("name", typeof(string));
+
+
+        var textParameter = text != null ?
+            new ObjectParameter("text", text) :
+            new ObjectParameter("text", typeof(string));
+
+
+        var dateParameter = date.HasValue ?
+            new ObjectParameter("date", date) :
+            new ObjectParameter("date", typeof(System.DateTime));
+
+
+        var ratingParameter = rating.HasValue ?
+            new ObjectParameter("rating", rating) :
+            new ObjectParameter("rating", typeof(int));
+
+
+        var categoryParameter = category != null ?
+            new ObjectParameter("category", category) :
+            new ObjectParameter("category", typeof(string));
+
+
+        var codeParameter = code != null ?
+            new ObjectParameter("code", code) :
+            new ObjectParameter("code", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddQwery", headerParameter, nameParameter, textParameter, dateParameter, ratingParameter, categoryParameter, codeParameter);
+    }
+
+
+    public virtual int EditUser(string name, string password, byte[] foto, Nullable<int> age, Nullable<int> rating, Nullable<int> ratingAnswers, Nullable<int> ratingQwery, string about)
+    {
+
+        var nameParameter = name != null ?
+            new ObjectParameter("name", name) :
+            new ObjectParameter("name", typeof(string));
+
+
+        var passwordParameter = password != null ?
+            new ObjectParameter("password", password) :
+            new ObjectParameter("password", typeof(string));
+
+
+        var fotoParameter = foto != null ?
+            new ObjectParameter("foto", foto) :
+            new ObjectParameter("foto", typeof(byte[]));
+
+
+        var ageParameter = age.HasValue ?
+            new ObjectParameter("age", age) :
+            new ObjectParameter("age", typeof(int));
+
+
+        var ratingParameter = rating.HasValue ?
+            new ObjectParameter("rating", rating) :
+            new ObjectParameter("rating", typeof(int));
+
+
+        var ratingAnswersParameter = ratingAnswers.HasValue ?
+            new ObjectParameter("ratingAnswers", ratingAnswers) :
+            new ObjectParameter("ratingAnswers", typeof(int));
+
+
+        var ratingQweryParameter = ratingQwery.HasValue ?
+            new ObjectParameter("ratingQwery", ratingQwery) :
+            new ObjectParameter("ratingQwery", typeof(int));
+
+
+        var aboutParameter = about != null ?
+            new ObjectParameter("about", about) :
+            new ObjectParameter("about", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EditUser", nameParameter, passwordParameter, fotoParameter, ageParameter, ratingParameter, ratingAnswersParameter, ratingQweryParameter, aboutParameter);
+    }
+
+
+    [DbFunction("ForumEntities", "GetAllQwery")]
+    public virtual IQueryable<GetAllQwery_Result> GetAllQwery()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetAllQwery_Result>("[ForumEntities].[GetAllQwery]()");
+    }
+
+
+    [DbFunction("ForumEntities", "GetAnsverById")]
+    public virtual IQueryable<GetAnsverById_Result> GetAnsverById(Nullable<int> id)
+    {
+
+        var idParameter = id.HasValue ?
+            new ObjectParameter("Id", id) :
+            new ObjectParameter("Id", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetAnsverById_Result>("[ForumEntities].[GetAnsverById](@Id)", idParameter);
+    }
+
+
     [DbFunction("ForumEntities", "GetAnsversIdQwery")]
     public virtual IQueryable<GetAnsversIdQwery_Result> GetAnsversIdQwery(Nullable<int> qweryId)
     {
@@ -131,6 +278,19 @@ public partial class ForumEntities : DbContext
     }
 
 
+    [DbFunction("ForumEntities", "GetOneUser")]
+    public virtual IQueryable<GetOneUser_Result> GetOneUser(string name)
+    {
+
+        var nameParameter = name != null ?
+            new ObjectParameter("name", name) :
+            new ObjectParameter("name", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetOneUser_Result>("[ForumEntities].[GetOneUser](@name)", nameParameter);
+    }
+
+
     [DbFunction("ForumEntities", "GetQwery")]
     public virtual IQueryable<GetQwery_Result> GetQwery(Nullable<int> id)
     {
@@ -141,6 +301,53 @@ public partial class ForumEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetQwery_Result>("[ForumEntities].[GetQwery](@Id)", idParameter);
+    }
+
+
+    [DbFunction("ForumEntities", "GetQweryByCategory")]
+    public virtual IQueryable<GetQweryByCategory_Result> GetQweryByCategory(string category)
+    {
+
+        var categoryParameter = category != null ?
+            new ObjectParameter("category", category) :
+            new ObjectParameter("category", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetQweryByCategory_Result>("[ForumEntities].[GetQweryByCategory](@category)", categoryParameter);
+    }
+
+
+    public virtual int SetAnsverRating(Nullable<int> ansverId, Nullable<int> rating)
+    {
+
+        var ansverIdParameter = ansverId.HasValue ?
+            new ObjectParameter("AnsverId", ansverId) :
+            new ObjectParameter("AnsverId", typeof(int));
+
+
+        var ratingParameter = rating.HasValue ?
+            new ObjectParameter("rating", rating) :
+            new ObjectParameter("rating", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SetAnsverRating", ansverIdParameter, ratingParameter);
+    }
+
+
+    public virtual int SetQweryRating(Nullable<int> qweryId, Nullable<int> rating)
+    {
+
+        var qweryIdParameter = qweryId.HasValue ?
+            new ObjectParameter("QweryId", qweryId) :
+            new ObjectParameter("QweryId", typeof(int));
+
+
+        var ratingParameter = rating.HasValue ?
+            new ObjectParameter("rating", rating) :
+            new ObjectParameter("rating", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SetQweryRating", qweryIdParameter, ratingParameter);
     }
 
 
@@ -275,166 +482,6 @@ public partial class ForumEntities : DbContext
     {
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-    }
-
-
-    [DbFunction("ForumEntities", "GetOneUser")]
-    public virtual IQueryable<GetOneUser_Result> GetOneUser(string name)
-    {
-
-        var nameParameter = name != null ?
-            new ObjectParameter("name", name) :
-            new ObjectParameter("name", typeof(string));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetOneUser_Result>("[ForumEntities].[GetOneUser](@name)", nameParameter);
-    }
-
-
-    public virtual int EditUser(string name, string password, byte[] foto, Nullable<int> age, Nullable<int> rating, Nullable<int> ratingAnswers, Nullable<int> ratingQwery, string about)
-    {
-
-        var nameParameter = name != null ?
-            new ObjectParameter("name", name) :
-            new ObjectParameter("name", typeof(string));
-
-
-        var passwordParameter = password != null ?
-            new ObjectParameter("password", password) :
-            new ObjectParameter("password", typeof(string));
-
-
-        var fotoParameter = foto != null ?
-            new ObjectParameter("foto", foto) :
-            new ObjectParameter("foto", typeof(byte[]));
-
-
-        var ageParameter = age.HasValue ?
-            new ObjectParameter("age", age) :
-            new ObjectParameter("age", typeof(int));
-
-
-        var ratingParameter = rating.HasValue ?
-            new ObjectParameter("rating", rating) :
-            new ObjectParameter("rating", typeof(int));
-
-
-        var ratingAnswersParameter = ratingAnswers.HasValue ?
-            new ObjectParameter("ratingAnswers", ratingAnswers) :
-            new ObjectParameter("ratingAnswers", typeof(int));
-
-
-        var ratingQweryParameter = ratingQwery.HasValue ?
-            new ObjectParameter("ratingQwery", ratingQwery) :
-            new ObjectParameter("ratingQwery", typeof(int));
-
-
-        var aboutParameter = about != null ?
-            new ObjectParameter("about", about) :
-            new ObjectParameter("about", typeof(string));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EditUser", nameParameter, passwordParameter, fotoParameter, ageParameter, ratingParameter, ratingAnswersParameter, ratingQweryParameter, aboutParameter);
-    }
-
-
-    [DbFunction("ForumEntities", "GetQweryByCategory")]
-    public virtual IQueryable<GetQweryByCategory_Result> GetQweryByCategory(string category)
-    {
-
-        var categoryParameter = category != null ?
-            new ObjectParameter("category", category) :
-            new ObjectParameter("category", typeof(string));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetQweryByCategory_Result>("[ForumEntities].[GetQweryByCategory](@category)", categoryParameter);
-    }
-
-
-    public virtual int AddAnsver(Nullable<int> qweryId, string name, string text, Nullable<System.DateTime> date, Nullable<int> rating, string code)
-    {
-
-        var qweryIdParameter = qweryId.HasValue ?
-            new ObjectParameter("QweryId", qweryId) :
-            new ObjectParameter("QweryId", typeof(int));
-
-
-        var nameParameter = name != null ?
-            new ObjectParameter("name", name) :
-            new ObjectParameter("name", typeof(string));
-
-
-        var textParameter = text != null ?
-            new ObjectParameter("text", text) :
-            new ObjectParameter("text", typeof(string));
-
-
-        var dateParameter = date.HasValue ?
-            new ObjectParameter("date", date) :
-            new ObjectParameter("date", typeof(System.DateTime));
-
-
-        var ratingParameter = rating.HasValue ?
-            new ObjectParameter("rating", rating) :
-            new ObjectParameter("rating", typeof(int));
-
-
-        var codeParameter = code != null ?
-            new ObjectParameter("code", code) :
-            new ObjectParameter("code", typeof(string));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddAnsver", qweryIdParameter, nameParameter, textParameter, dateParameter, ratingParameter, codeParameter);
-    }
-
-
-    public virtual int AddQwery(string header, string name, string text, Nullable<System.DateTime> date, Nullable<int> rating, string category, string code)
-    {
-
-        var headerParameter = header != null ?
-            new ObjectParameter("header", header) :
-            new ObjectParameter("header", typeof(string));
-
-
-        var nameParameter = name != null ?
-            new ObjectParameter("name", name) :
-            new ObjectParameter("name", typeof(string));
-
-
-        var textParameter = text != null ?
-            new ObjectParameter("text", text) :
-            new ObjectParameter("text", typeof(string));
-
-
-        var dateParameter = date.HasValue ?
-            new ObjectParameter("date", date) :
-            new ObjectParameter("date", typeof(System.DateTime));
-
-
-        var ratingParameter = rating.HasValue ?
-            new ObjectParameter("rating", rating) :
-            new ObjectParameter("rating", typeof(int));
-
-
-        var categoryParameter = category != null ?
-            new ObjectParameter("category", category) :
-            new ObjectParameter("category", typeof(string));
-
-
-        var codeParameter = code != null ?
-            new ObjectParameter("code", code) :
-            new ObjectParameter("code", typeof(string));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddQwery", headerParameter, nameParameter, textParameter, dateParameter, ratingParameter, categoryParameter, codeParameter);
-    }
-
-
-    [DbFunction("ForumEntities", "GetAllQwery")]
-    public virtual IQueryable<GetAllQwery_Result> GetAllQwery()
-    {
-
-        return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetAllQwery_Result>("[ForumEntities].[GetAllQwery]()");
     }
 
 }
