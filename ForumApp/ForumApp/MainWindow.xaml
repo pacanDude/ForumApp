@@ -8,6 +8,53 @@
         Title="MainWindow" Height="457.124" Width="848.681" Loaded="Window_Loaded" SizeToContent="WidthAndHeight" MinWidth="900" MinHeight="500">
 
     <Window.Resources>
+        <!--<Style TargetType="ScrollViewer">
+            <Setter Property="Content">
+                <Setter.Value>
+                    <Grid>
+
+                    </Grid>
+                </Setter.Value>
+            </Setter>
+
+        </Style>-->
+        <Style x:Key="s" TargetType="ListView">
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Grid>
+                            <Button Content="up" HorizontalAlignment="Left" Margin="50,57,0,0" VerticalAlignment="Top" Width="40" Click="Button_Click_6" Tag="{Binding Id}"/>
+                            <Button Content="down" HorizontalAlignment="Left" Margin="50,99,0,0" VerticalAlignment="Top" Width="40" Tag="{Binding Id}"/>
+                            <Label Content="{Binding rating}" HorizontalAlignment="Left" Margin="50,79,0,0" VerticalAlignment="Top"/>
+                            <TextBlock HorizontalAlignment="Left" Height="64" Margin="95,57,0,0" TextWrapping="Wrap" Text="{Binding header}" VerticalAlignment="Top" Width="661" FontSize="20"/>
+                            <TextBlock HorizontalAlignment="Left" Height="64" Margin="598,57,0,0" TextWrapping="Wrap" Text="{Binding name}" VerticalAlignment="Top" Width="158"/>
+                            <TextBlock HorizontalAlignment="Left" Height="68" Margin="50,126,0,0" TextWrapping="Wrap" Text="{Binding text}" VerticalAlignment="Top" Width="706"/>
+                            <TextBlock HorizontalAlignment="Left" Height="68" Margin="50,194,0,0" TextWrapping="Wrap" Text="{Binding code}" VerticalAlignment="Top" Width="706"/>
+                            <TextBlock HorizontalAlignment="Left" Height="37" Margin="598,89,0,0" TextWrapping="Wrap" Text="{Binding date}" VerticalAlignment="Top" Width="158"/>
+
+                        </Grid>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="gridBackroundStyle" TargetType="Grid">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="1,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                <RotateTransform CenterY="0.5" CenterX="0.5" Angle="-135"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FF4D77D9"/>
+                        <GradientStop Color="#FF71DAE0" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
@@ -157,7 +204,7 @@
                         <ListBox ItemsSource="{Binding}" Style="{DynamicResource listBoxStyle1}" x:Name="ListTest" RenderTransformOrigin="0.5,0.5">
                             <ListBox.Background>
                                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                    <GradientStop Color="#FF33ADDA"/>
+                                    <GradientStop Color="Transparent"/>
                                     <GradientStop Color="Transparent" Offset="1"/>
                                 </LinearGradientBrush>
                             </ListBox.Background>

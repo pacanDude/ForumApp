@@ -26,75 +26,42 @@ namespace ForumService
         ForumEntities fef = new ForumEntities();
         public bool EditOneUser(OneUserX user, string name)
         {
-            if (user.name==name)
-            {
-                users.Remove(name);
-                users.Add(name, user.password);
-                return true;
-            }
-            if (users.ContainsKey(user.name))
-            {
-                return false;
-            }
-            users.Remove(name);
-            users.Add(user.name, user.password);
+            fef.EditUser(user.name, user.password, user.foto, user.age, user.rating, user.ratingAnswers, user.ratingQwery, user.about);
+
             return true;
         }
 
         public OneUserX GetOneUser(string name)
         {
-            return new OneUserX { about = "about", age = 25, name = "name", rating = 5, ratingAnswers = 7, ratingQwery = 9, foto = new byte[] { } };
-        }
-
-        public List<QweryX> GetQweryList()
-        {
-            List<QweryX> list = new List<QweryX>();
-
-            foreach (var item in fef.Qwery)
+            OneUserX temp = new OneUserX();
+            foreach (var item in fef.GetOneUser(name))
             {
-                list.Add(new QweryX { Id = item.Id, date = item.date, header = item.header, name = item.name, rating = item.rating, text = item.text,category= item.category,code= item.code });
+                temp = new OneUserX { name = item.name, about = item.about, foto = item.foto, age = (int)item.age, password = item.password, rating = item.rating, ratingAnswers = item.ratingAnswers, ratingQwery = item.ratingQwery };
             }
-            return list;
-        }
-
-
-        public QweryX GetQueryById(int QueryId)
-        {
-            QweryX qwery = null;
-            foreach (var item in GetQweryList())
-            {
-                if(item.Id == QueryId)
-                {
-                    qwery = item;
-                }
-            }
-            return qwery;
+            return temp;
         }
 
         public AllMessageAndQwery GetQweryWithAnsvers(int QueryId)
         {
             AllMessageAndQwery all = new AllMessageAndQwery();
-            foreach (var item in fef.Ansver)
+            foreach (var item in fef.GetQwery(QueryId))
             {
-                if (item.QweryId == QueryId)
-                {
-                    all.qwery = GetQueryById(QueryId);
-                    AnsverX ansverX = new AnsverX() { Id = item.Id, QweryId = QueryId, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text };
-                    all.answers.Add(ansverX);
-                }
-
+                all.qwery = new QweryX { Id = item.Id, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text, header = item.header, category = item.category };
+            }
+            all.answers = new List<AnsverX>();
+            foreach (var item in fef.GetAnsversIdQwery(QueryId))
+            {
+                all.answers.Add(new AnsverX() { Id = item.Id, QweryId = QueryId, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text });
             }
 
             return all;
         }
 
-        Dictionary<string, string> users = new Dictionary<string, string>();
-
         public bool LogIn(string login, string password)
         {
             foreach (var item in fef.GetUserPassword(login))
             {
-                if (item.password==password)
+                if (item.password == password)
                 {
                     return true;
                 }
@@ -106,7 +73,7 @@ namespace ForumService
         {
             foreach (var item in fef.GetAllUsers())
             {
-                if (item.name==user.name)
+                if (item.name == user.name)
                 {
                     return false;
                 }
@@ -115,7 +82,7 @@ namespace ForumService
             return true;
         }
 
-        public bool SendMessage(string login, int QweryId, string message,string code)
+        public bool SendMessage(string login, int QweryId, string message, string code)
         {
             throw new NotImplementedException();
         }
@@ -129,6 +96,62 @@ namespace ForumService
             }
             return list;
         }
+
+        public List<QweryX> GetQweryList()
+        {
+            List<QweryX> temp = new List<QweryX>();
+            foreach (var item in fef.GetAllQwery().ToList())
+            {
+                temp.Add(new QweryX { Id = item.Id, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text, header = item.header, category = item.category });
+            }
+            return temp;
+        }
+
+        public QweryX GetQueryById(int QueryId)
+        {
+            QweryX temp = new QweryX();
+            foreach (var item in fef.GetQwery(QueryId))
+            {
+                temp = new QweryX { Id = item.Id, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text, header = item.header, category = item.category };
+            }
+            return temp;
+        }
+
+        public List<QweryX> GetFindQweryList(string findString)
+        {
+            List<QweryX> temp = new List<QweryX>();
+            foreach (var item in fef.GetAllQwery())
+            {
+                if (item.header.ToUpper().Contains(findString.ToUpper()) || item.text.ToUpper().Contains(findString.ToUpper()) || item.code.ToUpper().Contains(findString.ToUpper()))
+                {
+                    temp.Add(new QweryX { Id = item.Id, name = item.name, date = item.date, rating = item.rating, header = item.header });
+                }
+            }
+            return temp;
+        }
+
+        public List<QweryX> GetCategoryQweryList(string category)
+        {
+            List<QweryX> temp = new List<QweryX>();
+            foreach (var item in fef.GetQweryByCategory(category))
+            {
+                temp.Add(new QweryX { Id = item.Id, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text, header = item.header, category = item.category });
+            }
+            return temp;
+        }
+
+        public bool SendQwery(QweryX qwery)
+        {
+            fef.AddQwery(qwery.header, qwery.name, qwery.text, DateTime.Now, 0, qwery.category, qwery.code);
+            return true;
+        }
+
+        public bool SendAnsver(AnsverX ansver)
+        {
+            fef.AddAnsver(ansver.QweryId, ansver.name, ansver.text, DateTime.Now, 0, ansver.code);
+            return true;
+        }
+
 
         public bool UserRatingUp(string name)
         {
@@ -150,10 +173,10 @@ namespace ForumService
             {
                 temp = item;
             }
-            
+
             fef.EditUser(temp.name, temp.password, temp.foto, temp.age, temp.rating - 1, temp.ratingAnswers, temp.ratingQwery, temp.about);
-            
-            
+
+
             return true;
         }
 
@@ -164,14 +187,14 @@ namespace ForumService
             {
                 temp = item;
             }
-            fef.SetQweryRating(QueryId, temp.rating+1);
+            fef.SetQweryRating(QueryId, temp.rating + 1);
 
             GetOneUser_Result tempUser = new GetOneUser_Result();
             foreach (var item in fef.GetOneUser(temp.name))
             {
                 tempUser = item;
             }
-            fef.EditUser(tempUser.name, tempUser.password, tempUser.foto, tempUser.age, tempUser.rating, tempUser.ratingAnswers, tempUser.ratingQwery+1, tempUser.about);
+            fef.EditUser(tempUser.name, tempUser.password, tempUser.foto, tempUser.age, tempUser.rating, tempUser.ratingAnswers, tempUser.ratingQwery + 1, tempUser.about);
 
             return true;
         }
@@ -183,10 +206,10 @@ namespace ForumService
             {
                 temp = item;
             }
-           
+
             fef.SetQweryRating(QueryId, temp.rating - 1);
-            
-            
+
+
             GetOneUser_Result tempUser = new GetOneUser_Result();
             foreach (var item in fef.GetOneUser(temp.name))
             {

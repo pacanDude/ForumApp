@@ -108,25 +108,26 @@ namespace ForumApp
         private void TextBlock_MouseDown_1(object sender, MouseButtonEventArgs e)
         {
             //List<AnsverX> list = forumServiceClient.GetQweryWithAnsvers((int)((TextBlock)sender).Tag).answers;
+            //
             AllMessageAndQwery list = forumServiceClient.GetQweryWithAnsvers((int)((TextBlock)sender).Tag);
-            
-            foreach (var item in list.answers)
-            {
-                TabItem tabItem = new TabItem() { Header = item.text };
-                Grid grid = new Grid();
-                ScrollViewer scrollViewer = new ScrollViewer() { CanContentScroll = true, HorizontalScrollBarVisibility = ScrollBarVisibility.Auto, VerticalScrollBarVisibility = ScrollBarVisibility.Auto, Margin = new Thickness(50, 200, 50, 50) };
+            List<QweryX> qweryXes = new List<QweryX>();
+            qweryXes.Add(list.qwery);
+            TabItem tabItem = new TabItem() { Header = list.qwery.header };
+            Grid grid = new Grid() { Height = Double.NaN, Style = (Style)Resources["gridBackroundStyle"] };
+            ListView listView = new ListView() { ItemsSource = qweryXes , Style = (Style)Resources["s"], Margin = new Thickness(0,0,0,0) };
+            ScrollViewer scrollViewer = new ScrollViewer() { CanContentScroll = true, HorizontalScrollBarVisibility = ScrollBarVisibility.Auto, VerticalScrollBarVisibility = ScrollBarVisibility.Auto, Background = Brushes.Transparent };
 
 
+            //Добавление всех элементов управления вопроса
+            grid.Children.Add(listView);
+            scrollViewer.Content = grid;
+            tabItem.Content = scrollViewer;
 
-                ListView listView = new ListView() { Style = (Style)Resources["ListViewStyle"] };
-                //listView.ItemsSource = item;
-                scrollViewer.Content = listView;
-                grid.Children.Add(scrollViewer);
+            //foreach (var item in list.answers)
+            //{
 
-                tabItem.Content = grid;
-                tabItem.MouseDown += TabItem_MouseUp;
-                MainTabControl.Items.Add(tabItem);
-            }
+            //}
+            MainTabControl.Items.Add(tabItem);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -217,6 +218,11 @@ namespace ForumApp
         {
             forumServiceClient.EditOneUser(new OneUserX() { about = registrationWindow.aboutSelfTextBox.Text, password = registrationWindow.passwordBox.Password, name = login}, login);
             registrationWindow.Close();
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            forumServiceClient.QweryRatingUp((int)((Button)sender).Tag);
         }
     }
 

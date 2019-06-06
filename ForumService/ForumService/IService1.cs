@@ -29,7 +29,7 @@ namespace ForumService
         AllMessageAndQwery GetQweryWithAnsvers(int QweryId);//для открытия ветки форума
 
         [OperationContract]
-        bool SendMessage(string login, int QweryId, string message,string code);
+        bool SendMessage(string login, int QweryId, string message, string code);
 
         [OperationContract]
         List<string> GetCategoryList();
@@ -54,6 +54,14 @@ namespace ForumService
 
         [OperationContract]
         bool AnsverRatingDown(int AnsverId);
+        [OperationContract]
+        List<QweryX> GetFindQweryList(string findString);
+        [OperationContract]
+        List<QweryX> GetCategoryQweryList(string category);
+        [OperationContract]
+        bool SendQwery(QweryX qwery);
+        [OperationContract]
+        bool SendAnsver(AnsverX ansver);
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
