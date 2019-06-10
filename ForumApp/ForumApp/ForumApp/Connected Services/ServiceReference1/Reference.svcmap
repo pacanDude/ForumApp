@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="fb2a9e78-38c5-487f-a4b6-f6231a03a1e6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="net.tcp://localhost:8733/Design_Time_Addresses/ForumService/ForumService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="9ca77c78-bd3e-42ac-814e-b2641dbc0c1c" SourceId="1" SourceUrl="net.tcp://localhost:8733/Design_Time_Addresses/ForumService/ForumService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="d965978d-33d2-46d0-861d-2309401db543" SourceId="1" SourceUrl="net.tcp://localhost:8733/Design_Time_Addresses/ForumService/ForumService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="28262972-2ed3-434c-84c8-42ffdaa68d59" SourceId="1" SourceUrl="net.tcp://localhost:8733/Design_Time_Addresses/ForumService/ForumService/mex" />
+    <MetadataFile FileName="ForumService.xsd" MetadataType="Schema" ID="88ef480b-329b-41fd-b200-04282cad07f2" SourceId="1" SourceUrl="net.tcp://localhost:8733/Design_Time_Addresses/ForumService/ForumService/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="0756fdab-a365-4b6b-9c11-befe0b2b9ce3" SourceId="1" SourceUrl="net.tcp://localhost:8733/Design_Time_Addresses/ForumService/ForumService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
