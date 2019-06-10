@@ -10,17 +10,16 @@
 namespace ForumService
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Qwery
+    public partial class GetOneUser2_Result
     {
-        public int Id { get; set; }
-        public string header { get; set; }
         public string name { get; set; }
-        public string text { get; set; }
-        public System.DateTime date { get; set; }
+        public string password { get; set; }
+        public byte[] foto { get; set; }
+        public Nullable<int> age { get; set; }
         public int rating { get; set; }
-        public string category { get; set; }
-        public string code { get; set; }
+        public int ratingAnswers { get; set; }
+        public int ratingQwery { get; set; }
+        public string about { get; set; }
     }
 }

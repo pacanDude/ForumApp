@@ -29,24 +29,42 @@ namespace ForumApp
         public MainWindow()
         {
             InitializeComponent();
-            
+
 
             foreach (var item in forumServiceClient.GetCategoryList())
             {
-                ListViewItem listViewItem = new ListViewItem() { Content = item };
-                listViewItem.MouseDoubleClick += ListViewItem_MouseDown;
-                listCat.Items.Add(listViewItem);
+                ListViewItem listViewItemX = new ListViewItem() { Content = item };
+                listViewItemX.MouseDoubleClick += ListViewItem_MouseDown;
+                listCat.Items.Add(listViewItemX);
             }
+            ListViewItem listViewItem = new ListViewItem() { Content = "Все" };
+            listViewItem.MouseDoubleClick += ListViewItem_MouseDown;
+            listCat.Items.Add(listViewItem);
+
             foreach (var item in forumServiceClient.GetQweryList())
             {
                 qweries.Add(item);
             }
             this.DataContext = qweries;
+
+
         }
 
         private void ListViewItem_MouseDown(object sender, MouseButtonEventArgs e)
         {
             ListViewItem listViewItem = (ListViewItem)sender;
+
+            if ((string)listViewItem.Content=="Все")
+            {
+                qweries.Clear();
+                foreach (var item in forumServiceClient.GetQweryList())
+                {
+                    qweries.Add(item);
+                }
+                this.DataContext = qweries;
+                return;
+            }
+
             qweries.Clear();
             foreach (var item in forumServiceClient.GetCategoryQweryList((string)listViewItem.Content))
             {
@@ -62,10 +80,10 @@ namespace ForumApp
             }
         }
 
-        
+
         private void TextBox_TextInput(object sender, TextCompositionEventArgs e)
         {
-            
+
         }
         private void TextBox_KeyUp(object sender, KeyEventArgs e)
         {
@@ -85,10 +103,7 @@ namespace ForumApp
             if (e.MiddleButton == MouseButtonState.Pressed)
                 MainTabControl.Items.Remove(sender);
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-        }
+        
 
         RegistrationWindow registrationWindow;
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
@@ -110,24 +125,92 @@ namespace ForumApp
             //List<AnsverX> list = forumServiceClient.GetQweryWithAnsvers((int)((TextBlock)sender).Tag).answers;
             //
             AllMessageAndQwery list = forumServiceClient.GetQweryWithAnsvers((int)((TextBlock)sender).Tag);
-            List<QweryX> qweryXes = new List<QweryX>();
-            qweryXes.Add(list.qwery);
+            //List<QweryX> qweryXes = new List<QweryX>();
+            //qweryXes.Add(list.qwery);
             TabItem tabItem = new TabItem() { Header = list.qwery.header };
             Grid grid = new Grid() { Height = Double.NaN, Style = (Style)Resources["gridBackroundStyle"] };
-            ListView listView = new ListView() { ItemsSource = qweryXes , Style = (Style)Resources["s"], Margin = new Thickness(0,0,0,0) };
-            ScrollViewer scrollViewer = new ScrollViewer() { CanContentScroll = true, HorizontalScrollBarVisibility = ScrollBarVisibility.Auto, VerticalScrollBarVisibility = ScrollBarVisibility.Auto, Background = Brushes.Transparent };
+            
+            ListView listView = new ListView()/* { Style = (Style)Resources["s"]}*/;
+            
+            ListViewItem lvI = new ListViewItem() { Style = (Style)Resources["s"] };
+            //lvI.DataContext = new QweryX { header = "heeedeer", code = "coooooode", date = DateTime.Now, name = "vadim", Id = 3, category = "asd", rating = 5, text = "texxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxt" };
+            lvI.DataContext = list.qwery;
+
+            listView.Items.Add(lvI);
+            ///////////////////////////////////
+            //ListView listView2 = new ListView() /*{ Style = (Style)Resources["sa"] }*/;
 
 
+            ListViewItem listViewItem2 = new ListViewItem() { Content = "ОТВЕТЫ" };
+            listView.Items.Add(listViewItem2);
+            foreach (var item in list.answers)
+            {
+                ListViewItem temp = new ListViewItem() { Style = (Style)Resources["sa"] };
+                temp.DataContext = item;
+                listView.Items.Add(temp);
+                //listView2.Items.Add(item);
+            }
+            ListViewItem listViewItem = new ListViewItem() { Content = "ДОБАВИТЬ ОТВЕТ", Tag = list.qwery };
+            listViewItem.MouseDoubleClick += MainWindow_MouseDown;
+            listView.Items.Add(listViewItem);
             //Добавление всех элементов управления вопроса
             grid.Children.Add(listView);
-            scrollViewer.Content = grid;
-            tabItem.Content = scrollViewer;
+           // grid.Children.Add(listView2);
+            tabItem.Content = grid;
+            tabItem.MouseDown += TabItem_MouseUp;
 
-            //foreach (var item in list.answers)
-            //{
-
-            //}
             MainTabControl.Items.Add(tabItem);
+        }
+        ListViewItem viewItem;
+        ResponseWindow responseWindow;
+        private void MainWindow_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (login != null)
+            {
+                viewItem = ((ListViewItem)sender);
+                responseWindow = new ResponseWindow("Ваш ответ пользователю " + ((QweryX)viewItem.Tag).name, ((QweryX)viewItem.Tag).Id, login);
+                responseWindow.Show();
+                responseWindow.buttonOk.Click += ButtonOk_Click4;
+                responseWindow.buttonCancel.Click += ButtonCancel_Click;
+            }
+            else
+            {
+                form1 = new LoginWindow();
+                form1.Show();
+                form1.buttonOk.Click += ButtonOk_Click1;
+            }
+        }
+
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            viewItem = null;
+            responseWindow.Close();
+        }
+
+        private void ButtonOk_Click4(object sender, RoutedEventArgs e)
+        {
+            forumServiceClient.SendAnsver(new AnsverX() { code = responseWindow.forCodeTextBox.Text, text = responseWindow.messageTextBox.Text, QweryId = responseWindow.QueryId, name = responseWindow.login});
+            
+            AllMessageAndQwery list = forumServiceClient.GetQweryWithAnsvers(((QweryX)viewItem.Tag).Id);
+            ListView listV = ((ListView)viewItem.Parent);
+            listV.Items.Clear();
+
+            ListViewItem lvI = new ListViewItem() { Style = (Style)Resources["s"] };
+            lvI.DataContext = list.qwery;
+            listV.Items.Add(lvI);
+
+            listV.Items.Add(new ListViewItem() { Content = "ОТВЕТЫ" });
+            foreach (var item in list.answers)
+            {
+                ListViewItem temp = new ListViewItem() { Style = (Style)Resources["sa"] };
+                temp.DataContext = item;
+                listV.Items.Add(temp);
+            }
+            ListViewItem listViewItem = new ListViewItem() { Content = "ДОБАВИТЬ ОТВЕТ", Tag = list.qwery };
+            listViewItem.MouseDoubleClick += MainWindow_MouseDown;
+            listV.Items.Add(listViewItem);
+            viewItem = null;
+            responseWindow.Close();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -149,7 +232,7 @@ namespace ForumApp
         string login;
         private void ButtonOk_Click1(object sender, RoutedEventArgs e)
         {
-            
+
             bool a = forumServiceClient.LogIn(form1.nicknameTextBox.Text, form1.passwordBox.Password);
             if (a == true)
             {
@@ -188,7 +271,7 @@ namespace ForumApp
 
         private void ButtonOk_Click2(object sender, RoutedEventArgs e)
         {
-            forumServiceClient.SendQwery(new QweryX() { category = questionW.tagsTextBox.Text, code = questionW.forCodeTextBox.Text, header = questionW.headlineTextBox.Text,name = login, text = questionW.messageTextBox.Text });
+            forumServiceClient.SendQwery(new QweryX() { category = questionW.tagsTextBox.Text, code = questionW.forCodeTextBox.Text, header = questionW.headlineTextBox.Text, name = login, text = questionW.messageTextBox.Text });
             qweries.Clear();
             foreach (var item in forumServiceClient.GetQweryList())
             {
@@ -199,8 +282,6 @@ namespace ForumApp
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            ResponseWindow responseW = new ResponseWindow("... например ivan59");
-            responseW.ShowDialog();
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
@@ -216,13 +297,55 @@ namespace ForumApp
 
         private void ButtonOk_Click3(object sender, RoutedEventArgs e)
         {
-            forumServiceClient.EditOneUser(new OneUserX() { about = registrationWindow.aboutSelfTextBox.Text, password = registrationWindow.passwordBox.Password, name = login}, login);
+            forumServiceClient.EditOneUser(new OneUserX() { about = registrationWindow.aboutSelfTextBox.Text, password = registrationWindow.passwordBox.Password, name = login }, login);
             registrationWindow.Close();
         }
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
-            forumServiceClient.QweryRatingUp((int)((Button)sender).Tag);
+            if (login != null)
+            {
+                forumServiceClient.QweryRatingUp((int)((Button)sender).Tag);
+
+            }
+        }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            if (login != null)
+            {
+                forumServiceClient.QweryRatingDown((int)((Button)sender).Tag);
+
+            }
+        }
+
+        private void Button_Click_8(object sender, RoutedEventArgs e)
+        {
+            if(login != null)
+            {
+
+                forumServiceClient.AnsverRatingUp((int)((Button)sender).Tag);
+            }
+        }
+
+        private void Button_Click_9(object sender, RoutedEventArgs e)
+        {
+            if (login != null)
+            {
+
+                forumServiceClient.AnsverRatingDown((int)((Button)sender).Tag);
+            }
+        }
+
+        private void Button_Click_10(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TabItem_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.MiddleButton == MouseButtonState.Pressed)
+                this.Close();
         }
     }
 

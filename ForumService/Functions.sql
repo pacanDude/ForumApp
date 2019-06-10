@@ -89,6 +89,13 @@ CREATE FUNCTION GetAllQwery ()
 
 
 
+
+
+
+
+
+
+
 create proc SetQweryRating (@QweryId int, @rating int)
     as 
 	begin
@@ -104,4 +111,19 @@ create proc SetAnsverRating (@AnsverId int, @rating int)
 CREATE FUNCTION GetAnsverById (@Id int)
     RETURNS TABLE
     AS RETURN 
-	(select * from Ansver where Id=@Id)
+(select * from Ansver where Id=@Id)
+
+create proc EditUser2 (@name varchar(max), @password varchar(max), @foto varbinary(max), @age int, @rating int,@ratingAnswers int,@ratingQwery int,@about nvarchar(max))
+    as 
+	begin 
+	delete from OneUser where name=@name
+	insert into OneUser(name, password, foto,age,rating,ratingAnswers,ratingQwery,about)
+	values
+	(@name,	@password, @foto, @age, @rating, @ratingAnswers, @ratingQwery, @about)
+	end
+
+
+CREATE FUNCTION GetOneUser2 (@name nvarchar(max))
+    RETURNS TABLE
+    AS RETURN 
+	(select * from OneUser where name=@name)

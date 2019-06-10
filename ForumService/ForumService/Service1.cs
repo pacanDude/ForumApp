@@ -23,7 +23,7 @@ namespace ForumService
     }
 }
              */
-        ForumEntities fef = new ForumEntities();
+        ForumEntities1 fef = new ForumEntities1();
         public bool EditOneUser(OneUserX user, string name)
         {
             fef.EditUser(user.name, user.password, user.foto, user.age, user.rating, user.ratingAnswers, user.ratingQwery, user.about);
@@ -189,12 +189,12 @@ namespace ForumService
             }
             fef.SetQweryRating(QueryId, temp.rating + 1);
 
-            GetOneUser_Result tempUser = new GetOneUser_Result();
-            foreach (var item in fef.GetOneUser(temp.name))
+            GetOneUser2_Result tempUser = new GetOneUser2_Result();
+            foreach (var item in fef.GetOneUser2(temp.name))
             {
                 tempUser = item;
             }
-            fef.EditUser(tempUser.name, tempUser.password, tempUser.foto, tempUser.age, tempUser.rating, tempUser.ratingAnswers, tempUser.ratingQwery + 1, tempUser.about);
+            fef.EditUser2(tempUser.name, tempUser.password, tempUser.foto, tempUser.age, tempUser.rating, tempUser.ratingAnswers, tempUser.ratingQwery + 1, tempUser.about);
 
             return true;
         }

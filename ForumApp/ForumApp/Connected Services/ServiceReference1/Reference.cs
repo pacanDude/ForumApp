@@ -587,6 +587,42 @@ namespace ForumApp.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/GetQueryById", ReplyAction="http://tempuri.org/IForumService/GetQueryByIdResponse")]
         System.Threading.Tasks.Task<ForumApp.ServiceReference1.QweryX> GetQueryByIdAsync(int QueryId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/UserRatingUp", ReplyAction="http://tempuri.org/IForumService/UserRatingUpResponse")]
+        bool UserRatingUp(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/UserRatingUp", ReplyAction="http://tempuri.org/IForumService/UserRatingUpResponse")]
+        System.Threading.Tasks.Task<bool> UserRatingUpAsync(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/UserRatingDown", ReplyAction="http://tempuri.org/IForumService/UserRatingDownResponse")]
+        bool UserRatingDown(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/UserRatingDown", ReplyAction="http://tempuri.org/IForumService/UserRatingDownResponse")]
+        System.Threading.Tasks.Task<bool> UserRatingDownAsync(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/QweryRatingUp", ReplyAction="http://tempuri.org/IForumService/QweryRatingUpResponse")]
+        bool QweryRatingUp(int QueryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/QweryRatingUp", ReplyAction="http://tempuri.org/IForumService/QweryRatingUpResponse")]
+        System.Threading.Tasks.Task<bool> QweryRatingUpAsync(int QueryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/QweryRatingDown", ReplyAction="http://tempuri.org/IForumService/QweryRatingDownResponse")]
+        bool QweryRatingDown(int QueryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/QweryRatingDown", ReplyAction="http://tempuri.org/IForumService/QweryRatingDownResponse")]
+        System.Threading.Tasks.Task<bool> QweryRatingDownAsync(int QueryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/AnsverRatingUp", ReplyAction="http://tempuri.org/IForumService/AnsverRatingUpResponse")]
+        bool AnsverRatingUp(int AnsverId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/AnsverRatingUp", ReplyAction="http://tempuri.org/IForumService/AnsverRatingUpResponse")]
+        System.Threading.Tasks.Task<bool> AnsverRatingUpAsync(int AnsverId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/AnsverRatingDown", ReplyAction="http://tempuri.org/IForumService/AnsverRatingDownResponse")]
+        bool AnsverRatingDown(int AnsverId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/AnsverRatingDown", ReplyAction="http://tempuri.org/IForumService/AnsverRatingDownResponse")]
+        System.Threading.Tasks.Task<bool> AnsverRatingDownAsync(int AnsverId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/GetFindQweryList", ReplyAction="http://tempuri.org/IForumService/GetFindQweryListResponse")]
         ForumApp.ServiceReference1.QweryX[] GetFindQweryList(string findString);
         
@@ -709,6 +745,54 @@ namespace ForumApp.ServiceReference1 {
         
         public System.Threading.Tasks.Task<ForumApp.ServiceReference1.QweryX> GetQueryByIdAsync(int QueryId) {
             return base.Channel.GetQueryByIdAsync(QueryId);
+        }
+        
+        public bool UserRatingUp(string name) {
+            return base.Channel.UserRatingUp(name);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UserRatingUpAsync(string name) {
+            return base.Channel.UserRatingUpAsync(name);
+        }
+        
+        public bool UserRatingDown(string name) {
+            return base.Channel.UserRatingDown(name);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UserRatingDownAsync(string name) {
+            return base.Channel.UserRatingDownAsync(name);
+        }
+        
+        public bool QweryRatingUp(int QueryId) {
+            return base.Channel.QweryRatingUp(QueryId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> QweryRatingUpAsync(int QueryId) {
+            return base.Channel.QweryRatingUpAsync(QueryId);
+        }
+        
+        public bool QweryRatingDown(int QueryId) {
+            return base.Channel.QweryRatingDown(QueryId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> QweryRatingDownAsync(int QueryId) {
+            return base.Channel.QweryRatingDownAsync(QueryId);
+        }
+        
+        public bool AnsverRatingUp(int AnsverId) {
+            return base.Channel.AnsverRatingUp(AnsverId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AnsverRatingUpAsync(int AnsverId) {
+            return base.Channel.AnsverRatingUpAsync(AnsverId);
+        }
+        
+        public bool AnsverRatingDown(int AnsverId) {
+            return base.Channel.AnsverRatingDown(AnsverId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AnsverRatingDownAsync(int AnsverId) {
+            return base.Channel.AnsverRatingDownAsync(AnsverId);
         }
         
         public ForumApp.ServiceReference1.QweryX[] GetFindQweryList(string findString) {

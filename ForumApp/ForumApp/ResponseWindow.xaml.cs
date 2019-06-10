@@ -19,21 +19,23 @@ namespace ВопросОтвет
     /// </summary>
     public partial class ResponseWindow : Window
     {
-        public ResponseWindow(string ninickname_who_gets_the_answer)
+        public int QueryId = 0;
+        public string login = null;
+        public ResponseWindow(string ninickname_who_gets_the_answer, int QueryId, string login)
         {
             InitializeComponent();
 
             title.Content += ninickname_who_gets_the_answer;
+            this.QueryId = QueryId;
+            this.login = login;
         }
 
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = false;
         }
     }
 }
