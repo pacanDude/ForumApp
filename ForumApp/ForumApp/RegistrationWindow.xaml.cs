@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace окна
 {
@@ -22,6 +24,7 @@ namespace окна
         public RegistrationWindow()
         {
             InitializeComponent();
+
         }
 
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
@@ -62,5 +65,45 @@ namespace окна
         {
             //this.DialogResult = false;
         }
+
+        public byte[] fotoByte = new byte[0];
+        public BitmapImage UserBitmap;
+
+        private void FotoImage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                fotoByte = File.ReadAllBytes(openFileDialog.FileName);
+
+                UserBitmap = ToImage(fotoByte);
+                FotoImage.Source = UserBitmap;
+
+            }
+        }
+        public void FotoSetUp(byte[] foto)
+        {
+            if (foto==null)
+            {
+                return;
+            }
+            UserBitmap = ToImage(foto);
+            FotoImage.Source = UserBitmap;
+        }
+        //преобразование байт в картинку
+        public BitmapImage ToImage(byte[] array)
+        {
+            using (var ms = new System.IO.MemoryStream(array))
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad; // here
+                image.StreamSource = ms;
+                image.EndInit();
+                return image;
+            }
+        }
+
     }
 }

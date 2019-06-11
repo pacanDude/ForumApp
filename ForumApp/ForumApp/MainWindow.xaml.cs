@@ -112,12 +112,17 @@ namespace ForumApp
             registrationWindow = new RegistrationWindow();
             registrationWindow.Show();
             OneUserX userX = forumServiceClient.GetOneUser((string)textBlock.Text);
-            registrationWindow.nameTextBox.Text = userX.name;
-            registrationWindow.nameTextBox.IsReadOnly = true;
+            registrationWindow.nicknameTextBox.Text = userX.name;
+            registrationWindow.nicknameTextBox.IsReadOnly = true;
             registrationWindow.passwordBox.Visibility = Visibility.Hidden;
             registrationWindow.aboutSelfTextBox.Text = userX.about;
             registrationWindow.aboutSelfTextBox.IsReadOnly = true;
-            registrationWindow.confirmPasswordBox.Visibility = Visibility.Hidden;
+
+            if (userX.foto.Length>0)
+            {
+                registrationWindow.FotoSetUp(userX.foto);
+            }
+            
         }
 
         private void TextBlock_MouseDown_1(object sender, MouseButtonEventArgs e)
@@ -258,7 +263,7 @@ namespace ForumApp
 
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
-            forumServiceClient.RegisterUser(new OneUserX() { about = form2.aboutSelfTextBox.Text, age = 0, foto = null, name = form2.nameTextBox.Text, password = form2.passwordBox.Password, rating = 0, ratingAnswers = 0, ratingQwery = 0, });
+            forumServiceClient.RegisterUser(new OneUserX() { foto = form2.fotoByte, about = form2.aboutSelfTextBox.Text, age =Convert.ToInt32( form2.AgeTextBox.Text), name = form2.nicknameTextBox.Text, password = form2.passwordBox.Password, rating = 0, ratingAnswers = 0, ratingQwery = 0, });
             form2.Close();
         }
         QuestionWindow questionW;
@@ -289,15 +294,26 @@ namespace ForumApp
             registrationWindow = new RegistrationWindow();
             registrationWindow.Show();
             OneUserX userX = forumServiceClient.GetOneUser(login);
-            registrationWindow.nameTextBox.Text = userX.name;
-            registrationWindow.nameTextBox.IsReadOnly = true;
+            registrationWindow.nicknameTextBox.Text = userX.name;
+            registrationWindow.nicknameTextBox.IsReadOnly = true;
             registrationWindow.aboutSelfTextBox.Text = userX.about;
             registrationWindow.buttonOk.Click += ButtonOk_Click3;
+            registrationWindow.AgeTextBox.Text = userX.age.ToString();
+            //Convert.ToInt32( form2.AgeTextBox.Text)
+
+            if (userX.foto.Length>0)
+            {
+                registrationWindow.FotoSetUp(userX.foto);
+            }
+
+            
+
         }
 
         private void ButtonOk_Click3(object sender, RoutedEventArgs e)
         {
-            forumServiceClient.EditOneUser(new OneUserX() { about = registrationWindow.aboutSelfTextBox.Text, password = registrationWindow.passwordBox.Password, name = login }, login);
+            forumServiceClient.EditOneUser(new OneUserX() {age= Convert.ToInt32(registrationWindow.AgeTextBox.Text), about = registrationWindow.aboutSelfTextBox.Text, password = registrationWindow.passwordBox.Password, name = login ,foto= registrationWindow.fotoByte}, login);
+
             registrationWindow.Close();
         }
 
