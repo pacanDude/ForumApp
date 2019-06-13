@@ -36,13 +36,13 @@
                                     <GradientStop Color="#FF408FEE" Offset="1"/>
                                 </LinearGradientBrush>
                             </Grid.Background>
-                            <Button HorizontalAlignment="Left" Margin="50,57,0,0" VerticalAlignment="Top" Width="40" Click="Button_Click_6" Tag="{Binding Id}">
+                            <Button x:Name="butUp" HorizontalAlignment="Left" Margin="50,57,0,0" VerticalAlignment="Top" Width="40" Click="Button_Click_6" Tag="{Binding Id}">
                                 <TextBlock Text="Up" Tag="{Binding name}"/>
                             </Button>
-                            <Button HorizontalAlignment="Left" Margin="50,99,0,0" VerticalAlignment="Top" Width="40" Click="Button_Click_7" Tag="{Binding Id}">
+                            <Button x:Name="butDown" HorizontalAlignment="Left" Margin="50,99,0,0" VerticalAlignment="Top" Width="40" Click="Button_Click_7" Tag="{Binding Id}">
                                 <TextBlock Text="Down" Tag="{Binding name}"/>
                             </Button>
-                            <Label Content="{Binding rating}" HorizontalAlignment="Left" Margin="60,75,0,0" VerticalAlignment="Top"/>
+                            <Label x:Name="ratingLabel" Content="{Binding rating}" HorizontalAlignment="Left" Margin="60,75,0,0" VerticalAlignment="Top"/>
                             <TextBlock HorizontalAlignment="Left" Height="64" Margin="95,57,0,0" TextWrapping="Wrap" Text="{Binding header}" VerticalAlignment="Top" Width="661" FontSize="20"/>
                             <TextBlock HorizontalAlignment="Left" Height="64" Margin="598,57,0,0" TextWrapping="Wrap" Text="{Binding name}" VerticalAlignment="Top" Width="158"/>
 
@@ -58,6 +58,34 @@
             </Setter>
         </Style>
 
+        <Style x:Key="lbItemStyle" TargetType="ListBoxItem">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Height" Value="Auto"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                            <Grid.Background>
+
+                                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0.5">
+                                    <GradientStop Color="Transparent" Offset="0"/>
+                                    <GradientStop Color="#FF408FEE" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Grid.Background>
+                            <TextBlock x:Name="RatingLabel" Text="{Binding rating}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="52" Width="72" FontSize="24"/>
+                            <TextBlock x:Name="HeaderLabel" MouseDown="TextBlock_MouseDown_1" Text="{Binding header}" Height="52" Margin="87,10,171,0" VerticalAlignment="Top" FontSize="16" Tag="{Binding Id}"/>
+                            <TextBlock x:Name="NameLabel" MouseDown="TextBlock_MouseDown" Text="{Binding name}" Height="26" Margin="722,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Tag="{Binding name}"/>
+                            <TextBlock x:Name="DateLabel" Text="{Binding date}" Margin="722,36,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Right" Width="156"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
         <Style x:Key="sa" TargetType="ListViewItem">
             <Setter Property="VerticalAlignment" Value="Top"/>
 
@@ -76,13 +104,13 @@
                                     <GradientStop Color="#FF408FEE" Offset="1"/>
                                 </LinearGradientBrush>
                             </Grid.Background>
-                            <Button HorizontalAlignment="Left" Margin="50,57,0,0" VerticalAlignment="Top" Width="40" Click="Button_Click_8"  Tag="{Binding Id}">
+                            <Button x:Name="butUp" HorizontalAlignment="Left" Margin="50,57,0,0" VerticalAlignment="Top" Width="40" Click="Button_Click_8"  Tag="{Binding Id}">
                                 <TextBlock Text="Up" Tag="{Binding name}"/>
                             </Button>
-                            <Button HorizontalAlignment="Left" Margin="50,99,0,0" VerticalAlignment="Top" Width="40" Click="Button_Click_9"  Tag="{Binding Id}">
+                            <Button x:Name="butDown" HorizontalAlignment="Left" Margin="50,99,0,0" VerticalAlignment="Top" Width="40" Click="Button_Click_9"  Tag="{Binding Id}">
                                 <TextBlock Text="Down" Tag="{Binding name}"/>
                             </Button>
-                            <Label Content="{Binding rating}" HorizontalAlignment="Left" Margin="60,75,0,0" VerticalAlignment="Top"/>
+                            <Label x:Name="ratingLabel" Content="{Binding rating}" HorizontalAlignment="Left" Margin="60,75,0,0" VerticalAlignment="Top"/>
                             <TextBlock HorizontalAlignment="Left" Height="64" Margin="598,57,0,0" TextWrapping="Wrap" Text="{Binding name}" VerticalAlignment="Top" Width="158"/>
                             <TextBlock HorizontalAlignment="Left" Height="68" Margin="50,126,0,0" TextWrapping="Wrap" Text="{Binding text}" VerticalAlignment="Top" Width="706"/>
                                 <TextBlock HorizontalAlignment="Left" Height="68" Margin="50,194,0,0" TextWrapping="Wrap" Text="{Binding code}" VerticalAlignment="Top" Width="706"/>
@@ -94,6 +122,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
+        
         <Style x:Key="gridBackroundStyle" TargetType="Grid">
             <Setter Property="Background">
                 <Setter.Value>
@@ -112,6 +142,9 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
+        
+        
         <Style TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
@@ -164,6 +197,9 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
+        
+        
         <!--Стиль для листобокса на главной странице-->
         <Style x:Key="listBoxStyle1" TargetType="{x:Type ListBox}" >
             <Setter Property="ItemTemplate">
@@ -388,7 +424,7 @@
                                 <GradientStop Color="White" Offset="1"/>
                             </LinearGradientBrush>
                         </ScrollViewer.BorderBrush>
-                        <ListBox ItemsSource="{Binding}" Style="{DynamicResource listBoxStyle1}" x:Name="ListTest" RenderTransformOrigin="0.5,0.5">
+                        <ListBox x:Name="ListTest" RenderTransformOrigin="0.5,0.5">
                             <ListBox.Background>
                                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                                     <GradientStop Color="Transparent"/>

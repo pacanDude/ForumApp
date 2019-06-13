@@ -30,7 +30,17 @@ namespace ForumApp
         {
             InitializeComponent();
 
+            foreach (var item in forumServiceClient.GetQweryList())
+            {
+                ListBoxItem lvI = new ListBoxItem() { Style = (Style)Resources["lbItemStyle"]};
 
+                lvI.DataContext = item;
+                ListTest.Items.Add(lvI);
+            }
+
+
+
+           
             foreach (var item in forumServiceClient.GetCategoryList())
             {
                 ListViewItem listViewItemX = new ListViewItem() { Content = item };
@@ -40,18 +50,58 @@ namespace ForumApp
             ListViewItem listViewItem = new ListViewItem() { Content = "Все" };
             listViewItem.MouseDoubleClick += ListViewItem_MouseDown;
             listCat.Items.Add(listViewItem);
-
+ /*
             foreach (var item in forumServiceClient.GetQweryList())
             {
                 qweries.Add(item);
             }
             this.DataContext = qweries;
 
-
+            */
         }
 
         private void ListViewItem_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            ListViewItem listViewItem = (ListViewItem)sender;
+            ListTest.Items.Clear();
+
+            if ((string)listViewItem.Content == "Все")
+            {
+                qweries.Clear();
+
+                foreach (var item in forumServiceClient.GetQweryList())
+                {
+                    ListBoxItem lvI = new ListBoxItem() { Style = (Style)Resources["lbItemStyle"] };
+
+                    lvI.DataContext = item;
+                    ListTest.Items.Add(lvI);
+                    //qweries.Add(item);
+                }
+
+               // this.DataContext = qweries;
+                return;
+            }
+            
+            foreach (var item in forumServiceClient.GetCategoryQweryList((string)listViewItem.Content))
+            {
+                ListBoxItem lvI = new ListBoxItem() { Style = (Style)Resources["lbItemStyle"] };
+
+                lvI.DataContext = item;
+                ListTest.Items.Add(lvI);
+            }
+
+            listCat.Items.Clear();
+            foreach (var item in forumServiceClient.GetCategoryList())
+            {
+                ListViewItem listViewItemX = new ListViewItem() { Content = item };
+                listViewItemX.MouseDoubleClick += ListViewItem_MouseDown;
+                listCat.Items.Add(listViewItemX);
+            }
+            ListViewItem listViewItemY = new ListViewItem() { Content = "Все" };
+            listViewItemY.MouseDoubleClick += ListViewItem_MouseDown;
+            listCat.Items.Add(listViewItemY);
+
+            /*
             ListViewItem listViewItem = (ListViewItem)sender;
 
             if ((string)listViewItem.Content=="Все")
@@ -69,7 +119,7 @@ namespace ForumApp
             foreach (var item in forumServiceClient.GetCategoryQweryList((string)listViewItem.Content))
             {
                 qweries.Add(item);
-            }
+            }*/
         }
 
         private void TextBox_MouseDown(object sender, MouseButtonEventArgs e)
@@ -92,10 +142,17 @@ namespace ForumApp
             // your event handler here
             e.Handled = true;
             qweries.Clear();
+            ListTest.Items.Clear();
             foreach (var item in forumServiceClient.GetFindQweryList(SearchBox.Text))
             {
-                qweries.Add(item);
+                ListBoxItem lvI = new ListBoxItem() { Style = (Style)Resources["lbItemStyle"] };
+
+                lvI.DataContext = item;
+                ListTest.Items.Add(lvI);
+
+                //qweries.Add(item);
             }
+
         }
 
         private void TabItem_MouseUp(object sender, MouseButtonEventArgs e)
@@ -117,7 +174,8 @@ namespace ForumApp
             registrationWindow.passwordBox.Visibility = Visibility.Hidden;
             registrationWindow.aboutSelfTextBox.Text = userX.about;
             registrationWindow.aboutSelfTextBox.IsReadOnly = true;
-
+            registrationWindow.AgeTextBox.Text = userX.age.ToString();
+            registrationWindow.AgeTextBox.IsReadOnly = true;
             if (userX.foto.Length>0)
             {
                 registrationWindow.FotoSetUp(userX.foto);
@@ -221,9 +279,15 @@ namespace ForumApp
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             qweries.Clear();
+            ListTest.Items.Clear();
             foreach (var item in forumServiceClient.GetFindQweryList(SearchBox.Text))
-            {
-                qweries.Add(item);
+            {///////////////
+                ListBoxItem lvI = new ListBoxItem() { Style = (Style)Resources["lbItemStyle"] };
+
+                lvI.DataContext = item;
+                ListTest.Items.Add(lvI);
+
+                //qweries.Add(item);
             }
         }
         LoginWindow form1;
@@ -278,9 +342,17 @@ namespace ForumApp
         {
             forumServiceClient.SendQwery(new QweryX() { category = questionW.tagsTextBox.Text, code = questionW.forCodeTextBox.Text, header = questionW.headlineTextBox.Text, name = login, text = questionW.messageTextBox.Text });
             qweries.Clear();
+
+            ListTest.Items.Clear();
+
             foreach (var item in forumServiceClient.GetQweryList())
             {
-                qweries.Add(item);
+                ListBoxItem lvI = new ListBoxItem() { Style = (Style)Resources["lbItemStyle"] };
+
+                lvI.DataContext = item;
+                ListTest.Items.Add(lvI);
+
+                //qweries.Add(item);
             }
             questionW.Close();
         }
@@ -305,9 +377,7 @@ namespace ForumApp
             {
                 registrationWindow.FotoSetUp(userX.foto);
             }
-
             
-
         }
 
         private void ButtonOk_Click3(object sender, RoutedEventArgs e)
@@ -316,27 +386,22 @@ namespace ForumApp
 
             registrationWindow.Close();
         }
-
+    
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
             if (login != null)
             {
-                Grid grid = (Grid)((Button)sender).Parent;
-                
-                Button buttonUp = (Button)grid.FindName("buttonUp");
-                Button buttonDown = (Button)grid.FindName("buttonDown");
-                if (buttonUp.IsEnabled == true)
-                {
-                    forumServiceClient.QweryRatingUp((int)((Button)sender).Tag);
-                    buttonUp.IsEnabled = false;
-                    if(buttonDown.IsEnabled == false)
-                    {
-                        buttonDown.IsEnabled = true;
+                forumServiceClient.QweryRatingUp((int)((Button)sender).Tag);
+                ((Button)sender).IsEnabled = false;
+                ((Button)((Grid)((Button)sender).Parent).FindName("butDown")).IsEnabled = true;
+                ((Label)((Grid)((Button)sender).Parent).FindName("ratingLabel")).Content = Convert.ToInt32(((Label)((Grid)((Button)sender).Parent).FindName("ratingLabel")).Content) + 1;
+            }
+            else
+            {
 
-                    }
-                }
-                
-
+                form1 = new LoginWindow();
+                form1.Show();
+                form1.buttonOk.Click += ButtonOk_Click1;
             }
         }
 
@@ -345,7 +410,15 @@ namespace ForumApp
             if (login != null)
             {
                 forumServiceClient.QweryRatingDown((int)((Button)sender).Tag);
-
+                ((Button)sender).IsEnabled = false;
+                ((Button)((Grid)((Button)sender).Parent).FindName("butUp")).IsEnabled = true;
+                ((Label)((Grid)((Button)sender).Parent).FindName("ratingLabel")).Content = Convert.ToInt32(((Label)((Grid)((Button)sender).Parent).FindName("ratingLabel")).Content) - 1;
+            }
+            else
+            {
+                form1 = new LoginWindow();
+                form1.Show();
+                form1.buttonOk.Click += ButtonOk_Click1;
             }
         }
 
@@ -355,6 +428,15 @@ namespace ForumApp
             {
 
                 forumServiceClient.AnsverRatingUp((int)((Button)sender).Tag);
+                ((Button)sender).IsEnabled = false;
+                ((Button)((Grid)((Button)sender).Parent).FindName("butDown")).IsEnabled = true;
+                ((Label)((Grid)((Button)sender).Parent).FindName("ratingLabel")).Content = Convert.ToInt32(((Label)((Grid)((Button)sender).Parent).FindName("ratingLabel")).Content) + 1;
+            }
+            else
+            {
+                form1 = new LoginWindow();
+                form1.Show();
+                form1.buttonOk.Click += ButtonOk_Click1;
             }
         }
 
@@ -364,6 +446,16 @@ namespace ForumApp
             {
 
                 forumServiceClient.AnsverRatingDown((int)((Button)sender).Tag);
+                ((Button)sender).IsEnabled = false;
+                ((Button)((Grid)((Button)sender).Parent).FindName("butUp")).IsEnabled = true;
+                ((Label)((Grid)((Button)sender).Parent).FindName("ratingLabel")).Content = Convert.ToInt32(((Label)((Grid)((Button)sender).Parent).FindName("ratingLabel")).Content) - 1;
+               
+            }
+            else
+            {
+                form1 = new LoginWindow();
+                form1.Show();
+                form1.buttonOk.Click += ButtonOk_Click1;
             }
         }
 

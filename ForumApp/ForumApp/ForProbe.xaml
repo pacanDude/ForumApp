@@ -1,0 +1,15 @@
+﻿<Window x:Class="ForumApp.ForProbe"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ForumApp"
+        mc:Ignorable="d"
+        Title="ForProbe" Height="102" Width="896">
+    <Grid>
+        <Label x:Name="RatingLabel" Content="123" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="52" Width="72" FontSize="24"/>
+        <Label x:Name="HeaderLabel" Content="header" Height="52" Margin="87,10,171,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="NameLabel" Content="Name" Height="26" Margin="722,10,10,0" VerticalAlignment="Top"/>
+        <Label x:Name="DateLabel" Content="01 01 01 01 2000" Margin="722,36,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="156"/>
+    </Grid>
+</Window>

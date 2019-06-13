@@ -63,7 +63,7 @@
         <Button x:Name="buttonCancel" Content="Отмена" HorizontalAlignment="Right" Margin="0,0,25,15" Width="85" Height="30" VerticalAlignment="Bottom" Click="ButtonCancel_Click"/>
         <Label Content="Заголовок :" FontSize="14" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="15,50,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="headlineTextBox" Height="23" Margin="15,83,24.6,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Label Content="Метки (разделяйте метки запятыми) :" FontSize="14" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="15,115,0,0" VerticalAlignment="Top"/>
+        <Label Content="Категория" FontSize="14" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="15,115,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tagsTextBox" Height="23" Margin="15,148,24.6,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Label Content="Сообщение :" FontSize="14" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="15,185,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="messageTextBox" AcceptsReturn="True" Height="155" Margin="15,213,25,0" TextWrapping="Wrap" VerticalAlignment="Top" />
