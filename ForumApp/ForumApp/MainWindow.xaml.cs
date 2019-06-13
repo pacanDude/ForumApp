@@ -321,7 +321,21 @@ namespace ForumApp
         {
             if (login != null)
             {
-                forumServiceClient.QweryRatingUp((int)((Button)sender).Tag);
+                Grid grid = (Grid)((Button)sender).Parent;
+                
+                Button buttonUp = (Button)grid.FindName("buttonUp");
+                Button buttonDown = (Button)grid.FindName("buttonDown");
+                if (buttonUp.IsEnabled == true)
+                {
+                    forumServiceClient.QweryRatingUp((int)((Button)sender).Tag);
+                    buttonUp.IsEnabled = false;
+                    if(buttonDown.IsEnabled == false)
+                    {
+                        buttonDown.IsEnabled = true;
+
+                    }
+                }
+                
 
             }
         }
