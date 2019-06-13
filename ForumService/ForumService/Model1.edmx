@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище ForumModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище ForumModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Ansver">
           <Key>
             <PropertyRef Name="Id" />
@@ -264,8 +264,7 @@
     FROM [dbo].[OneUser] AS [OneUser]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ForumModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -395,26 +394,26 @@
           <FunctionImport Name="GetAllQwery" IsComposable="true" ReturnType="Collection(ForumModel.GetAllQwery_Result)" />
           <FunctionImport Name="GetAllUsers" IsComposable="true" ReturnType="Collection(ForumModel.GetAllUsers_Result)" />
           <FunctionImport Name="GetAnsverById" IsComposable="true" ReturnType="Collection(ForumModel.GetAnsverById_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetAnsversIdQwery" IsComposable="true" ReturnType="Collection(ForumModel.GetAnsversIdQwery_Result)">
-            <Parameter Name="QweryId" Mode="In" Type="Int32" />
+          <Parameter Name="QweryId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetCategoryList" IsComposable="true" ReturnType="Collection(ForumModel.GetCategoryList_Result)" />
           <FunctionImport Name="GetOneUser" IsComposable="true" ReturnType="Collection(ForumModel.GetOneUser_Result)">
-            <Parameter Name="name" Mode="In" Type="String" />
+          <Parameter Name="name" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetOneUser2" IsComposable="true" ReturnType="Collection(ForumModel.GetOneUser2_Result)">
-            <Parameter Name="name" Mode="In" Type="String" />
+          <Parameter Name="name" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetQwery" IsComposable="true" ReturnType="Collection(ForumModel.GetQwery_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetQweryByCategory" IsComposable="true" ReturnType="Collection(ForumModel.GetQweryByCategory_Result)">
-            <Parameter Name="category" Mode="In" Type="String" />
+          <Parameter Name="category" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetUserPassword" IsComposable="true" ReturnType="Collection(ForumModel.GetUserPassword_Result)">
-            <Parameter Name="name" Mode="In" Type="String" />
+          <Parameter Name="name" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="AddAnsver">
             <Parameter Name="QweryId" Mode="In" Type="Int32" />

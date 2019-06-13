@@ -88,3 +88,13 @@ C:\Users\Лео\Desktop\test\ForumApp\ForumApp\ForumApp\obj\Debug\ForumApp.cspro
 C:\Users\Лео\Desktop\test\ForumApp\ForumApp\ForumApp\obj\Debug\ForumApp.csproj.CoreCompileInputs.cache
 C:\Users\Лео\Desktop\test\ForumApp\ForumApp\ForumApp\obj\Debug\ForumApp.exe
 C:\Users\Лео\Desktop\test\ForumApp\ForumApp\ForumApp\obj\Debug\ForumApp.pdb
+C:\Users\Лео\Desktop\test\ForumApp\ForumApp\ForumApp\obj\Debug\ForProbe.g.cs
+C:\Users\Лео\Desktop\test\ForumApp\ForumApp\ForumApp\obj\Debug\LoginWindow.g.cs
+C:\Users\Лео\Desktop\test\ForumApp\ForumApp\ForumApp\obj\Debug\QuestionWindow.g.cs
+C:\Users\Лео\Desktop\test\ForumApp\ForumApp\ForumApp\obj\Debug\RegistrationWindow.g.cs
+C:\Users\Лео\Desktop\test\ForumApp\ForumApp\ForumApp\obj\Debug\ResponseWindow.g.cs
+C:\Users\Лео\Desktop\test\ForumApp\ForumApp\ForumApp\obj\Debug\ForProbe.baml
+C:\Users\Лео\Desktop\test\ForumApp\ForumApp\ForumApp\obj\Debug\LoginWindow.baml
+C:\Users\Лео\Desktop\test\ForumApp\ForumApp\ForumApp\obj\Debug\QuestionWindow.baml
+C:\Users\Лео\Desktop\test\ForumApp\ForumApp\ForumApp\obj\Debug\RegistrationWindow.baml
+C:\Users\Лео\Desktop\test\ForumApp\ForumApp\ForumApp\obj\Debug\ResponseWindow.baml

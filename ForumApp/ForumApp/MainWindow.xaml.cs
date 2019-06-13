@@ -30,6 +30,9 @@ namespace ForumApp
         {
             InitializeComponent();
 
+            SearchBox.GotFocus += RemoveText;
+            SearchBox.LostFocus += AddText;
+
             foreach (var item in forumServiceClient.GetQweryList())
             {
                 ListBoxItem lvI = new ListBoxItem() { Style = (Style)Resources["lbItemStyle"]};
@@ -58,6 +61,19 @@ namespace ForumApp
             this.DataContext = qweries;
 
             */
+        }
+
+        public void RemoveText(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).Text == "Search")
+            {
+                ((TextBox)sender).Text = "";
+            }
+        }
+        public void AddText(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(((TextBox)sender).Text))
+                ((TextBox)sender).Text = "Search";
         }
 
         private void ListViewItem_MouseDown(object sender, MouseButtonEventArgs e)
@@ -176,6 +192,9 @@ namespace ForumApp
             registrationWindow.aboutSelfTextBox.IsReadOnly = true;
             registrationWindow.AgeTextBox.Text = userX.age.ToString();
             registrationWindow.AgeTextBox.IsReadOnly = true;
+            registrationWindow.passLabel.Visibility = Visibility.Hidden;
+            registrationWindow.regLabel.Content = "Просмотр";
+            registrationWindow.Title = "Просмотр профиля";
             if (userX.foto.Length>0)
             {
                 registrationWindow.FotoSetUp(userX.foto);
@@ -193,18 +212,20 @@ namespace ForumApp
             TabItem tabItem = new TabItem() { Header = list.qwery.header };
             Grid grid = new Grid() { Height = Double.NaN, Style = (Style)Resources["gridBackroundStyle"] };
             
-            ListView listView = new ListView()/* { Style = (Style)Resources["s"]}*/;
             
-            ListViewItem lvI = new ListViewItem() { Style = (Style)Resources["s"] };
+            ListView listView = new ListView() { Style = (Style)Resources["listViewBack"]};
+            
+            ListViewItem lvI = new ListViewItem() { Style = (Style)Resources["s"]  };
             //lvI.DataContext = new QweryX { header = "heeedeer", code = "coooooode", date = DateTime.Now, name = "vadim", Id = 3, category = "asd", rating = 5, text = "texxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxt" };
             lvI.DataContext = list.qwery;
 
             listView.Items.Add(lvI);
+            
             ///////////////////////////////////
             //ListView listView2 = new ListView() /*{ Style = (Style)Resources["sa"] }*/;
 
 
-            ListViewItem listViewItem2 = new ListViewItem() { Content = "ОТВЕТЫ" };
+            ListViewItem listViewItem2 = new ListViewItem() { Content = "ОТВЕТЫ" , HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Top};
             listView.Items.Add(listViewItem2);
             foreach (var item in list.answers)
             {
@@ -213,12 +234,12 @@ namespace ForumApp
                 listView.Items.Add(temp);
                 //listView2.Items.Add(item);
             }
-            ListViewItem listViewItem = new ListViewItem() { Content = "ДОБАВИТЬ ОТВЕТ", Tag = list.qwery };
+            ListViewItem listViewItem = new ListViewItem() { Content = "ДОБАВИТЬ ОТВЕТ", Tag = list.qwery, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Top };
             listViewItem.MouseDoubleClick += MainWindow_MouseDown;
             listView.Items.Add(listViewItem);
             //Добавление всех элементов управления вопроса
             grid.Children.Add(listView);
-           // grid.Children.Add(listView2);
+            // grid.Children.Add(listView2);
             tabItem.Content = grid;
             tabItem.MouseDown += TabItem_MouseUp;
 
@@ -393,6 +414,9 @@ namespace ForumApp
             {
                 forumServiceClient.QweryRatingUp((int)((Button)sender).Tag);
                 ((Button)sender).IsEnabled = false;
+                ((Button)sender).Background = new SolidColorBrush(Color.FromRgb(14, 87, 31));
+
+                ((Button)((Grid)((Button)sender).Parent).FindName("butDown")).Background = new SolidColorBrush(Color.FromRgb(37, 245, 84));
                 ((Button)((Grid)((Button)sender).Parent).FindName("butDown")).IsEnabled = true;
                 ((Label)((Grid)((Button)sender).Parent).FindName("ratingLabel")).Content = Convert.ToInt32(((Label)((Grid)((Button)sender).Parent).FindName("ratingLabel")).Content) + 1;
             }
@@ -411,6 +435,9 @@ namespace ForumApp
             {
                 forumServiceClient.QweryRatingDown((int)((Button)sender).Tag);
                 ((Button)sender).IsEnabled = false;
+                ((Button)sender).Background = new SolidColorBrush(Color.FromRgb(14, 87, 31));
+
+                ((Button)((Grid)((Button)sender).Parent).FindName("butUp")).Background = new SolidColorBrush(Color.FromRgb(37, 245, 84));
                 ((Button)((Grid)((Button)sender).Parent).FindName("butUp")).IsEnabled = true;
                 ((Label)((Grid)((Button)sender).Parent).FindName("ratingLabel")).Content = Convert.ToInt32(((Label)((Grid)((Button)sender).Parent).FindName("ratingLabel")).Content) - 1;
             }
@@ -429,6 +456,9 @@ namespace ForumApp
 
                 forumServiceClient.AnsverRatingUp((int)((Button)sender).Tag);
                 ((Button)sender).IsEnabled = false;
+                ((Button)sender).Background = new SolidColorBrush(Color.FromRgb(14, 87, 31));
+
+                ((Button)((Grid)((Button)sender).Parent).FindName("butDown")).Background = new SolidColorBrush(Color.FromRgb(37, 245, 84));
                 ((Button)((Grid)((Button)sender).Parent).FindName("butDown")).IsEnabled = true;
                 ((Label)((Grid)((Button)sender).Parent).FindName("ratingLabel")).Content = Convert.ToInt32(((Label)((Grid)((Button)sender).Parent).FindName("ratingLabel")).Content) + 1;
             }
@@ -447,6 +477,9 @@ namespace ForumApp
 
                 forumServiceClient.AnsverRatingDown((int)((Button)sender).Tag);
                 ((Button)sender).IsEnabled = false;
+                ((Button)sender).Background = new SolidColorBrush(Color.FromRgb(14, 87, 31));
+
+                ((Button)((Grid)((Button)sender).Parent).FindName("butUp")).Background = new SolidColorBrush(Color.FromRgb(37, 245, 84));
                 ((Button)((Grid)((Button)sender).Parent).FindName("butUp")).IsEnabled = true;
                 ((Label)((Grid)((Button)sender).Parent).FindName("ratingLabel")).Content = Convert.ToInt32(((Label)((Grid)((Button)sender).Parent).FindName("ratingLabel")).Content) - 1;
                
@@ -468,6 +501,20 @@ namespace ForumApp
         {
             if (e.MiddleButton == MouseButtonState.Pressed)
                 this.Close();
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ListViewItem listViewItem = ((ListViewItem)((Border)sender).TemplatedParent);
+            if (listViewItem.IsSelected == true)
+            {
+                ((ListView)listViewItem.Parent).MouseDown += MainWindow_MouseDown1;
+            }
+        }
+
+        private void MainWindow_MouseDown1(object sender, MouseButtonEventArgs e)
+        {
+            ((ListViewItem)((ListView)sender).SelectedItem).Height = e.GetPosition((ListView)sender).Y;
         }
     }
 

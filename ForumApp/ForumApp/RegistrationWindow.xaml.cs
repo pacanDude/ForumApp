@@ -63,7 +63,7 @@ namespace окна
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
-            //this.DialogResult = false;
+            this.Close();
         }
 
         public byte[] fotoByte = new byte[0];

@@ -1,10 +1,78 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ForumModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="GetAllQwery_Result">
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="header" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="date" Type="DateTime" Nullable="false" />
+    <Property Name="rating" Type="Int32" Nullable="false" />
+    <Property Name="category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </ComplexType>
   <ComplexType Name="GetAllUsers_Result">
     <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
   </ComplexType>
+  <ComplexType Name="GetAnsverById_Result">
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="QweryId" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="date" Type="DateTime" Nullable="false" />
+    <Property Name="rating" Type="Int32" Nullable="false" />
+    <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </ComplexType>
+  <ComplexType Name="GetAnsversIdQwery_Result">
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="QweryId" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="date" Type="DateTime" Nullable="false" />
+    <Property Name="rating" Type="Int32" Nullable="false" />
+    <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </ComplexType>
   <ComplexType Name="GetCategoryList_Result">
     <Property Name="category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetOneUser_Result">
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="age" Type="Int32" />
+    <Property Name="rating" Type="Int32" Nullable="false" />
+    <Property Name="ratingAnswers" Type="Int32" Nullable="false" />
+    <Property Name="ratingQwery" Type="Int32" Nullable="false" />
+    <Property Name="about" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </ComplexType>
+  <ComplexType Name="GetOneUser2_Result">
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="age" Type="Int32" />
+    <Property Name="rating" Type="Int32" Nullable="false" />
+    <Property Name="ratingAnswers" Type="Int32" Nullable="false" />
+    <Property Name="ratingQwery" Type="Int32" Nullable="false" />
+    <Property Name="about" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </ComplexType>
+  <ComplexType Name="GetQwery_Result">
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="header" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="date" Type="DateTime" Nullable="false" />
+    <Property Name="rating" Type="Int32" Nullable="false" />
+    <Property Name="category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </ComplexType>
+  <ComplexType Name="GetQweryByCategory_Result">
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="header" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="date" Type="DateTime" Nullable="false" />
+    <Property Name="rating" Type="Int32" Nullable="false" />
+    <Property Name="category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </ComplexType>
   <ComplexType Name="GetUserPassword_Result">
     <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -51,76 +119,33 @@
     <Property Name="ratingQwery" Type="Int32" Nullable="false" />
     <Property Name="about" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityContainer Name="ForumEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="ForumEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Ansver" EntityType="Self.Ansver" />
     <EntitySet Name="Qwery" EntityType="Self.Qwery" />
     <EntitySet Name="OneUser" EntityType="Self.OneUser" />
+    <FunctionImport Name="GetAllQwery" IsComposable="true" ReturnType="Collection(ForumModel.GetAllQwery_Result)" />
     <FunctionImport Name="GetAllUsers" IsComposable="true" ReturnType="Collection(ForumModel.GetAllUsers_Result)" />
-    <FunctionImport Name="GetCategoryList" IsComposable="true" ReturnType="Collection(ForumModel.GetCategoryList_Result)" />
-    <FunctionImport Name="GetUserPassword" IsComposable="true" ReturnType="Collection(ForumModel.GetUserPassword_Result)">
-      <Parameter Name="name" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="RegisterUser">
-      <Parameter Name="name" Mode="In" Type="String" />
-      <Parameter Name="password" Mode="In" Type="String" />
-      <Parameter Name="foto" Mode="In" Type="Binary" />
-      <Parameter Name="age" Mode="In" Type="Int32" />
-      <Parameter Name="rating" Mode="In" Type="Int32" />
-      <Parameter Name="ratingAnswers" Mode="In" Type="Int32" />
-      <Parameter Name="ratingQwery" Mode="In" Type="Int32" />
-      <Parameter Name="about" Mode="In" Type="String" />
+    <FunctionImport Name="GetAnsverById" IsComposable="true" ReturnType="Collection(ForumModel.GetAnsverById_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="GetAnsversIdQwery" IsComposable="true" ReturnType="Collection(ForumModel.GetAnsversIdQwery_Result)">
       <Parameter Name="QweryId" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="GetQwery" IsComposable="true" ReturnType="Collection(ForumModel.GetQwery_Result)">
-      <Parameter Name="Id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_alterdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_creatediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_dropdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ForumModel.sp_helpdiagramdefinition_Result)">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ForumModel.sp_helpdiagrams_Result)">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_renamediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="new_diagramname" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="GetCategoryList" IsComposable="true" ReturnType="Collection(ForumModel.GetCategoryList_Result)" />
     <FunctionImport Name="GetOneUser" IsComposable="true" ReturnType="Collection(ForumModel.GetOneUser_Result)">
       <Parameter Name="name" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="EditUser">
+    <FunctionImport Name="GetOneUser2" IsComposable="true" ReturnType="Collection(ForumModel.GetOneUser2_Result)">
       <Parameter Name="name" Mode="In" Type="String" />
-      <Parameter Name="password" Mode="In" Type="String" />
-      <Parameter Name="foto" Mode="In" Type="Binary" />
-      <Parameter Name="age" Mode="In" Type="Int32" />
-      <Parameter Name="rating" Mode="In" Type="Int32" />
-      <Parameter Name="ratingAnswers" Mode="In" Type="Int32" />
-      <Parameter Name="ratingQwery" Mode="In" Type="Int32" />
-      <Parameter Name="about" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetQwery" IsComposable="true" ReturnType="Collection(ForumModel.GetQwery_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="GetQweryByCategory" IsComposable="true" ReturnType="Collection(ForumModel.GetQweryByCategory_Result)">
       <Parameter Name="category" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetUserPassword" IsComposable="true" ReturnType="Collection(ForumModel.GetUserPassword_Result)">
+      <Parameter Name="name" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="AddAnsver">
       <Parameter Name="QweryId" Mode="In" Type="Int32" />
@@ -139,66 +164,43 @@
       <Parameter Name="category" Mode="In" Type="String" />
       <Parameter Name="code" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="GetAllQwery" IsComposable="true" ReturnType="Collection(ForumModel.GetAllQwery_Result)" />
+    <FunctionImport Name="EditUser">
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="foto" Mode="In" Type="Binary" />
+      <Parameter Name="age" Mode="In" Type="Int32" />
+      <Parameter Name="rating" Mode="In" Type="Int32" />
+      <Parameter Name="ratingAnswers" Mode="In" Type="Int32" />
+      <Parameter Name="ratingQwery" Mode="In" Type="Int32" />
+      <Parameter Name="about" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="EditUser2">
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="foto" Mode="In" Type="Binary" />
+      <Parameter Name="age" Mode="In" Type="Int32" />
+      <Parameter Name="rating" Mode="In" Type="Int32" />
+      <Parameter Name="ratingAnswers" Mode="In" Type="Int32" />
+      <Parameter Name="ratingQwery" Mode="In" Type="Int32" />
+      <Parameter Name="about" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="RegisterUser">
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="foto" Mode="In" Type="Binary" />
+      <Parameter Name="age" Mode="In" Type="Int32" />
+      <Parameter Name="rating" Mode="In" Type="Int32" />
+      <Parameter Name="ratingAnswers" Mode="In" Type="Int32" />
+      <Parameter Name="ratingQwery" Mode="In" Type="Int32" />
+      <Parameter Name="about" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SetAnsverRating">
+      <Parameter Name="AnsverId" Mode="In" Type="Int32" />
+      <Parameter Name="rating" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SetQweryRating">
+      <Parameter Name="QweryId" Mode="In" Type="Int32" />
+      <Parameter Name="rating" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
-  <ComplexType Name="GetAnsversIdQwery_Result">
-    <Property Type="Int32" Name="Id" Nullable="false" />
-    <Property Type="Int32" Name="QweryId" Nullable="false" />
-    <Property Type="String" Name="name" Nullable="false" />
-    <Property Type="String" Name="text" Nullable="true" />
-    <Property Type="DateTime" Name="date" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="rating" Nullable="false" />
-    <Property Type="String" Name="code" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="GetQwery_Result">
-    <Property Type="Int32" Name="Id" Nullable="false" />
-    <Property Type="String" Name="header" Nullable="false" />
-    <Property Type="String" Name="name" Nullable="false" />
-    <Property Type="String" Name="text" Nullable="true" />
-    <Property Type="DateTime" Name="date" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="rating" Nullable="false" />
-    <Property Type="String" Name="category" Nullable="false" />
-    <Property Type="String" Name="code" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagramdefinition_Result">
-    <Property Type="Int32" Name="version" Nullable="true" />
-    <Property Type="Binary" Name="definition" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagrams_Result">
-    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-    <Property Type="Int32" Name="OwnerID" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="GetOneUser_Result">
-    <Property Type="String" Name="name" Nullable="false" />
-    <Property Type="String" Name="password" Nullable="false" />
-    <Property Type="Binary" Name="foto" Nullable="true" />
-    <Property Type="Int32" Name="age" Nullable="true" />
-    <Property Type="Int32" Name="rating" Nullable="false" />
-    <Property Type="Int32" Name="ratingAnswers" Nullable="false" />
-    <Property Type="Int32" Name="ratingQwery" Nullable="false" />
-    <Property Type="String" Name="about" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="GetQweryByCategory_Result">
-    <Property Type="Int32" Name="Id" Nullable="false" />
-    <Property Type="String" Name="header" Nullable="false" />
-    <Property Type="String" Name="name" Nullable="false" />
-    <Property Type="String" Name="text" Nullable="true" />
-    <Property Type="DateTime" Name="date" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="rating" Nullable="false" />
-    <Property Type="String" Name="category" Nullable="false" />
-    <Property Type="String" Name="code" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="GetAllQwery_Result">
-    <Property Type="Int32" Name="Id" Nullable="false" />
-    <Property Type="String" Name="header" Nullable="false" />
-    <Property Type="String" Name="name" Nullable="false" />
-    <Property Type="String" Name="text" Nullable="true" />
-    <Property Type="DateTime" Name="date" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="rating" Nullable="false" />
-    <Property Type="String" Name="category" Nullable="false" />
-    <Property Type="String" Name="code" Nullable="true" />
-  </ComplexType>
 </Schema>
