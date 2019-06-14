@@ -30,17 +30,22 @@
                 <Setter.Value>
                     <ControlTemplate>
                         <!--MouseDown="Border_MouseDown"-->
-                        <Border x:Name="justBorder" BorderThickness="6" CornerRadius="6.0" >
+                        <Border x:Name="BoderTemp" BorderThickness="5" CornerRadius="6.0" Height="Auto" Width="Auto" >
                             <Border.BorderBrush>
 
                                 <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
                             </Border.BorderBrush>
                             <Border.Background>
 
-                                <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
+                                <SolidColorBrush Color="Gainsboro" Opacity="0.2"/>
                             </Border.Background>
-                            <Grid Width="Auto" Height="Auto" Background="Transparent">
-                                <Button x:Name="butUp" Background="#FF25F554"  HorizontalAlignment="Left" Margin="50,37,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="Button_Click_6" Tag="{Binding Id}">
+                            <Grid x:Name="TempGrid" Height="Auto" Width="Auto" Background="Transparent">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="69"/>
+                                    <ColumnDefinition Width="700*"/>
+                                    <ColumnDefinition Width="174"/>
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="butUp" Background="#FF25F554"  HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="Button_Click_8"  Tag="{Binding Id}">
                                     <Button.Template>
                                         <ControlTemplate>
                                             <Path Stretch="Fill" 
@@ -54,7 +59,7 @@
                                         </ControlTemplate>
                                     </Button.Template>
                                 </Button>
-                                <Button x:Name="butDown" Background="#FF25F554"  HorizontalAlignment="Left" Margin="50,99,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="Button_Click_7" Tag="{Binding Id}">
+                                <Button x:Name="butDown" Background="#FF25F554"  HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="Button_Click_9"  Tag="{Binding Id}">
                                     <Button.Template>
                                         <ControlTemplate>
                                             <Path Stretch="Fill" 
@@ -68,36 +73,54 @@
                                         </ControlTemplate>
                                     </Button.Template>
                                 </Button>
-                                <Label x:Name="ratingLabel" Content="{Binding rating}" ToolTip="{Binding rating}" HorizontalAlignment="Left" Margin="64,75,0,0" VerticalAlignment="Top"/>
-                                <TextBox IsReadOnly="True" HorizontalAlignment="Left" Height="64" Margin="95,57,0,0" TextWrapping="Wrap" Text="{Binding header}" VerticalAlignment="Top" Width="800" FontSize="20">
-                                    <TextBox.Background>
-                                        <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
-                                    </TextBox.Background>
-                                    <TextBox.BorderBrush>
-                                        <SolidColorBrush Color="#FF9E9E9E" Opacity="0.2"/>
-                                    </TextBox.BorderBrush>
-                                </TextBox>
-                                <TextBlock HorizontalAlignment="Right" Height="64" Margin="598,57,0,0" TextWrapping="Wrap" Text="{Binding name}" MouseDown="TextBlock_MouseDown" VerticalAlignment="Top" Width="158"/>
+                                <Label x:Name="ratingLabel" Content="{Binding rating}" ToolTip="{Binding rating}" HorizontalAlignment="Left" Margin="24.5,46,0,0" VerticalAlignment="Top" Height="30" Width="20"/>
+                                <TextBlock HorizontalAlignment="Right" Height="64" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding name}" MouseDown="TextBlock_MouseDown" VerticalAlignment="Top" Width="158" Grid.Column="2"/>
 
-                                <TextBox IsReadOnly="True"   HorizontalAlignment="Left" Height="Auto" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Margin="90,126,0,0" TextWrapping="Wrap" Text="{Binding text}" VerticalAlignment="Top" Width="1406">
-                                    <TextBox.Background>
-                                        <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
-                                    </TextBox.Background>
-                                    <TextBox.BorderBrush>
-                                        <SolidColorBrush Color="#FF9E9E9E" Opacity="0.2"/>
-                                    </TextBox.BorderBrush>
-                                </TextBox>
-
-                                <TextBox IsReadOnly="True" HorizontalAlignment="Left" Height="Auto" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Margin="90,194,0,0" TextWrapping="Wrap" Text="{Binding code}" VerticalAlignment="Top" Width="1406">
-                                    <TextBox.Background>
-                                        <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
-                                    </TextBox.Background>
-                                    <TextBox.BorderBrush>
-                                        <SolidColorBrush Color="#FF9E9E9E" Opacity="0.2"/>
-                                    </TextBox.BorderBrush>
-                                </TextBox>
-
-                                <TextBlock HorizontalAlignment="Right" Height="37" Margin="598,89,0,0" TextWrapping="Wrap" Text="{Binding date}" VerticalAlignment="Top" Width="158"/>
+                                <TextBlock HorizontalAlignment="Right" Height="37" Margin="0,42,10,0" TextWrapping="Wrap" Text="{Binding date}" VerticalAlignment="Top" Width="158" Grid.Column="2"/>
+                                <Border HorizontalAlignment="Stretch" MaxWidth="1500" VerticalAlignment="Stretch" BorderThickness="1" Grid.Column="1" >
+                                    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                        <TextBox IsReadOnly="True" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding header}" FontSize="20">
+                                            <TextBox.Background>
+                                                <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
+                                            </TextBox.Background>
+                                            <TextBox.BorderBrush>
+                                                <SolidColorBrush Color="#FF9E9E9E" Opacity="0.2"/>
+                                            </TextBox.BorderBrush>
+                                        </TextBox>
+                                        <TextBox Height="5" IsReadOnly="True">
+                                            <TextBox.Background>
+                                                <SolidColorBrush Color="#FFBDBDBD" Opacity="1"/>
+                                            </TextBox.Background>
+                                            <TextBox.BorderBrush>
+                                                <SolidColorBrush Color="#FF9E9E9E" Opacity="1"/>
+                                            </TextBox.BorderBrush>
+                                        </TextBox>
+                                        <TextBox x:Name="Text1" IsReadOnly="True"  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Text="{Binding text}">
+                                            <TextBox.Background>
+                                                <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
+                                            </TextBox.Background>
+                                            <TextBox.BorderBrush>
+                                                <SolidColorBrush Color="#FF9E9E9E" Opacity="0.2"/>
+                                            </TextBox.BorderBrush>
+                                        </TextBox>
+                                        <TextBox Height="5" IsReadOnly="True">
+                                            <TextBox.Background>
+                                                <SolidColorBrush Color="#FFBDBDBD" Opacity="1"/>
+                                            </TextBox.Background>
+                                            <TextBox.BorderBrush>
+                                                <SolidColorBrush Color="#FF9E9E9E" Opacity="1"/>
+                                            </TextBox.BorderBrush>
+                                        </TextBox>
+                                        <TextBox x:Name="Text2" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Text="{Binding code}">
+                                            <TextBox.Background>
+                                                <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
+                                            </TextBox.Background>
+                                            <TextBox.BorderBrush>
+                                                <SolidColorBrush Color="#FF9E9E9E" Opacity="0.2"/>
+                                            </TextBox.BorderBrush>
+                                        </TextBox>
+                                    </StackPanel>
+                                </Border>
 
                             </Grid>
                         </Border>
@@ -105,6 +128,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+       
 
         <Style x:Key="sa" TargetType="ListViewItem">
             <Setter Property="VerticalAlignment" Value="Top"/>
@@ -117,7 +142,7 @@
                 <Setter.Value>
                     <ControlTemplate>
                         <!--MouseDown="Border_MouseDown"-->
-                        <Border BorderThickness="5" CornerRadius="6.0" Height="Auto" Width="Auto" >
+                        <Border x:Name="BoderTemp" BorderThickness="5" CornerRadius="6.0" Height="Auto" Width="Auto" >
                             <Border.BorderBrush>
 
                                 <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
@@ -126,8 +151,13 @@
 
                                 <SolidColorBrush Color="Gainsboro" Opacity="0.2"/>
                             </Border.Background>
-                            <Grid Height="Auto" Width="Auto" Background="Transparent">
-                                <Button x:Name="butUp" Background="#FF25F554"  HorizontalAlignment="Left" Margin="50,37,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="Button_Click_8"  Tag="{Binding Id}">
+                            <Grid x:Name="TempGrid" Height="Auto" Width="Auto" Background="Transparent">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="69"/>
+                                    <ColumnDefinition Width="700*"/>
+                                    <ColumnDefinition Width="174"/>
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="butUp" Background="#FF25F554"  HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="Button_Click_8"  Tag="{Binding Id}">
                                     <Button.Template>
                                         <ControlTemplate>
                                             <Path Stretch="Fill" 
@@ -141,7 +171,7 @@
                                         </ControlTemplate>
                                     </Button.Template>
                                 </Button>
-                                <Button x:Name="butDown" Background="#FF25F554"  HorizontalAlignment="Left" Margin="50,99,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="Button_Click_9"  Tag="{Binding Id}">
+                                <Button x:Name="butDown" Background="#FF25F554"  HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="Button_Click_9"  Tag="{Binding Id}">
                                     <Button.Template>
                                         <ControlTemplate>
                                             <Path Stretch="Fill" 
@@ -155,27 +185,39 @@
                                         </ControlTemplate>
                                     </Button.Template>
                                 </Button>
-                                <Label x:Name="ratingLabel" Content="{Binding rating}" ToolTip="{Binding rating}" HorizontalAlignment="Left" Margin="64,75,0,0" VerticalAlignment="Top"/>
-                                <TextBlock HorizontalAlignment="Right" Height="64" Margin="598,57,0,0" TextWrapping="Wrap" Text="{Binding name}" MouseDown="TextBlock_MouseDown" VerticalAlignment="Top" Width="158"/>
-                                <TextBox IsReadOnly="True"  HorizontalAlignment="Left" Height="Auto" MaxHeight="50" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Margin="95,57,0,0" TextWrapping="Wrap" Text="{Binding text}" VerticalAlignment="Top" Width="1406">
-                                    <TextBox.Background>
-                                        <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
-                                    </TextBox.Background>
-                                    <TextBox.BorderBrush>
-                                        <SolidColorBrush Color="#FF9E9E9E" Opacity="0.2"/>
-                                    </TextBox.BorderBrush>
-                                </TextBox>
+                                <Label x:Name="ratingLabel" Content="{Binding rating}" ToolTip="{Binding rating}" HorizontalAlignment="Left" Margin="24.5,46,0,0" VerticalAlignment="Top" Height="30" Width="20"/>
+                                <TextBlock HorizontalAlignment="Right" Height="64" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding name}" MouseDown="TextBlock_MouseDown" VerticalAlignment="Top" Width="158" Grid.Column="2"/>
 
-                                <TextBox IsReadOnly="True"  HorizontalAlignment="Left" Height="Auto" MaxHeight="500" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Margin="95,154,0,0" TextWrapping="Wrap" Text="{Binding code}" VerticalAlignment="Top" Width="1406">
-                                    <TextBox.Background>
-                                        <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
-                                    </TextBox.Background>
-                                    <TextBox.BorderBrush>
-                                        <SolidColorBrush Color="#FF9E9E9E" Opacity="0.2"/>
-                                    </TextBox.BorderBrush>
-                                </TextBox>
-
-                                <TextBlock HorizontalAlignment="Right" Height="37" Margin="598,89,0,0" TextWrapping="Wrap" Text="{Binding date}" VerticalAlignment="Top" Width="158"/>
+                                <TextBlock HorizontalAlignment="Right" Height="37" Margin="0,42,10,0" TextWrapping="Wrap" Text="{Binding date}" VerticalAlignment="Top" Width="158" Grid.Column="2"/>
+                                <Border  HorizontalAlignment="Stretch" MaxWidth="1500" VerticalAlignment="Stretch" BorderThickness="1" Grid.Column="1" >
+                                   
+                                    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                        <TextBox x:Name="Text1" IsReadOnly="True"  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Text="{Binding text}">
+                                            <TextBox.Background>
+                                                <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
+                                            </TextBox.Background>
+                                            <TextBox.BorderBrush>
+                                                <SolidColorBrush Color="#FF9E9E9E" Opacity="0.2"/>
+                                            </TextBox.BorderBrush>
+                                        </TextBox>
+                                        <TextBox Height="5" IsReadOnly="True">
+                                            <TextBox.Background>
+                                                <SolidColorBrush Color="#FFBDBDBD" Opacity="1"/>
+                                            </TextBox.Background>
+                                            <TextBox.BorderBrush>
+                                                <SolidColorBrush Color="#FF9E9E9E" Opacity="1"/>
+                                            </TextBox.BorderBrush>
+                                        </TextBox>
+                                        <TextBox x:Name="Text2" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Text="{Binding code}">
+                                            <TextBox.Background>
+                                                <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
+                                            </TextBox.Background>
+                                            <TextBox.BorderBrush>
+                                                <SolidColorBrush Color="#FF9E9E9E" Opacity="0.2"/>
+                                            </TextBox.BorderBrush>
+                                        </TextBox>
+                                    </StackPanel>
+                                </Border>
 
                             </Grid>
                         </Border>
@@ -383,7 +425,7 @@
         </Style>
 
 
-        <Style x:Key="ScrollBarLineButtonStyle" TargetType="{x:Type RepeatButton}">
+        <!--<Style x:Key="ScrollBarLineButtonStyle" TargetType="{x:Type RepeatButton}">
             <Setter Property="Focusable" Value="False"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -470,7 +512,7 @@
 
         <Style TargetType="{x:Type ScrollBar}">
             <Setter Property="Template" Value="{StaticResource VerticalScrollBar}"/>
-        </Style>
+        </Style>-->
 
 
     </Window.Resources>

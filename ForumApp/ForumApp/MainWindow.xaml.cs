@@ -193,8 +193,10 @@ namespace ForumApp
             registrationWindow.AgeTextBox.Text = userX.age.ToString();
             registrationWindow.AgeTextBox.IsReadOnly = true;
             registrationWindow.passLabel.Visibility = Visibility.Hidden;
-            registrationWindow.regLabel.Content = "Просмотр";
+            registrationWindow.regLabel.Content = "Просмотр профиля";
             registrationWindow.Title = "Просмотр профиля";
+            registrationWindow.FotoImage.IsEnabled = false;
+            if (userX.foto == null) { return; }
             if (userX.foto.Length>0)
             {
                 registrationWindow.FotoSetUp(userX.foto);
@@ -204,11 +206,7 @@ namespace ForumApp
 
         private void TextBlock_MouseDown_1(object sender, MouseButtonEventArgs e)
         {
-            //List<AnsverX> list = forumServiceClient.GetQweryWithAnsvers((int)((TextBlock)sender).Tag).answers;
-            //
             AllMessageAndQwery list = forumServiceClient.GetQweryWithAnsvers((int)((TextBlock)sender).Tag);
-            //List<QweryX> qweryXes = new List<QweryX>();
-            //qweryXes.Add(list.qwery);
             TabItem tabItem = new TabItem() { Header = list.qwery.header };
             Grid grid = new Grid() { Height = Double.NaN, Style = (Style)Resources["gridBackroundStyle"] };
             
@@ -216,24 +214,28 @@ namespace ForumApp
             ListView listView = new ListView() { Style = (Style)Resources["listViewBack"]};
             
             ListViewItem lvI = new ListViewItem() { Style = (Style)Resources["s"]  };
-            //lvI.DataContext = new QweryX { header = "heeedeer", code = "coooooode", date = DateTime.Now, name = "vadim", Id = 3, category = "asd", rating = 5, text = "texxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxt" };
+            
             lvI.DataContext = list.qwery;
 
             listView.Items.Add(lvI);
             
-            ///////////////////////////////////
-            //ListView listView2 = new ListView() /*{ Style = (Style)Resources["sa"] }*/;
-
-
             ListViewItem listViewItem2 = new ListViewItem() { Content = "ОТВЕТЫ" , HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Top};
             listView.Items.Add(listViewItem2);
+
             foreach (var item in list.answers)
             {
                 ListViewItem temp = new ListViewItem() { Style = (Style)Resources["sa"] };
                 temp.DataContext = item;
+                //double qwe = ((TextBox)((Grid)((Border)temp.Template.FindName("BoderTemp")).FindName("TempGrid")).FindName("Text1")).Height;
+
+                //Thickness thic = ((TextBox)((Grid)temp.Content).FindName("Text2")).Margin;
+                //thic.Top = 20 + qwe;
+
+
                 listView.Items.Add(temp);
-                //listView2.Items.Add(item);
+                //listView2.Items.Add(item);      ((Label)((Grid)((Button)sender).Parent).FindName("ratingLabel")).Content
             }
+
             ListViewItem listViewItem = new ListViewItem() { Content = "ДОБАВИТЬ ОТВЕТ", Tag = list.qwery, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Top };
             listViewItem.MouseDoubleClick += MainWindow_MouseDown;
             listView.Items.Add(listViewItem);
@@ -283,14 +285,14 @@ namespace ForumApp
             lvI.DataContext = list.qwery;
             listV.Items.Add(lvI);
 
-            listV.Items.Add(new ListViewItem() { Content = "ОТВЕТЫ" });
+            listV.Items.Add(new ListViewItem() { Content = "ОТВЕТЫ", HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Top });
             foreach (var item in list.answers)
             {
                 ListViewItem temp = new ListViewItem() { Style = (Style)Resources["sa"] };
                 temp.DataContext = item;
                 listV.Items.Add(temp);
             }
-            ListViewItem listViewItem = new ListViewItem() { Content = "ДОБАВИТЬ ОТВЕТ", Tag = list.qwery };
+            ListViewItem listViewItem = new ListViewItem() { Content = "ДОБАВИТЬ ОТВЕТ", Tag = list.qwery, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Top };
             listViewItem.MouseDoubleClick += MainWindow_MouseDown;
             listV.Items.Add(listViewItem);
             viewItem = null;
@@ -392,8 +394,10 @@ namespace ForumApp
             registrationWindow.aboutSelfTextBox.Text = userX.about;
             registrationWindow.buttonOk.Click += ButtonOk_Click3;
             registrationWindow.AgeTextBox.Text = userX.age.ToString();
+            registrationWindow.regLabel.Content = "Редактирование профиля";
+            registrationWindow.Title = "Редактирование профиля";
             //Convert.ToInt32( form2.AgeTextBox.Text)
-
+            if (userX.foto==null) { return; }
             if (userX.foto.Length>0)
             {
                 registrationWindow.FotoSetUp(userX.foto);
