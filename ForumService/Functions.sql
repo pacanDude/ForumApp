@@ -37,10 +37,6 @@ CREATE FUNCTION GetAnsversIdQwery (@QweryId int)
 	(select * from Ansver where QweryId=@QweryId)
 
 
-
-
-
-
 CREATE FUNCTION GetOneUser (@name nvarchar(max))
     RETURNS TABLE
     AS RETURN 
@@ -82,20 +78,6 @@ CREATE FUNCTION GetAllQwery ()
 	(select * from Qwery)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 create proc SetQweryRating (@QweryId int, @rating int)
     as 
 	begin
@@ -127,3 +109,37 @@ CREATE FUNCTION GetOneUser2 (@name nvarchar(max))
     RETURNS TABLE
     AS RETURN 
 	(select * from OneUser where name=@name)
+
+
+
+
+
+
+
+
+
+
+
+create proc EditQwery (@Id int, @header varchar(max), @text varchar(max), @date datetime, @category nvarchar(max),@code nvarchar(max))
+    as 
+	begin
+	update Qwery set header=@header, text=@text, date=@date, category=@category, code=@code where Id=@Id
+	end
+
+create proc EditAnsver (@IdAnsver int, @text varchar(max), @date datetime, @code nvarchar(max))
+    as 
+	begin
+	update Ansver set text=@text, date=@date, code=@code where Id=@IdAnsver
+	end
+
+create proc EditAnsverAnsver (@IdAnsverAnsver int, @text varchar(max), @date datetime, @code nvarchar(max))
+    as 
+	begin
+	update AnsverAnsver set text=@text, date=@date, code=@code where Id=@IdAnsverAnsver
+	end
+
+
+CREATE FUNCTION GetAnsverAnsverByIdAnsver (@Id int)
+    RETURNS TABLE
+    AS RETURN 
+(select * from AnsverAnsver where AnsverId=@Id)

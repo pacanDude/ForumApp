@@ -86,6 +86,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetQweryWithAnsversV2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="QweryId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetQweryWithAnsversV2Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ForumService" minOccurs="0" name="GetQweryWithAnsversV2Result" nillable="true" type="q6:AllMessageAndQweryAndAnsvers" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SendMessage">
     <xs:complexType>
       <xs:sequence>
@@ -111,7 +125,7 @@
   <xs:element name="GetCategoryListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetCategoryListResult" nillable="true" type="q6:ArrayOfstring" />
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetCategoryListResult" nillable="true" type="q7:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -125,7 +139,7 @@
   <xs:element name="GetQueryByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/ForumService" minOccurs="0" name="GetQueryByIdResult" nillable="true" type="q7:QweryX" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/ForumService" minOccurs="0" name="GetQueryByIdResult" nillable="true" type="q8:QweryX" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -223,7 +237,7 @@
   <xs:element name="GetFindQweryListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/ForumService" minOccurs="0" name="GetFindQweryListResult" nillable="true" type="q8:ArrayOfQweryX" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/ForumService" minOccurs="0" name="GetFindQweryListResult" nillable="true" type="q9:ArrayOfQweryX" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -237,14 +251,14 @@
   <xs:element name="GetCategoryQweryListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/ForumService" minOccurs="0" name="GetCategoryQweryListResult" nillable="true" type="q9:ArrayOfQweryX" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/ForumService" minOccurs="0" name="GetCategoryQweryListResult" nillable="true" type="q10:ArrayOfQweryX" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SendQwery">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/ForumService" minOccurs="0" name="qwery" nillable="true" type="q10:QweryX" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/ForumService" minOccurs="0" name="qwery" nillable="true" type="q11:QweryX" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -258,7 +272,7 @@
   <xs:element name="SendAnsver">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/ForumService" minOccurs="0" name="ansver" nillable="true" type="q11:AnsverX" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/ForumService" minOccurs="0" name="ansver" nillable="true" type="q12:AnsverX" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -266,6 +280,48 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="SendAnsverResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditQwery">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/ForumService" minOccurs="0" name="qwery" nillable="true" type="q13:QweryX" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditQweryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditQweryResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditAnsver">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/ForumService" minOccurs="0" name="ansver" nillable="true" type="q14:AnsverX" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditAnsverResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditAnsverResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditAnsverAnsver">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/ForumService" minOccurs="0" name="ansveransver" nillable="true" type="q15:AnsverAnsverX" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditAnsverAnsverResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditAnsverAnsverResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

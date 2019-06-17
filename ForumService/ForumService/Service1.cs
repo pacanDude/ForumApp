@@ -257,6 +257,49 @@ namespace ForumService
 
             return true;
         }
+
+        public bool EditQwery(QweryX qwery)
+        {
+            fef.EditQwery(qwery.Id, qwery.header, qwery.text,DateTime.Now, qwery.category, qwery.code);
+            return true;
+        }
+
+        public bool EditAnsver(AnsverX ansver)
+        {
+            fef.EditAnsver(ansver.Id,ansver.text,DateTime.Now,ansver.code);
+            return true;
+        }
+
+        public bool EditAnsverAnsver(AnsverAnsverX ansveransver)
+        {
+            fef.EditAnsverAnsver(ansveransver.Id, ansveransver.text, DateTime.Now, ansveransver.code);
+            return true;
+        }
+
+        public AllMessageAndQweryAndAnsvers GetQweryWithAnsversV2(int QweryId)
+        {
+            AllMessageAndQweryAndAnsvers all = new AllMessageAndQweryAndAnsvers();
+
+            foreach (var item in fef.GetQwery(QweryId))
+            {
+                all.qwery = new QweryX { Id = item.Id, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text, header = item.header, category = item.category };
+            }
+            all.answers = new List<AnsverWithAnsers>();
+            foreach (var item in fef.GetAnsversIdQwery(QweryId))
+            {
+                AnsverWithAnsers temp = new AnsverWithAnsers();
+                temp.answers = new List<AnsverAnsverX>();
+                temp.ansver = new AnsverX() { Id = item.Id, QweryId = QweryId, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text };
+
+                foreach (var itemX in fef.GetAnsverAnsverByIdAnsver(item.Id))
+                {
+                    temp.answers.Add(new AnsverAnsverX() { Id = itemX.Id, AnsverId = item.Id, name = itemX.name, code = itemX.code, date = itemX.date, rating = itemX.rating, text = itemX.text });
+                }
+                all.answers.Add(temp);
+            }
+           
+            return all;
+        }
     }
 
 }

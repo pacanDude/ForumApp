@@ -17,6 +17,18 @@
           <Property Name="rating" Type="int" Nullable="false" />
           <Property Name="code" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="AnsverAnsver">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AnsverId" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="text" Type="nvarchar(max)" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="rating" Type="int" Nullable="false" />
+          <Property Name="code" Type="nvarchar(max)" />
+        </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Forum.dbo.OneUser" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="OneUser">
@@ -66,6 +78,26 @@
           <Parameter Name="category" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="code" Type="nvarchar(max)" Mode="In" />
         </Function>
+        <Function Name="EditAnsver" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdAnsver" Type="int" Mode="In" />
+          <Parameter Name="text" Type="varchar(max)" Mode="In" />
+          <Parameter Name="date" Type="datetime" Mode="In" />
+          <Parameter Name="code" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="EditAnsverAnsver" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdAnsverAnsver" Type="int" Mode="In" />
+          <Parameter Name="text" Type="varchar(max)" Mode="In" />
+          <Parameter Name="date" Type="datetime" Mode="In" />
+          <Parameter Name="code" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="EditQwery" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="header" Type="varchar(max)" Mode="In" />
+          <Parameter Name="text" Type="varchar(max)" Mode="In" />
+          <Parameter Name="date" Type="datetime" Mode="In" />
+          <Parameter Name="category" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="code" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="EditUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="name" Type="varchar(max)" Mode="In" />
           <Parameter Name="password" Type="varchar(max)" Mode="In" />
@@ -107,6 +139,22 @@
             <CollectionType>
               <RowType>
                 <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetAnsverAnsverByIdAnsver" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Id" Type="int" Nullable="false" />
+                <Property Name="AnsverId" Type="int" Nullable="false" />
+                <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="text" Type="nvarchar(max)" />
+                <Property Name="date" Type="datetime" Nullable="false" />
+                <Property Name="rating" Type="int" Nullable="false" />
+                <Property Name="code" Type="nvarchar(max)" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -250,6 +298,7 @@
         </Function>
         <EntityContainer Name="Хранилище ForumModelContainer">
           <EntitySet Name="Ansver" EntityType="Self.Ansver" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnsverAnsver" EntityType="Self.AnsverAnsver" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Qwery" EntityType="Self.Qwery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OneUser" EntityType="Self.OneUser" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -470,7 +519,52 @@
             <Parameter Name="QweryId" Mode="In" Type="Int32" />
             <Parameter Name="rating" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="AnsverAnsver" EntityType="ForumModel.AnsverAnsver" />
+          <FunctionImport Name="EditAnsver">
+            <Parameter Name="IdAnsver" Mode="In" Type="Int32" />
+            <Parameter Name="text" Mode="In" Type="String" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+            <Parameter Name="code" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="EditAnsverAnsver">
+            <Parameter Name="IdAnsverAnsver" Mode="In" Type="Int32" />
+            <Parameter Name="text" Mode="In" Type="String" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+            <Parameter Name="code" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="EditQwery">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="header" Mode="In" Type="String" />
+            <Parameter Name="text" Mode="In" Type="String" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+            <Parameter Name="category" Mode="In" Type="String" />
+            <Parameter Name="code" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetAnsverAnsverByIdAnsver" IsComposable="true" ReturnType="Collection(ForumModel.GetAnsverAnsverByIdAnsver_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <EntityType Name="AnsverAnsver">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AnsverId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="rating" Type="Int32" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="GetAnsverAnsverByIdAnsver_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="AnsverId" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" />
+          <Property Type="String" Name="text" Nullable="true" />
+          <Property Type="DateTime" Name="date" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="rating" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -642,6 +736,35 @@
           <FunctionImportMapping FunctionImportName="RegisterUser" FunctionName="Хранилище ForumModel.RegisterUser" />
           <FunctionImportMapping FunctionImportName="SetAnsverRating" FunctionName="Хранилище ForumModel.SetAnsverRating" />
           <FunctionImportMapping FunctionImportName="SetQweryRating" FunctionName="Хранилище ForumModel.SetQweryRating" />
+          <EntitySetMapping Name="AnsverAnsver">
+            <EntityTypeMapping TypeName="ForumModel.AnsverAnsver">
+              <MappingFragment StoreEntitySet="AnsverAnsver">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="AnsverId" ColumnName="AnsverId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="EditAnsver" FunctionName="Хранилище ForumModel.EditAnsver" />
+          <FunctionImportMapping FunctionImportName="EditAnsverAnsver" FunctionName="Хранилище ForumModel.EditAnsverAnsver" />
+          <FunctionImportMapping FunctionImportName="EditQwery" FunctionName="Хранилище ForumModel.EditQwery" />
+          <FunctionImportMapping FunctionImportName="GetAnsverAnsverByIdAnsver" FunctionName="Хранилище ForumModel.GetAnsverAnsverByIdAnsver">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForumModel.GetAnsverAnsverByIdAnsver_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AnsverId" ColumnName="AnsverId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

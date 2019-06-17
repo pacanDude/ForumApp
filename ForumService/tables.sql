@@ -80,3 +80,30 @@ CREATE TABLE [dbo].[Qwery](
 
 GO
 
+
+USE [Forum]
+GO
+
+/****** Object:  Table [dbo].[AnsverAnsver]    Script Date: 17.06.2019 08:19:49 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[AnsverAnsver](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[AnsverId] [int] NOT NULL,
+	[name] [nvarchar](max) NOT NULL,
+	[text] [nvarchar](max) NULL,
+	[date] [datetime] NOT NULL,
+	[rating] [int] NOT NULL,
+	[code] [nvarchar](max) NULL,
+ CONSTRAINT [PK_AnsverAnsver] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+

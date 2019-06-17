@@ -529,6 +529,269 @@ namespace ForumApp.ServiceReference1 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AllMessageAndQweryAndAnsvers", Namespace="http://schemas.datacontract.org/2004/07/ForumService")]
+    [System.SerializableAttribute()]
+    public partial class AllMessageAndQweryAndAnsvers : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ForumApp.ServiceReference1.AnsverWithAnsers[] answersField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ForumApp.ServiceReference1.QweryX qweryField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ForumApp.ServiceReference1.AnsverWithAnsers[] answers {
+            get {
+                return this.answersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.answersField, value) != true)) {
+                    this.answersField = value;
+                    this.RaisePropertyChanged("answers");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ForumApp.ServiceReference1.QweryX qwery {
+            get {
+                return this.qweryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.qweryField, value) != true)) {
+                    this.qweryField = value;
+                    this.RaisePropertyChanged("qwery");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AnsverWithAnsers", Namespace="http://schemas.datacontract.org/2004/07/ForumService")]
+    [System.SerializableAttribute()]
+    public partial class AnsverWithAnsers : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ForumApp.ServiceReference1.AnsverX ansverField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ForumApp.ServiceReference1.AnsverAnsverX[] answersField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ForumApp.ServiceReference1.AnsverX ansver {
+            get {
+                return this.ansverField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ansverField, value) != true)) {
+                    this.ansverField = value;
+                    this.RaisePropertyChanged("ansver");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ForumApp.ServiceReference1.AnsverAnsverX[] answers {
+            get {
+                return this.answersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.answersField, value) != true)) {
+                    this.answersField = value;
+                    this.RaisePropertyChanged("answers");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AnsverAnsverX", Namespace="http://schemas.datacontract.org/2004/07/ForumService")]
+    [System.SerializableAttribute()]
+    public partial class AnsverAnsverX : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AnsverIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string codeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime dateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string nameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ratingField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string textField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AnsverId {
+            get {
+                return this.AnsverIdField;
+            }
+            set {
+                if ((this.AnsverIdField.Equals(value) != true)) {
+                    this.AnsverIdField = value;
+                    this.RaisePropertyChanged("AnsverId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string code {
+            get {
+                return this.codeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.codeField, value) != true)) {
+                    this.codeField = value;
+                    this.RaisePropertyChanged("code");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime date {
+            get {
+                return this.dateField;
+            }
+            set {
+                if ((this.dateField.Equals(value) != true)) {
+                    this.dateField = value;
+                    this.RaisePropertyChanged("date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string name {
+            get {
+                return this.nameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.nameField, value) != true)) {
+                    this.nameField = value;
+                    this.RaisePropertyChanged("name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int rating {
+            get {
+                return this.ratingField;
+            }
+            set {
+                if ((this.ratingField.Equals(value) != true)) {
+                    this.ratingField = value;
+                    this.RaisePropertyChanged("rating");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string text {
+            get {
+                return this.textField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.textField, value) != true)) {
+                    this.textField = value;
+                    this.RaisePropertyChanged("text");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IForumService")]
     public interface IForumService {
@@ -568,6 +831,12 @@ namespace ForumApp.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/GetQweryWithAnsvers", ReplyAction="http://tempuri.org/IForumService/GetQweryWithAnsversResponse")]
         System.Threading.Tasks.Task<ForumApp.ServiceReference1.AllMessageAndQwery> GetQweryWithAnsversAsync(int QweryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/GetQweryWithAnsversV2", ReplyAction="http://tempuri.org/IForumService/GetQweryWithAnsversV2Response")]
+        ForumApp.ServiceReference1.AllMessageAndQweryAndAnsvers GetQweryWithAnsversV2(int QweryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/GetQweryWithAnsversV2", ReplyAction="http://tempuri.org/IForumService/GetQweryWithAnsversV2Response")]
+        System.Threading.Tasks.Task<ForumApp.ServiceReference1.AllMessageAndQweryAndAnsvers> GetQweryWithAnsversV2Async(int QweryId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/SendMessage", ReplyAction="http://tempuri.org/IForumService/SendMessageResponse")]
         bool SendMessage(string login, int QweryId, string message, string code);
@@ -646,6 +915,24 @@ namespace ForumApp.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/SendAnsver", ReplyAction="http://tempuri.org/IForumService/SendAnsverResponse")]
         System.Threading.Tasks.Task<bool> SendAnsverAsync(ForumApp.ServiceReference1.AnsverX ansver);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/EditQwery", ReplyAction="http://tempuri.org/IForumService/EditQweryResponse")]
+        bool EditQwery(ForumApp.ServiceReference1.QweryX qwery);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/EditQwery", ReplyAction="http://tempuri.org/IForumService/EditQweryResponse")]
+        System.Threading.Tasks.Task<bool> EditQweryAsync(ForumApp.ServiceReference1.QweryX qwery);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/EditAnsver", ReplyAction="http://tempuri.org/IForumService/EditAnsverResponse")]
+        bool EditAnsver(ForumApp.ServiceReference1.AnsverX ansver);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/EditAnsver", ReplyAction="http://tempuri.org/IForumService/EditAnsverResponse")]
+        System.Threading.Tasks.Task<bool> EditAnsverAsync(ForumApp.ServiceReference1.AnsverX ansver);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/EditAnsverAnsver", ReplyAction="http://tempuri.org/IForumService/EditAnsverAnsverResponse")]
+        bool EditAnsverAnsver(ForumApp.ServiceReference1.AnsverAnsverX ansveransver);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/EditAnsverAnsver", ReplyAction="http://tempuri.org/IForumService/EditAnsverAnsverResponse")]
+        System.Threading.Tasks.Task<bool> EditAnsverAnsverAsync(ForumApp.ServiceReference1.AnsverAnsverX ansveransver);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -721,6 +1008,14 @@ namespace ForumApp.ServiceReference1 {
         
         public System.Threading.Tasks.Task<ForumApp.ServiceReference1.AllMessageAndQwery> GetQweryWithAnsversAsync(int QweryId) {
             return base.Channel.GetQweryWithAnsversAsync(QweryId);
+        }
+        
+        public ForumApp.ServiceReference1.AllMessageAndQweryAndAnsvers GetQweryWithAnsversV2(int QweryId) {
+            return base.Channel.GetQweryWithAnsversV2(QweryId);
+        }
+        
+        public System.Threading.Tasks.Task<ForumApp.ServiceReference1.AllMessageAndQweryAndAnsvers> GetQweryWithAnsversV2Async(int QweryId) {
+            return base.Channel.GetQweryWithAnsversV2Async(QweryId);
         }
         
         public bool SendMessage(string login, int QweryId, string message, string code) {
@@ -825,6 +1120,30 @@ namespace ForumApp.ServiceReference1 {
         
         public System.Threading.Tasks.Task<bool> SendAnsverAsync(ForumApp.ServiceReference1.AnsverX ansver) {
             return base.Channel.SendAnsverAsync(ansver);
+        }
+        
+        public bool EditQwery(ForumApp.ServiceReference1.QweryX qwery) {
+            return base.Channel.EditQwery(qwery);
+        }
+        
+        public System.Threading.Tasks.Task<bool> EditQweryAsync(ForumApp.ServiceReference1.QweryX qwery) {
+            return base.Channel.EditQweryAsync(qwery);
+        }
+        
+        public bool EditAnsver(ForumApp.ServiceReference1.AnsverX ansver) {
+            return base.Channel.EditAnsver(ansver);
+        }
+        
+        public System.Threading.Tasks.Task<bool> EditAnsverAsync(ForumApp.ServiceReference1.AnsverX ansver) {
+            return base.Channel.EditAnsverAsync(ansver);
+        }
+        
+        public bool EditAnsverAnsver(ForumApp.ServiceReference1.AnsverAnsverX ansveransver) {
+            return base.Channel.EditAnsverAnsver(ansveransver);
+        }
+        
+        public System.Threading.Tasks.Task<bool> EditAnsverAnsverAsync(ForumApp.ServiceReference1.AnsverAnsverX ansveransver) {
+            return base.Channel.EditAnsverAnsverAsync(ansveransver);
         }
     }
 }

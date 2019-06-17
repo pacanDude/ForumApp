@@ -30,6 +30,7 @@ namespace ForumService
         public virtual DbSet<Ansver> Ansver { get; set; }
         public virtual DbSet<Qwery> Qwery { get; set; }
         public virtual DbSet<OneUser> OneUser { get; set; }
+        public virtual DbSet<AnsverAnsver> AnsverAnsver { get; set; }
     
         [DbFunction("ForumEntities1", "GetAllQwery")]
         public virtual IQueryable<GetAllQwery_Result> GetAllQwery()
@@ -316,6 +317,87 @@ namespace ForumService
                 new ObjectParameter("rating", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SetQweryRating", qweryIdParameter, ratingParameter);
+        }
+    
+        public virtual int EditAnsver(Nullable<int> idAnsver, string text, Nullable<System.DateTime> date, string code)
+        {
+            var idAnsverParameter = idAnsver.HasValue ?
+                new ObjectParameter("IdAnsver", idAnsver) :
+                new ObjectParameter("IdAnsver", typeof(int));
+    
+            var textParameter = text != null ?
+                new ObjectParameter("text", text) :
+                new ObjectParameter("text", typeof(string));
+    
+            var dateParameter = date.HasValue ?
+                new ObjectParameter("date", date) :
+                new ObjectParameter("date", typeof(System.DateTime));
+    
+            var codeParameter = code != null ?
+                new ObjectParameter("code", code) :
+                new ObjectParameter("code", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EditAnsver", idAnsverParameter, textParameter, dateParameter, codeParameter);
+        }
+    
+        public virtual int EditAnsverAnsver(Nullable<int> idAnsverAnsver, string text, Nullable<System.DateTime> date, string code)
+        {
+            var idAnsverAnsverParameter = idAnsverAnsver.HasValue ?
+                new ObjectParameter("IdAnsverAnsver", idAnsverAnsver) :
+                new ObjectParameter("IdAnsverAnsver", typeof(int));
+    
+            var textParameter = text != null ?
+                new ObjectParameter("text", text) :
+                new ObjectParameter("text", typeof(string));
+    
+            var dateParameter = date.HasValue ?
+                new ObjectParameter("date", date) :
+                new ObjectParameter("date", typeof(System.DateTime));
+    
+            var codeParameter = code != null ?
+                new ObjectParameter("code", code) :
+                new ObjectParameter("code", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EditAnsverAnsver", idAnsverAnsverParameter, textParameter, dateParameter, codeParameter);
+        }
+    
+        public virtual int EditQwery(Nullable<int> id, string header, string text, Nullable<System.DateTime> date, string category, string code)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var headerParameter = header != null ?
+                new ObjectParameter("header", header) :
+                new ObjectParameter("header", typeof(string));
+    
+            var textParameter = text != null ?
+                new ObjectParameter("text", text) :
+                new ObjectParameter("text", typeof(string));
+    
+            var dateParameter = date.HasValue ?
+                new ObjectParameter("date", date) :
+                new ObjectParameter("date", typeof(System.DateTime));
+    
+            var categoryParameter = category != null ?
+                new ObjectParameter("category", category) :
+                new ObjectParameter("category", typeof(string));
+    
+            var codeParameter = code != null ?
+                new ObjectParameter("code", code) :
+                new ObjectParameter("code", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EditQwery", idParameter, headerParameter, textParameter, dateParameter, categoryParameter, codeParameter);
+        }
+    
+        [DbFunction("ForumEntities1", "GetAnsverAnsverByIdAnsver")]
+        public virtual IQueryable<GetAnsverAnsverByIdAnsver_Result> GetAnsverAnsverByIdAnsver(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetAnsverAnsverByIdAnsver_Result>("[ForumEntities1].[GetAnsverAnsverByIdAnsver](@Id)", idParameter);
         }
     }
 }

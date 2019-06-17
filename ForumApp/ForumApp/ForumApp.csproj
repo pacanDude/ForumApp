@@ -125,6 +125,9 @@
     <None Include="Connected Services\ServiceReference1\ForumApp.ServiceReference1.AllMessageAndQwery.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ServiceReference1\ForumApp.ServiceReference1.AllMessageAndQweryAndAnsvers.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ServiceReference1\ForumApp.ServiceReference1.OneUserX.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

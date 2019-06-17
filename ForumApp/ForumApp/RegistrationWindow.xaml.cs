@@ -88,6 +88,7 @@ namespace окна
             {
                 return;
             }
+            fotoByte = foto;
             UserBitmap = ToImage(foto);
             FotoImage.Source = UserBitmap;
         }

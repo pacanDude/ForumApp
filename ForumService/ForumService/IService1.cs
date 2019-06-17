@@ -29,6 +29,9 @@ namespace ForumService
         AllMessageAndQwery GetQweryWithAnsvers(int QweryId);//для открытия ветки форума
 
         [OperationContract]
+        AllMessageAndQweryAndAnsvers GetQweryWithAnsversV2(int QweryId);//для открытия ветки форума V2
+
+        [OperationContract]
         bool SendMessage(string login, int QweryId, string message, string code);
 
         [OperationContract]
@@ -62,6 +65,13 @@ namespace ForumService
         bool SendQwery(QweryX qwery);
         [OperationContract]
         bool SendAnsver(AnsverX ansver);
+        [OperationContract]
+        bool EditQwery(QweryX qwery);
+        [OperationContract]
+        bool EditAnsver(AnsverX ansver);
+        [OperationContract]
+        bool EditAnsverAnsver(AnsverAnsverX ansveransver);
+
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
@@ -74,6 +84,24 @@ namespace ForumService
         public QweryX qwery { get; set; }
         [DataMember]
         public List<AnsverX> answers { get; set; }
+    }
+
+    [DataContract]
+    public class AllMessageAndQweryAndAnsvers//для открытия ветки форума в.2
+    {
+        [DataMember]
+        public QweryX qwery { get; set; }
+        [DataMember]
+        public List<AnsverWithAnsers> answers { get; set; }
+    }
+
+    [DataContract]
+    public class AnsverWithAnsers//вспомогательный клас ответ с ответами
+    {
+        [DataMember]
+        public AnsverX ansver { get; set; }
+        [DataMember]
+        public List<AnsverAnsverX> answers { get; set; }
     }
 
     [DataContract]
@@ -93,6 +121,25 @@ namespace ForumService
         public int rating { get; set; }
         [DataMember]
         public string category { get; set; }
+        [DataMember]
+        public string code { get; set; }
+    }
+
+    [DataContract]
+    public class AnsverAnsverX//ответ QweryId
+    {
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public int AnsverId { get; set; }
+        [DataMember]
+        public string name { get; set; }
+        [DataMember]
+        public string text { get; set; }
+        [DataMember]
+        public DateTime date { get; set; }
+        [DataMember]
+        public int rating { get; set; }
         [DataMember]
         public string code { get; set; }
     }

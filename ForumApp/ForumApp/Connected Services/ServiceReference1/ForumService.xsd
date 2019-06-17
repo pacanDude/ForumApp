@@ -57,4 +57,42 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="AnsverX" nillable="true" type="tns:AnsverX" />
+  <xs:complexType name="AllMessageAndQweryAndAnsvers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="answers" nillable="true" type="tns:ArrayOfAnsverWithAnsers" />
+      <xs:element minOccurs="0" name="qwery" nillable="true" type="tns:QweryX" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AllMessageAndQweryAndAnsvers" nillable="true" type="tns:AllMessageAndQweryAndAnsvers" />
+  <xs:complexType name="ArrayOfAnsverWithAnsers">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AnsverWithAnsers" nillable="true" type="tns:AnsverWithAnsers" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAnsverWithAnsers" nillable="true" type="tns:ArrayOfAnsverWithAnsers" />
+  <xs:complexType name="AnsverWithAnsers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ansver" nillable="true" type="tns:AnsverX" />
+      <xs:element minOccurs="0" name="answers" nillable="true" type="tns:ArrayOfAnsverAnsverX" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AnsverWithAnsers" nillable="true" type="tns:AnsverWithAnsers" />
+  <xs:complexType name="ArrayOfAnsverAnsverX">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AnsverAnsverX" nillable="true" type="tns:AnsverAnsverX" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAnsverAnsverX" nillable="true" type="tns:ArrayOfAnsverAnsverX" />
+  <xs:complexType name="AnsverAnsverX">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnsverId" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="rating" type="xs:int" />
+      <xs:element minOccurs="0" name="text" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AnsverAnsverX" nillable="true" type="tns:AnsverAnsverX" />
 </xs:schema>
