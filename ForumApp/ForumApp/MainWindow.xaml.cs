@@ -203,7 +203,7 @@ namespace ForumApp
             }
             
         }
-
+        ListView tempListviev;
         private void TextBlock_MouseDown_1(object sender, MouseButtonEventArgs e)
         {
             AllMessageAndQwery list = forumServiceClient.GetQweryWithAnsvers((int)((TextBlock)sender).Tag);
@@ -212,7 +212,10 @@ namespace ForumApp
             
             
             ListView listView = new ListView() { Style = (Style)Resources["listViewBack"]};
-            
+            ////////////////////////////////////////////////
+            listView.Tag = list.qwery.Id;
+            tempListviev = listView;
+
             ListViewItem lvI = new ListViewItem() { Style = (Style)Resources["s"]  };
             
             lvI.DataContext = list.qwery;
@@ -253,6 +256,7 @@ namespace ForumApp
         {
             if (login != null)
             {
+
                 viewItem = ((ListViewItem)sender);
                 responseWindow = new ResponseWindow("Ваш ответ пользователю " + ((QweryX)viewItem.Tag).name, ((QweryX)viewItem.Tag).Id, login);
                 responseWindow.Show();
@@ -275,6 +279,9 @@ namespace ForumApp
 
         private void ButtonOk_Click4(object sender, RoutedEventArgs e)
         {
+
+
+
             forumServiceClient.SendAnsver(new AnsverX() { code = responseWindow.forCodeTextBox.Text, text = responseWindow.messageTextBox.Text, QweryId = responseWindow.QueryId, name = responseWindow.login});
             
             AllMessageAndQwery list = forumServiceClient.GetQweryWithAnsvers(((QweryX)viewItem.Tag).Id);
@@ -296,6 +303,9 @@ namespace ForumApp
             listViewItem.MouseDoubleClick += MainWindow_MouseDown;
             listV.Items.Add(listViewItem);
             viewItem = null;
+
+
+
             responseWindow.Close();
         }
 
@@ -359,6 +369,8 @@ namespace ForumApp
             questionW = new QuestionWindow();
             questionW.Show();
             questionW.buttonOk.Click += ButtonOk_Click2;
+
+
         }
 
         private void ButtonOk_Click2(object sender, RoutedEventArgs e)
@@ -520,6 +532,81 @@ namespace ForumApp
         {
             ((ListViewItem)((ListView)sender).SelectedItem).Height = e.GetPosition((ListView)sender).Y;
         }
+        int ttt = 0;
+        private void Button_Click_EditQwery(object sender, RoutedEventArgs e)
+        {
+            if (((TextBlock)((Grid)((Button)sender).Parent).FindName("NameBlock")).Text== login)
+            {
+                questionW = new QuestionWindow();
+                ttt = (int)((Button)((Grid)((Button)sender).Parent).FindName("butUp")).Tag;
+                
+                QweryX temp = forumServiceClient.GetQueryById(((int)((Button)((Grid)((Button)sender).Parent).FindName("butUp")).Tag));
+                questionW.forCodeTextBox.Text = temp.code;
+                questionW.tagsTextBox.Text = temp.category;
+                questionW.messageTextBox.Text = temp.text;
+                questionW.headlineTextBox.Text = temp.header;
+                questionW.Show();
+                questionW.buttonOk.Click += EditQwery;
+            }
+            
+        }
+
+        private void EditQwery(object sender, RoutedEventArgs e)
+        {
+            forumServiceClient.EditQwery(new QweryX() { Id = ttt, category = questionW.tagsTextBox.Text, code = questionW.forCodeTextBox.Text, header = questionW.headlineTextBox.Text, name = login, text = questionW.messageTextBox.Text });
+            questionW.Close();
+            reload();
+            
+        }
+        public void reload()
+        {
+            AllMessageAndQwery list = forumServiceClient.GetQweryWithAnsvers(ttt);
+            ListView listV = tempListviev;
+            listV.Items.Clear();
+
+            ListViewItem lvI = new ListViewItem() { Style = (Style)Resources["s"] };
+            lvI.DataContext = list.qwery;
+            listV.Items.Add(lvI);
+
+            listV.Items.Add(new ListViewItem() { Content = "ОТВЕТЫ", HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Top });
+            foreach (var item in list.answers)
+            {
+                ListViewItem temp = new ListViewItem() { Style = (Style)Resources["sa"] };
+                temp.DataContext = item;
+                listV.Items.Add(temp);
+            }
+            ListViewItem listViewItem = new ListViewItem() { Content = "ДОБАВИТЬ ОТВЕТ", Tag = list.qwery, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Top };
+            listViewItem.MouseDoubleClick += MainWindow_MouseDown;
+            listV.Items.Add(listViewItem);
+            viewItem = null;
+        }
+
+        private void Button_Click_EditAnsver(object sender, RoutedEventArgs e)
+        {
+            if (((TextBlock)((Grid)((Button)sender).Parent).FindName("NameBlock")).Text == login)
+            {
+                ttt = (int)((Button)((Grid)((Button)sender).Parent).FindName("butUp")).Tag;
+                
+                responseWindow = new ResponseWindow("Редактирование Вашего ответа ", (int)((Button)((Grid)((Button)sender).Parent).FindName("butUp")).Tag, login);
+                
+                responseWindow.forCodeTextBox.Text = ((TextBox)((Grid)((Button)sender).Parent).FindName("Text2")).Text;
+                responseWindow.messageTextBox.Text = ((TextBox)((Grid)((Button)sender).Parent).FindName("Text1")).Text;
+
+                responseWindow.Show();
+                responseWindow.buttonOk.Click += editAnsverOk;
+                
+            }
+        }
+
+        private void editAnsverOk(object sender, RoutedEventArgs e)
+        {
+            forumServiceClient.EditAnsver(new AnsverX() { code = responseWindow.forCodeTextBox.Text, text = responseWindow.messageTextBox.Text, Id = responseWindow.QueryId, name = responseWindow.login });
+            viewItem = null;
+            responseWindow.Close();
+            reload();
+            
+        }
+        
     }
 
 
