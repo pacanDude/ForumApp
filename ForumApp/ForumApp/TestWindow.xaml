@@ -1,0 +1,28 @@
+﻿<Window x:Class="ForumApp.TestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ForumApp"
+        mc:Ignorable="d"
+        Title="TestWindow" Height="252.979" Width="800">
+
+
+    <!--<Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent">
+        <Border.BorderBrush>
+            <SolidColorBrush Color="Gray" Opacity="0.5"/>
+        </Border.BorderBrush>
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="17*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Background>
+                <SolidColorBrush Color="White" Opacity="0.5"/>
+            </Grid.Background>
+            <TextBlock Text="{Binding Path=text}" MaxWidth="500" TextWrapping="Wrap" HorizontalAlignment="Left" Background="Gray" Grid.Row="0"/>
+            <TextBlock Text="{Binding Path=name}" ToolTip="{Binding Path=name}" MouseDown="TextBlock_MouseDown" HorizontalAlignment="Right" Margin="0,10,0,0" Grid.Column="1"/>
+            <TextBlock Text="{Binding Path=date}" Margin="0,42,0,0" HorizontalAlignment="Right" Grid.Column="1"/>
+        </Grid>
+    </Border>-->
+</Window>

@@ -45,7 +45,7 @@
                                     <ColumnDefinition Width="700*"/>
                                     <ColumnDefinition Width="174"/>
                                 </Grid.ColumnDefinitions>
-                                <Button x:Name="butUp" Background="#FF25F554"  HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="Button_Click_8"  Tag="{Binding Id}">
+                                <Button x:Name="butUp" Background="#FF25F554"  HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="Button_Click_6"  Tag="{Binding Id}">
                                     <Button.Template>
                                         <ControlTemplate>
                                             <Path Stretch="Fill" 
@@ -59,7 +59,7 @@
                                         </ControlTemplate>
                                     </Button.Template>
                                 </Button>
-                                <Button x:Name="butDown" Background="#FF25F554"  HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="Button_Click_9"  Tag="{Binding Id}">
+                                <Button x:Name="butDown" Background="#FF25F554"  HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="Button_Click_7"  Tag="{Binding Id}">
                                     <Button.Template>
                                         <ControlTemplate>
                                             <Path Stretch="Fill" 
@@ -78,8 +78,8 @@
 
                                 <TextBlock HorizontalAlignment="Right" Height="37" Margin="0,42,10,0" TextWrapping="Wrap" Text="{Binding date}" VerticalAlignment="Top" Width="158" Grid.Column="2"/>
                                 <Border HorizontalAlignment="Stretch" MaxWidth="1500" VerticalAlignment="Stretch" BorderThickness="1" Grid.Column="1" >
-                                    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                        <TextBox IsReadOnly="True" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding header}" FontSize="20">
+                                    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Tag="{Binding Id}">
+                                        <TextBox IsReadOnly="True" HorizontalAlignment="Stretch" x:Name="headerBox"  TextWrapping="Wrap" Text="{Binding header}" Tag="{Binding name}" FontSize="20">
                                             <TextBox.Background>
                                                 <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
                                             </TextBox.Background>
@@ -87,15 +87,7 @@
                                                 <SolidColorBrush Color="#FF9E9E9E" Opacity="0.2"/>
                                             </TextBox.BorderBrush>
                                         </TextBox>
-                                        <TextBox Height="5" IsReadOnly="True">
-                                            <TextBox.Background>
-                                                <SolidColorBrush Color="#FFBDBDBD" Opacity="1"/>
-                                            </TextBox.Background>
-                                            <TextBox.BorderBrush>
-                                                <SolidColorBrush Color="#FF9E9E9E" Opacity="1"/>
-                                            </TextBox.BorderBrush>
-                                        </TextBox>
-                                        <TextBox x:Name="Text1" IsReadOnly="True"  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Text="{Binding text}">
+                                        <TextBox Text="Текст:" HorizontalAlignment="Center"  IsReadOnly="True">
                                             <TextBox.Background>
                                                 <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
                                             </TextBox.Background>
@@ -103,15 +95,8 @@
                                                 <SolidColorBrush Color="#FF9E9E9E" Opacity="0.2"/>
                                             </TextBox.BorderBrush>
                                         </TextBox>
-                                        <TextBox Height="5" IsReadOnly="True">
-                                            <TextBox.Background>
-                                                <SolidColorBrush Color="#FFBDBDBD" Opacity="1"/>
-                                            </TextBox.Background>
-                                            <TextBox.BorderBrush>
-                                                <SolidColorBrush Color="#FF9E9E9E" Opacity="1"/>
-                                            </TextBox.BorderBrush>
-                                        </TextBox>
-                                        <TextBox x:Name="Text2" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Text="{Binding code}">
+                                        <TextBox IsReadOnly="True"  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"  ToolTip="{Binding name}"   Name="text2" Text="{Binding text}">
+                                    
                                             <TextBox.Background>
                                                 <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
                                             </TextBox.Background>
@@ -119,6 +104,24 @@
                                                 <SolidColorBrush Color="#FF9E9E9E" Opacity="0.2"/>
                                             </TextBox.BorderBrush>
                                         </TextBox>
+                                        <TextBox Text="Код:" x:Name="categoryBox" HorizontalAlignment="Center" Tag="{Binding category}" IsReadOnly="True">
+                                            <TextBox.Background>
+                                                <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
+                                            </TextBox.Background>
+                                            <TextBox.BorderBrush>
+                                                <SolidColorBrush Color="#FF9E9E9E" Opacity="0.2"/>
+                                            </TextBox.BorderBrush>
+                                        </TextBox>
+                                        <TextBox IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" ToolTip="{Binding name}"  Name="text1" Text="{Binding code}">
+                                         
+                                            <TextBox.Background>
+                                                <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
+                                            </TextBox.Background>
+                                            <TextBox.BorderBrush>
+                                                <SolidColorBrush Color="#FF9E9E9E" Opacity="0.2"/>
+                                            </TextBox.BorderBrush>
+                                        </TextBox>
+                                        <Button Content="Редактировать" Click="Button_Click_13" Tag="{Binding name}" Style="{DynamicResource simpleButtonsTemp}"/>
                                     </StackPanel>
                                 </Border>
                                 <Button x:Name="EditBut" Click="Button_Click_EditQwery"  Tag="{Binding Id}" Content="Редактировать" HorizontalAlignment="Left" Margin="43,84,0,0" VerticalAlignment="Top" Width="90" Grid.Column="2"/>
@@ -153,12 +156,16 @@
                                 <SolidColorBrush Color="Gainsboro" Opacity="0.2"/>
                             </Border.Background>
                             <Grid x:Name="TempGrid" Height="Auto" Width="Auto" Background="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="69*"/>
+                                    <RowDefinition Height="37*"/>
+                                </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="69"/>
                                     <ColumnDefinition Width="700*"/>
                                     <ColumnDefinition Width="174"/>
                                 </Grid.ColumnDefinitions>
-                                <Button x:Name="butUp" Background="#FF25F554"  HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="Button_Click_8"  Tag="{Binding Id}">
+                                <Button x:Name="butUp" Background="#FF25F554"  HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="Button_Click_8"  Tag="{Binding Path=ansver.Id}">
                                     <Button.Template>
                                         <ControlTemplate>
                                             <Path Stretch="Fill" 
@@ -172,7 +179,7 @@
                                         </ControlTemplate>
                                     </Button.Template>
                                 </Button>
-                                <Button x:Name="butDown" Background="#FF25F554"  HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="Button_Click_9"  Tag="{Binding Id}">
+                                <Button x:Name="butDown" Background="#FF25F554"  HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="Button_Click_9"  Tag="{Binding Path=ansver.Id}">
                                     <Button.Template>
                                         <ControlTemplate>
                                             <Path Stretch="Fill" 
@@ -186,14 +193,27 @@
                                         </ControlTemplate>
                                     </Button.Template>
                                 </Button>
+<<<<<<< HEAD
+                                <Label x:Name="ratingLabel" Content="{Binding Path=ansver.rating}" ToolTip="{Binding Path=ansver.rating}" HorizontalAlignment="Left" Margin="24,46,0,0" VerticalAlignment="Top" Height="30" Width="20"/>
+                                <TextBlock HorizontalAlignment="Right" Height="32" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding Path=ansver.name}" MouseDown="TextBlock_MouseDown" VerticalAlignment="Top" Width="158" Grid.Column="2"/>
+=======
                                 <Label x:Name="ratingLabel" Content="{Binding rating}" ToolTip="{Binding rating}" HorizontalAlignment="Left" Margin="24.5,46,0,0" VerticalAlignment="Top" Height="30" Width="20"/>
                                 <TextBlock x:Name="NameBlock" HorizontalAlignment="Right" Height="64" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding name}" MouseDown="TextBlock_MouseDown" VerticalAlignment="Top" Width="158" Grid.Column="2"/>
+>>>>>>> 8fc8175cceec08543a324782fd171ea3f4929614
 
-                                <TextBlock HorizontalAlignment="Right" Height="37" Margin="0,42,10,0" TextWrapping="Wrap" Text="{Binding date}" VerticalAlignment="Top" Width="158" Grid.Column="2"/>
-                                <Border  HorizontalAlignment="Stretch" MaxWidth="1500" VerticalAlignment="Stretch" BorderThickness="1" Grid.Column="1" >
-                                   
+                                <TextBlock HorizontalAlignment="Right" Height="37" Margin="0,42,10,0" TextWrapping="Wrap" Text="{Binding Path=ansver.date}" VerticalAlignment="Top" Width="158" Grid.Column="2"/>
+                                <Border  HorizontalAlignment="Stretch" MaxHeight="400" VerticalAlignment="Stretch" BorderThickness="1" Grid.Column="1" Grid.Row="0">
+
+                                    <Border.BorderBrush>
+
+                                        <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
+                                    </Border.BorderBrush>
+                                    <Border.Background>
+
+                                        <SolidColorBrush Color="Gainsboro" Opacity="0.2"/>
+                                    </Border.Background>
                                     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                        <TextBox x:Name="Text1" IsReadOnly="True"  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Text="{Binding text}">
+                                        <TextBox x:Name="Text1" IsReadOnly="True" MaxWidth="1000" HorizontalAlignment="Stretch"  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Text="{Binding Path=ansver.text}">
                                             <TextBox.Background>
                                                 <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
                                             </TextBox.Background>
@@ -201,15 +221,16 @@
                                                 <SolidColorBrush Color="#FF9E9E9E" Opacity="0.2"/>
                                             </TextBox.BorderBrush>
                                         </TextBox>
-                                        <TextBox Height="5" IsReadOnly="True">
+                                        <TextBox Text="Код:" HorizontalAlignment="Center"  IsReadOnly="True">
+
                                             <TextBox.Background>
-                                                <SolidColorBrush Color="#FFBDBDBD" Opacity="1"/>
+                                                <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
                                             </TextBox.Background>
                                             <TextBox.BorderBrush>
-                                                <SolidColorBrush Color="#FF9E9E9E" Opacity="1"/>
+                                                <SolidColorBrush Color="#FF9E9E9E" Opacity="0.2"/>
                                             </TextBox.BorderBrush>
                                         </TextBox>
-                                        <TextBox x:Name="Text2" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Text="{Binding code}">
+                                        <TextBox x:Name="Text2" IsReadOnly="True" MaxWidth="1000" HorizontalAlignment="Stretch"  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Text="{Binding Path=ansver.code}">
                                             <TextBox.Background>
                                                 <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
                                             </TextBox.Background>
@@ -219,7 +240,46 @@
                                         </TextBox>
                                     </StackPanel>
                                 </Border>
+<<<<<<< HEAD
+                                <ListView x:Name="listName" MaxHeight="400" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Path=answers}">
+                                    <ListView.BorderBrush>
+
+                                        <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
+                                    </ListView.BorderBrush>
+                                    <ListView.Background>
+
+                                        <SolidColorBrush Color="Gainsboro" Opacity="0.2"/>
+                                    </ListView.Background>
+
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <Border.BorderBrush>
+
+                                                    <SolidColorBrush Color="#FFBDBDBD" Opacity="0.2"/>
+                                                </Border.BorderBrush>
+                                                <Border.Background>
+
+                                                    <SolidColorBrush Color="Gainsboro" Opacity="0.2"/>
+                                                </Border.Background>
+                                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="17*"/>
+                                                        <ColumnDefinition Width="5*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Text="{Binding Path=text}" MaxWidth="1000" TextWrapping="Wrap" HorizontalAlignment="Left" Grid.Row="0"/>
+                                                    <TextBlock Text="{Binding Path=name}" ToolTip="{Binding Path=name}" MouseDown="TextBlock_MouseDown" HorizontalAlignment="Right" Margin="0,10,0,0" Grid.Column="1"/>
+                                                    <TextBlock Text="{Binding Path=date}" Margin="0,42,0,0" HorizontalAlignment="Right" Grid.Column="1"/>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                                <Button Style="{DynamicResource simpleButtonsTemp}" Content="Комментировать" Click="Button_Click_11" Grid.Column="2" Tag="{Binding Path=ansver.Id}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,25,37,0" Grid.Row="1" Height="39"/>
+
+=======
                                 <Button x:Name="EditBut" Click="Button_Click_EditAnsver"  Tag="{Binding Id}" Content="Редактировать" HorizontalAlignment="Left" Margin="43,84,0,0" VerticalAlignment="Top" Width="90" Grid.Column="2"/>
+>>>>>>> 8fc8175cceec08543a324782fd171ea3f4929614
                             </Grid>
                         </Border>
                     </ControlTemplate>
@@ -602,8 +662,9 @@
                     </ListView>
                     <Label Content="Последние вопросы" Margin="0,36,647,0" FontFamily="Segoe UI Light" Height="26" VerticalAlignment="Top" HorizontalAlignment="Right" Width="131"/>
                     <Label Content="Категории" Margin="0,42,116,0" FontFamily="Segoe UI Light" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Width="63"/>
-                    <Button Style="{StaticResource simpleButtonsTemp}" x:Name="Name" Visibility="Hidden" BorderBrush="Transparent" Background="AliceBlue" IsEnabled="False" Content="Задать вопрос" HorizontalAlignment="Left" Margin="615,10,0,0" VerticalAlignment="Top" Width="113" Click="Button_Click_3"/>
+                    <Button Style="{StaticResource simpleButtonsTemp}" x:Name="Name" Visibility="Hidden" BorderBrush="Transparent" Background="AliceBlue" Content="Задать вопрос" HorizontalAlignment="Left" Margin="615,10,0,0" VerticalAlignment="Top" Width="113" Click="Button_Click_3"/>
                     <Button Style="{StaticResource simpleButtonsTemp}" Visibility="Hidden" BorderBrush="Transparent" Background="AliceBlue" Click="Button_Click_5" x:Name="Red" Content="Редактировать" HorizontalAlignment="Left" Margin="756,10,0,0" VerticalAlignment="Top" Width="102"/>
+                    <Button x:Name="Log_Copy" Style="{StaticResource simpleButtonsTemp}" Content="Выйти" BorderBrush="Transparent" Background="AliceBlue" Margin="894,11,0,0" Click="Log_Copy_Click"  Visibility="Hidden" HorizontalAlignment="Left" Width="116" Height="22" VerticalAlignment="Top"/>
 
 
                 </Grid>

@@ -928,11 +928,23 @@ namespace ForumApp.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/EditAnsver", ReplyAction="http://tempuri.org/IForumService/EditAnsverResponse")]
         System.Threading.Tasks.Task<bool> EditAnsverAsync(ForumApp.ServiceReference1.AnsverX ansver);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/SendAnsverAnsver", ReplyAction="http://tempuri.org/IForumService/SendAnsverAnsverResponse")]
+        bool SendAnsverAnsver(int ansverId, string name, string text, string code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/SendAnsverAnsver", ReplyAction="http://tempuri.org/IForumService/SendAnsverAnsverResponse")]
+        System.Threading.Tasks.Task<bool> SendAnsverAnsverAsync(int ansverId, string name, string text, string code);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/EditAnsverAnsver", ReplyAction="http://tempuri.org/IForumService/EditAnsverAnsverResponse")]
         bool EditAnsverAnsver(ForumApp.ServiceReference1.AnsverAnsverX ansveransver);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/EditAnsverAnsver", ReplyAction="http://tempuri.org/IForumService/EditAnsverAnsverResponse")]
         System.Threading.Tasks.Task<bool> EditAnsverAnsverAsync(ForumApp.ServiceReference1.AnsverAnsverX ansveransver);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/GetAnsverById", ReplyAction="http://tempuri.org/IForumService/GetAnsverByIdResponse")]
+        ForumApp.ServiceReference1.AnsverX GetAnsverById(int AnswerId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IForumService/GetAnsverById", ReplyAction="http://tempuri.org/IForumService/GetAnsverByIdResponse")]
+        System.Threading.Tasks.Task<ForumApp.ServiceReference1.AnsverX> GetAnsverByIdAsync(int AnswerId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1138,12 +1150,28 @@ namespace ForumApp.ServiceReference1 {
             return base.Channel.EditAnsverAsync(ansver);
         }
         
+        public bool SendAnsverAnsver(int ansverId, string name, string text, string code) {
+            return base.Channel.SendAnsverAnsver(ansverId, name, text, code);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SendAnsverAnsverAsync(int ansverId, string name, string text, string code) {
+            return base.Channel.SendAnsverAnsverAsync(ansverId, name, text, code);
+        }
+        
         public bool EditAnsverAnsver(ForumApp.ServiceReference1.AnsverAnsverX ansveransver) {
             return base.Channel.EditAnsverAnsver(ansveransver);
         }
         
         public System.Threading.Tasks.Task<bool> EditAnsverAnsverAsync(ForumApp.ServiceReference1.AnsverAnsverX ansveransver) {
             return base.Channel.EditAnsverAnsverAsync(ansveransver);
+        }
+        
+        public ForumApp.ServiceReference1.AnsverX GetAnsverById(int AnswerId) {
+            return base.Channel.GetAnsverById(AnswerId);
+        }
+        
+        public System.Threading.Tasks.Task<ForumApp.ServiceReference1.AnsverX> GetAnsverByIdAsync(int AnswerId) {
+            return base.Channel.GetAnsverByIdAsync(AnswerId);
         }
     }
 }

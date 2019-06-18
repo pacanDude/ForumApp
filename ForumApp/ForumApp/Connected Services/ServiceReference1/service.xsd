@@ -311,6 +311,23 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SendAnsverAnsver">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ansverId" type="xs:int" />
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="text" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendAnsverAnsverResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SendAnsverAnsverResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="EditAnsverAnsver">
     <xs:complexType>
       <xs:sequence>
@@ -322,6 +339,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="EditAnsverAnsverResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAnsverById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AnswerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAnsverByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/ForumService" minOccurs="0" name="GetAnsverByIdResult" nillable="true" type="q16:AnsverX" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

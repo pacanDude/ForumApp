@@ -206,7 +206,7 @@ namespace ForumApp
         ListView tempListviev;
         private void TextBlock_MouseDown_1(object sender, MouseButtonEventArgs e)
         {
-            AllMessageAndQwery list = forumServiceClient.GetQweryWithAnsvers((int)((TextBlock)sender).Tag);
+            AllMessageAndQweryAndAnsvers list = forumServiceClient.GetQweryWithAnsversV2((int)((TextBlock)sender).Tag);
             TabItem tabItem = new TabItem() { Header = list.qwery.header };
             Grid grid = new Grid() { Height = Double.NaN, Style = (Style)Resources["gridBackroundStyle"] };
             
@@ -229,14 +229,7 @@ namespace ForumApp
             {
                 ListViewItem temp = new ListViewItem() { Style = (Style)Resources["sa"] };
                 temp.DataContext = item;
-                //double qwe = ((TextBox)((Grid)((Border)temp.Template.FindName("BoderTemp")).FindName("TempGrid")).FindName("Text1")).Height;
-
-                //Thickness thic = ((TextBox)((Grid)temp.Content).FindName("Text2")).Margin;
-                //thic.Top = 20 + qwe;
-
-
                 listView.Items.Add(temp);
-                //listView2.Items.Add(item);      ((Label)((Grid)((Button)sender).Parent).FindName("ratingLabel")).Content
             }
 
             ListViewItem listViewItem = new ListViewItem() { Content = "ДОБАВИТЬ ОТВЕТ", Tag = list.qwery, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Top };
@@ -284,7 +277,7 @@ namespace ForumApp
 
             forumServiceClient.SendAnsver(new AnsverX() { code = responseWindow.forCodeTextBox.Text, text = responseWindow.messageTextBox.Text, QweryId = responseWindow.QueryId, name = responseWindow.login});
             
-            AllMessageAndQwery list = forumServiceClient.GetQweryWithAnsvers(((QweryX)viewItem.Tag).Id);
+            AllMessageAndQweryAndAnsvers list = forumServiceClient.GetQweryWithAnsversV2(((QweryX)viewItem.Tag).Id);
             ListView listV = ((ListView)viewItem.Parent);
             listV.Items.Clear();
 
@@ -339,11 +332,11 @@ namespace ForumApp
             if (a == true)
             {
                 login = form1.nicknameTextBox.Text;
-                Name.IsEnabled = true;
                 Log.Visibility = Visibility.Hidden;
                 Reg.Visibility = Visibility.Hidden;
                 Red.Visibility = Visibility.Visible;
                 Name.Visibility = Visibility.Visible;
+                Log_Copy.Visibility = Visibility.Visible;
             }
             else
                 MessageBox.Show("ВЫ НЕ ВОШЛИ");
@@ -532,6 +525,42 @@ namespace ForumApp
         {
             ((ListViewItem)((ListView)sender).SelectedItem).Height = e.GetPosition((ListView)sender).Y;
         }
+<<<<<<< HEAD
+
+        CommentaryWindow commentary;
+        Button justButton;
+        private void Button_Click_11(object sender, RoutedEventArgs e)
+        {
+            if (login != null)
+            {
+                justButton = (Button)sender;
+                commentary = new CommentaryWindow((int)justButton.Tag, login);
+                commentary.buttonOk.Click += ButtonOk_Click5;
+                commentary.buttonCancel.Click += ButtonCancel_Click1;
+                commentary.Show();
+            }
+            else
+            {
+                form1 = new LoginWindow();
+                form1.Show();
+                form1.buttonOk.Click += ButtonOk_Click1;
+            }
+           
+        }
+
+        private void ButtonCancel_Click1(object sender, RoutedEventArgs e)
+        {
+            commentary.Close();
+        }
+
+        private void ButtonOk_Click5(object sender, RoutedEventArgs e)
+        {
+            forumServiceClient.SendAnsverAnsver(commentary.ansverId, commentary.login, commentary.messageTextBox.Text, null);
+
+            AllMessageAndQweryAndAnsvers list = forumServiceClient.GetQweryWithAnsversV2(forumServiceClient.GetAnsverById(commentary.ansverId).QweryId);
+            ListView listV = (ListView)((ListViewItem)justButton.TemplatedParent).Parent;
+
+=======
         int ttt = 0;
         private void Button_Click_EditQwery(object sender, RoutedEventArgs e)
         {
@@ -562,6 +591,7 @@ namespace ForumApp
         {
             AllMessageAndQwery list = forumServiceClient.GetQweryWithAnsvers(ttt);
             ListView listV = tempListviev;
+>>>>>>> 8fc8175cceec08543a324782fd171ea3f4929614
             listV.Items.Clear();
 
             ListViewItem lvI = new ListViewItem() { Style = (Style)Resources["s"] };
@@ -578,6 +608,86 @@ namespace ForumApp
             ListViewItem listViewItem = new ListViewItem() { Content = "ДОБАВИТЬ ОТВЕТ", Tag = list.qwery, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Top };
             listViewItem.MouseDoubleClick += MainWindow_MouseDown;
             listV.Items.Add(listViewItem);
+<<<<<<< HEAD
+            justButton = null;
+            commentary.Close();
+        }
+
+        private void Log_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            if (login != null)
+            {
+                login = null;
+                Log.Visibility = Visibility.Visible;
+                Reg.Visibility = Visibility.Visible;
+                Red.Visibility = Visibility.Hidden;
+                Name.Visibility = Visibility.Hidden;
+                Log_Copy.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void Button_Click_12(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        Button anotherButton;
+        //Для редактирования вопроса
+        private void Button_Click_13(object sender, RoutedEventArgs e)
+        {
+            if (login == (string)((Button)sender).Tag)
+            {
+                anotherButton = ((Button)sender);
+                questionW = new QuestionWindow(); 
+                questionW.messageTextBox.Text = ((TextBox)((StackPanel)((Button)sender).Parent).FindName("text2")).Text;
+                questionW.forCodeTextBox.Text = ((TextBox)((StackPanel)((Button)sender).Parent).FindName("text1")).Text;
+                questionW.questionId = (int)((StackPanel)((Button)sender).Parent).Tag;
+                questionW.tagsTextBox.Text = (string)((TextBox)((StackPanel)((Button)sender).Parent).FindName("categoryBox")).Tag;
+                questionW.headlineTextBox.Text = ((TextBox)((StackPanel)((Button)sender).Parent).FindName("headerBox")).Text;
+                questionW.Show();
+                questionW.buttonOk.Click += ButtonOk_Click6;
+                questionW.buttonCancel.Click += ButtonCancel_Click2;
+            }
+            else if(login == null)
+            {
+                form1 = new LoginWindow();
+                form1.Show();
+                form1.buttonOk.Click += ButtonOk_Click1;
+            }
+        }
+        //По нажатию кнопки ОК
+        private void ButtonOk_Click6(object sender, RoutedEventArgs e)
+        {
+            forumServiceClient.EditQwery(new QweryX { Id = questionW.questionId, category = questionW.tagsTextBox.Text, code = questionW.forCodeTextBox.Text, header = questionW.headlineTextBox.Text, text = questionW.messageTextBox.Text });
+
+            AllMessageAndQweryAndAnsvers list = forumServiceClient.GetQweryWithAnsversV2(questionW.questionId);
+            ListView listV = (ListView)((ListViewItem)anotherButton.TemplatedParent).Parent;
+
+            listV.Items.Clear();
+
+            ListViewItem lvI = new ListViewItem() { Style = (Style)Resources["s"] };
+            lvI.DataContext = list.qwery;
+            listV.Items.Add(lvI);
+
+            listV.Items.Add(new ListViewItem() { Content = "ОТВЕТЫ", HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Top });
+            foreach (var item in list.answers)
+            {
+                ListViewItem temp = new ListViewItem() { Style = (Style)Resources["sa"] };
+                temp.DataContext = item;
+                listV.Items.Add(temp);
+            }
+            ListViewItem listViewItem = new ListViewItem() { Content = "ДОБАВИТЬ ОТВЕТ", Tag = list.qwery, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Top };
+            listViewItem.MouseDoubleClick += MainWindow_MouseDown;
+            listV.Items.Add(listViewItem);
+            anotherButton = null;
+            questionW.Close();
+        }
+
+        private void ButtonCancel_Click2(object sender, RoutedEventArgs e)
+        {
+            questionW.Close();
+        }
+=======
             viewItem = null;
         }
 
@@ -607,6 +717,7 @@ namespace ForumApp
             
         }
         
+>>>>>>> 8fc8175cceec08543a324782fd171ea3f4929614
     }
 
 

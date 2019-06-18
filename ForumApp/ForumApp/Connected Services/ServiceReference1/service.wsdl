@@ -173,11 +173,23 @@
   <wsdl:message name="IForumService_EditAnsver_OutputMessage">
     <wsdl:part name="parameters" element="tns:EditAnsverResponse" />
   </wsdl:message>
+  <wsdl:message name="IForumService_SendAnsverAnsver_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendAnsverAnsver" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_SendAnsverAnsver_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendAnsverAnsverResponse" />
+  </wsdl:message>
   <wsdl:message name="IForumService_EditAnsverAnsver_InputMessage">
     <wsdl:part name="parameters" element="tns:EditAnsverAnsver" />
   </wsdl:message>
   <wsdl:message name="IForumService_EditAnsverAnsver_OutputMessage">
     <wsdl:part name="parameters" element="tns:EditAnsverAnsverResponse" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_GetAnsverById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnsverById" />
+  </wsdl:message>
+  <wsdl:message name="IForumService_GetAnsverById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnsverByIdResponse" />
   </wsdl:message>
   <wsdl:portType name="IForumService">
     <wsdl:operation name="RegisterUser">
@@ -268,9 +280,17 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IForumService/EditAnsver" message="tns:IForumService_EditAnsver_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IForumService/EditAnsverResponse" message="tns:IForumService_EditAnsver_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SendAnsverAnsver">
+      <wsdl:input wsaw:Action="http://tempuri.org/IForumService/SendAnsverAnsver" message="tns:IForumService_SendAnsverAnsver_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IForumService/SendAnsverAnsverResponse" message="tns:IForumService_SendAnsverAnsver_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="EditAnsverAnsver">
       <wsdl:input wsaw:Action="http://tempuri.org/IForumService/EditAnsverAnsver" message="tns:IForumService_EditAnsverAnsver_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IForumService/EditAnsverAnsverResponse" message="tns:IForumService_EditAnsverAnsver_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnsverById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IForumService/GetAnsverById" message="tns:IForumService_GetAnsverById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IForumService/GetAnsverByIdResponse" message="tns:IForumService_GetAnsverById_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IForumService" type="tns:IForumService">
@@ -475,8 +495,26 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SendAnsverAnsver">
+      <soap12:operation soapAction="http://tempuri.org/IForumService/SendAnsverAnsver" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="EditAnsverAnsver">
       <soap12:operation soapAction="http://tempuri.org/IForumService/EditAnsverAnsver" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnsverById">
+      <soap12:operation soapAction="http://tempuri.org/IForumService/GetAnsverById" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

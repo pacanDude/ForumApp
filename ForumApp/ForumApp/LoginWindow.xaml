@@ -12,7 +12,10 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" CornerRadius="10" BorderThickness="2" Background="Gainsboro" BorderBrush="Gray">
+                            <Border x:Name="border" CornerRadius="10" BorderThickness="2"  BorderBrush="Gray">
+                                <Border.Background>
+                                    <SolidColorBrush Color="Gainsboro" Opacity="0.6"/>
+                                </Border.Background>
                                 <ContentPresenter x:Name="ButtonContentPresenter" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             </Border>
 
@@ -61,10 +64,24 @@
 
 
         <Label Content="Вход" FontSize="23" FontStyle="Italic" FontWeight="Bold" HorizontalAlignment="Left" Margin="75,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="Ввeдитe имя пользователя :" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="nicknameTextBox" HorizontalAlignment="Left" Height="23" Margin="10,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"/>
-        <Label Content="Пароль :" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="10,119,0,0" VerticalAlignment="Top"/>
-        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="10,150,0,0" VerticalAlignment="Top" Width="180" Height="23"/>
+        <Label Content="Ввeдитe имя пользователя :" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="15,61,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="nicknameTextBox" HorizontalAlignment="Left" Height="23" Margin="15,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180">
+            <TextBox.Background>
+                <SolidColorBrush Color="#FFBDBDBD" Opacity="0.4"/>
+            </TextBox.Background>
+            <TextBox.BorderBrush>
+                <SolidColorBrush Color="#FF9E9E9E" Opacity="0.4"/>
+            </TextBox.BorderBrush>
+        </TextBox>
+        <Label Content="Пароль :" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="15,120,0,0" VerticalAlignment="Top"/>
+        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="15,151,0,0" VerticalAlignment="Top" Width="180" Height="23">
+            <PasswordBox.Background>
+                <SolidColorBrush Color="#FFBDBDBD" Opacity="0.4"/>
+            </PasswordBox.Background>
+            <PasswordBox.BorderBrush>
+                <SolidColorBrush Color="#FF9E9E9E" Opacity="0.4"/>
+            </PasswordBox.BorderBrush>
+        </PasswordBox>
         <Button x:Name="buttonOk" Content="Готово" Width="80" HorizontalAlignment="Left" Margin="15,0,0,15" Height="30" VerticalAlignment="Bottom" Click="ButtonOk_Click"/>
         <Button x:Name="buttonCancel" Content="Отмена" Margin="0,0,15,15" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="80" Click="ButtonCancel_Click"/>
         <!--<Label x:Name="warning1" Content="* Неверный никнейм" Visibility="Collapsed" Foreground="Red" HorizontalAlignment="Left" Margin="130,90,0,0" VerticalAlignment="Top"/>

@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CommentaryWindow.xaml.cs">
+      <DependentUpon>CommentaryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ForProbe.xaml.cs">
       <DependentUpon>ForProbe.xaml</DependentUpon>
     </Compile>
@@ -63,6 +66,13 @@
     <Compile Include="QuestionWindow.xaml.cs" />
     <Compile Include="RegistrationWindow.xaml.cs" />
     <Compile Include="ResponseWindow.xaml.cs" />
+    <Compile Include="TestWindow.xaml.cs">
+      <DependentUpon>TestWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CommentaryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ForProbe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,6 +110,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="TestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -126,6 +140,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ServiceReference1\ForumApp.ServiceReference1.AllMessageAndQweryAndAnsvers.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\ForumApp.ServiceReference1.AnsverX.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ServiceReference1\ForumApp.ServiceReference1.OneUserX.datasource">
