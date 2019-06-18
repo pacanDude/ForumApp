@@ -70,8 +70,11 @@ namespace ForumService
         [OperationContract]
         bool EditAnsver(AnsverX ansver);
         [OperationContract]
+        bool SendAnsverAnsver(int ansverId, string name, string text, string code);
+        [OperationContract]
         bool EditAnsverAnsver(AnsverAnsverX ansveransver);
-
+        [OperationContract]
+        AnsverX GetAnsverById(int AnswerId);
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.

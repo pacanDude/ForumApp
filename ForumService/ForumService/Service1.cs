@@ -117,6 +117,16 @@ namespace ForumService
             return temp;
         }
 
+        public AnsverX GetAnsverById(int AnswerId)
+        {
+            AnsverX temp = new AnsverX();
+            foreach (var item in fef.GetAnsverById(AnswerId))
+            {
+                temp = new AnsverX { Id = item.Id, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text, QweryId = item.QweryId};
+            }
+            return temp;
+        }
+
         public List<QweryX> GetFindQweryList(string findString)
         {
             List<QweryX> temp = new List<QweryX>();
@@ -274,6 +284,13 @@ namespace ForumService
         {
             fef.EditAnsverAnsver(ansveransver.Id, ansveransver.text, DateTime.Now, ansveransver.code);
             return true;
+            
+        }
+        public bool SendAnsverAnsver(int ansverId, string name, string text, string code)
+        {
+            fef.AddAnsverAnsver(ansverId, name, text, DateTime.Now, 0, code);
+            return true;
+
         }
 
         public AllMessageAndQweryAndAnsvers GetQweryWithAnsversV2(int QweryId)

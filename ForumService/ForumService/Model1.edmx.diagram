@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="ForumModel.Ansver" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ForumModel.Qwery" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ForumModel.OneUser" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForumModel.AnsverAnsver" Width="1.5" PointX="0.875" PointY="3.25" />
+        <EntityTypeShape EntityType="ForumModel.AnsverAnsver" Width="1.5" PointX="0.75" PointY="3.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -399,5 +399,34 @@ namespace ForumService
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetAnsverAnsverByIdAnsver_Result>("[ForumEntities1].[GetAnsverAnsverByIdAnsver](@Id)", idParameter);
         }
+    
+        public virtual int AddAnsverAnsver(Nullable<int> ansverId, string name, string text, Nullable<System.DateTime> date, Nullable<int> rating, string code)
+        {
+            var ansverIdParameter = ansverId.HasValue ?
+                new ObjectParameter("AnsverId", ansverId) :
+                new ObjectParameter("AnsverId", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var textParameter = text != null ?
+                new ObjectParameter("text", text) :
+                new ObjectParameter("text", typeof(string));
+    
+            var dateParameter = date.HasValue ?
+                new ObjectParameter("date", date) :
+                new ObjectParameter("date", typeof(System.DateTime));
+    
+            var ratingParameter = rating.HasValue ?
+                new ObjectParameter("rating", rating) :
+                new ObjectParameter("rating", typeof(int));
+    
+            var codeParameter = code != null ?
+                new ObjectParameter("code", code) :
+                new ObjectParameter("code", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddAnsverAnsver", ansverIdParameter, nameParameter, textParameter, dateParameter, ratingParameter, codeParameter);
+        }
     }
 }
