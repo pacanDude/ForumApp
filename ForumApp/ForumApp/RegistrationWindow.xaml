@@ -12,10 +12,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" CornerRadius="10" BorderThickness="2" BorderBrush="Gray">
-                                <Border.Background>
-                                    <SolidColorBrush Color="Gainsboro" Opacity="0.6"/>
-                                </Border.Background>
+                            <Border x:Name="border" CornerRadius="10" BorderThickness="2" Background="Gainsboro" BorderBrush="Gray">
                                 <ContentPresenter x:Name="ButtonContentPresenter" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             </Border>
 
@@ -64,52 +61,21 @@
 
         <Label x:Name="regLabel" Content="Регистрация" FontSize="23" FontStyle="Italic" FontWeight="Bold" Margin="195,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Label Content="Отображаемое имя (ник):" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="nicknameTextBox" HorizontalAlignment="Left" Height="23" Margin="10,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190">
-            <TextBox.Background>
-                <SolidColorBrush Color="#FFBDBDBD" Opacity="0.4"/>
-            </TextBox.Background>
-            <TextBox.BorderBrush>
-                <SolidColorBrush Color="#FF9E9E9E" Opacity="0.4"/>
-            </TextBox.BorderBrush>
-        </TextBox>
+        <TextBox x:Name="nicknameTextBox" HorizontalAlignment="Left" Height="23" Margin="10,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190"/>
         <Label Content="Возраст :" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top"/>
         <Label Content="О себе :" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="10,324,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.439,-0.648"/>
-        <TextBox x:Name="aboutSelfTextBox" AcceptsReturn="True" HorizontalAlignment="Left" Height="169" Margin="10,355,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="405">
-            <TextBox.Background>
-                <SolidColorBrush Color="#FFBDBDBD" Opacity="0.4"/>
-            </TextBox.Background>
-            <TextBox.BorderBrush>
-                <SolidColorBrush Color="#FF9E9E9E" Opacity="0.4"/>
-            </TextBox.BorderBrush>
-        </TextBox>
-        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="10,252,0,0" VerticalAlignment="Top" Width="190" Height="23">
-            <PasswordBox.Background>
-                <SolidColorBrush Color="#FFBDBDBD" Opacity="0.4"/>
-            </PasswordBox.Background>
-            <PasswordBox.BorderBrush>
-                <SolidColorBrush Color="#FF9E9E9E" Opacity="0.4"/>
-            </PasswordBox.BorderBrush>
-        </PasswordBox>
+        <TextBox x:Name="aboutSelfTextBox" AcceptsReturn="True" HorizontalAlignment="Left" Height="169" Margin="10,355,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="405"/>
+        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="10,252,0,0" VerticalAlignment="Top" Width="190" Height="23"/>
         <Label x:Name="passLabel" Content="Пароль :" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top"/>
         <Label x:Name="warning1" Visibility="Collapsed" Content="* Это поле обязательно к заполнению" Foreground="Red" HorizontalAlignment="Left" Margin="295,96,0,0" VerticalAlignment="Top"/>
         <Label x:Name="warning2" Visibility="Collapsed" Content="* Это поле обязательно к заполнению" Foreground="Red" HorizontalAlignment="Left" Margin="205,155,0,0" VerticalAlignment="Top"/>
         <Label x:Name="warning3" Visibility="Collapsed" Content="* Пароль слишком короткий" Foreground="Red" HorizontalAlignment="Left" Margin="205,475,0,0" VerticalAlignment="Top"/>
         <Label x:Name="warning4" Visibility="Collapsed" Content="* Пароль не совпадает" Foreground="Red" HorizontalAlignment="Left" Margin="205,529,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="buttonOk" Content="Готово" HorizontalAlignment="Left" Margin="10,0,0,20" Width="85" Height="30" VerticalAlignment="Bottom" Click="ButtonOk_Click"/>
+        <Button x:Name="buttonOk" Content="Готово" HorizontalAlignment="Left" Margin="25,0,0,20" Width="85" Height="30" VerticalAlignment="Bottom" Click="ButtonOk_Click"/>
         <Button x:Name="buttonCancel" Content="Отмена" HorizontalAlignment="Right" Margin="0,0,25,20" Width="85" Height="30" VerticalAlignment="Bottom" Click="ButtonCancel_Click"/>
-        <TextBox x:Name="AgeTextBox" HorizontalAlignment="Left" Height="23" Margin="10,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70">
-            <TextBox.Background>
-                <SolidColorBrush Color="#FFBDBDBD" Opacity="0.4"/>
-            </TextBox.Background>
-            <TextBox.BorderBrush>
-                <SolidColorBrush Color="#FF9E9E9E" Opacity="0.4"/>
-            </TextBox.BorderBrush>
-        </TextBox>
-        <Border  BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="264" Margin="228,56,0,0" VerticalAlignment="Top" Width="291">
-            
-        <Image x:Name="FotoImage" Source="Images/1976009.png" Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MouseDown="FotoImage_MouseDown"/>
-        </Border>
-
+        <TextBox x:Name="AgeTextBox" HorizontalAlignment="Left" Height="23" Margin="10,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70"/>
+        <Image x:Name="FotoImage" Source="Images/1976009.png" Stretch="Fill" HorizontalAlignment="Left" Height="264" Margin="228,56,0,0" VerticalAlignment="Top" Width="291" MouseDown="FotoImage_MouseDown"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="264" Margin="228,56,0,0" VerticalAlignment="Top" Width="291"/>
 
     </Grid>
 </Window>

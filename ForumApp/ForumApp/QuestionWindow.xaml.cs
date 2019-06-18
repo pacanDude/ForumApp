@@ -23,12 +23,7 @@ namespace ВопросОтвет
         {
             InitializeComponent();
         }
-        public int questionId;
-        public QuestionWindow(int questionId)
-        {
-            InitializeComponent();
-            this.questionId = questionId;
-        }
+
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
             //this.DialogResult = true;

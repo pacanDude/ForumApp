@@ -72,6 +72,14 @@ create proc AddAnsver (@QweryId int, @name varchar(max), @text varchar(max), @da
 	(@QweryId, @name, @text, @date,@rating,@code)
 	end
 
+	create proc AddAnsverAnsver (@AnsverId int, @name varchar(max), @text varchar(max), @date datetime, @rating int, @code nvarchar(max))
+    as 
+	begin
+	insert into AnsverAnsver(AnsverId, name, text, date,rating,code)
+	values
+	(@AnsverId, @name, @text, @date,@rating,@code)
+	end
+
 CREATE FUNCTION GetAllQwery ()
     RETURNS TABLE
     AS RETURN 
@@ -143,12 +151,3 @@ CREATE FUNCTION GetAnsverAnsverByIdAnsver (@Id int)
     RETURNS TABLE
     AS RETURN 
 (select * from AnsverAnsver where AnsverId=@Id)
-
-
-create proc AddAnsverAnsver (@AnsverId int, @name varchar(max), @text varchar(max), @date datetime, @rating int, @code nvarchar(max))
-    as 
-	begin
-	insert into AnsverAnsver(AnsverId, name, text, date,rating,code)
-	values
-	(@AnsverId, @name, @text, @date,@rating,@code)
-	end

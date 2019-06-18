@@ -62,41 +62,13 @@
         <Button  x:Name="buttonOk" Content="Готово" HorizontalAlignment="Left" Margin="15,0,0,15" Width="85" Height="30" VerticalAlignment="Bottom" Click="ButtonOk_Click"/>
         <Button x:Name="buttonCancel" Content="Отмена" HorizontalAlignment="Right" Margin="0,0,25,15" Width="85" Height="30" VerticalAlignment="Bottom" Click="ButtonCancel_Click"/>
         <Label Content="Заголовок :" FontSize="14" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="15,50,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="headlineTextBox" Height="23" Margin="15,83,24.6,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <TextBox.Background>
-                <SolidColorBrush Color="#FFBDBDBD" Opacity="0.4"/>
-            </TextBox.Background>
-            <TextBox.BorderBrush>
-                <SolidColorBrush Color="#FF9E9E9E" Opacity="0.4"/>
-            </TextBox.BorderBrush>
-        </TextBox>
+        <TextBox x:Name="headlineTextBox" Height="23" Margin="15,83,24.6,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Label Content="Категория" FontSize="14" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="15,115,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tagsTextBox" Height="23" Margin="15,148,24.6,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <TextBox.Background>
-                <SolidColorBrush Color="#FFBDBDBD" Opacity="0.4"/>
-            </TextBox.Background>
-            <TextBox.BorderBrush>
-                <SolidColorBrush Color="#FF9E9E9E" Opacity="0.4"/>
-            </TextBox.BorderBrush>
-        </TextBox>
+        <TextBox x:Name="tagsTextBox" Height="23" Margin="15,148,24.6,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Label Content="Сообщение :" FontSize="14" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="15,185,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="messageTextBox" AcceptsReturn="True" Height="155" Margin="15,213,25,0" TextWrapping="Wrap" VerticalAlignment="Top" >
-            <TextBox.Background>
-                <SolidColorBrush Color="#FFBDBDBD" Opacity="0.4"/>
-            </TextBox.Background>
-            <TextBox.BorderBrush>
-                <SolidColorBrush Color="#FF9E9E9E" Opacity="0.4"/>
-            </TextBox.BorderBrush>
-        </TextBox>
+        <TextBox x:Name="messageTextBox" AcceptsReturn="True" Height="155" Margin="15,213,25,0" TextWrapping="Wrap" VerticalAlignment="Top" />
         <Label Content="Для кода :" FontSize="14" FontWeight="DemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,380,0,0"/>
-        <TextBox x:Name="forCodeTextBox" AcceptsReturn="True" Height="155" Margin="15,408,25,0" TextWrapping="Wrap" VerticalAlignment="Top" >
-            <TextBox.Background>
-                <SolidColorBrush Color="#FFBDBDBD" Opacity="0.4"/>
-            </TextBox.Background>
-            <TextBox.BorderBrush>
-                <SolidColorBrush Color="#FF9E9E9E" Opacity="0.4"/>
-            </TextBox.BorderBrush>
-        </TextBox>
+        <TextBox x:Name="forCodeTextBox" AcceptsReturn="True" Height="155" Margin="15,408,25,0" TextWrapping="Wrap" VerticalAlignment="Top" />
 
 
 

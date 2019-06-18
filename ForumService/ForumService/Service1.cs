@@ -122,7 +122,7 @@ namespace ForumService
             AnsverX temp = new AnsverX();
             foreach (var item in fef.GetAnsverById(AnswerId))
             {
-                temp = new AnsverX { Id = item.Id, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text, QweryId = item.QweryId};
+                temp = new AnsverX { Id = item.Id, name = item.name, code = item.code, date = item.date, rating = item.rating, text = item.text, QweryId = item.QweryId };
             }
             return temp;
         }
@@ -270,13 +270,13 @@ namespace ForumService
 
         public bool EditQwery(QweryX qwery)
         {
-            fef.EditQwery(qwery.Id, qwery.header, qwery.text,DateTime.Now, qwery.category, qwery.code);
+            fef.EditQwery(qwery.Id, qwery.header, qwery.text, DateTime.Now, qwery.category, qwery.code);
             return true;
         }
 
         public bool EditAnsver(AnsverX ansver)
         {
-            fef.EditAnsver(ansver.Id,ansver.text,DateTime.Now,ansver.code);
+            fef.EditAnsver(ansver.Id, ansver.text, DateTime.Now, ansver.code);
             return true;
         }
 
@@ -284,7 +284,7 @@ namespace ForumService
         {
             fef.EditAnsverAnsver(ansveransver.Id, ansveransver.text, DateTime.Now, ansveransver.code);
             return true;
-            
+
         }
         public bool SendAnsverAnsver(int ansverId, string name, string text, string code)
         {
@@ -314,7 +314,7 @@ namespace ForumService
                 }
                 all.answers.Add(temp);
             }
-           
+
             return all;
         }
     }
